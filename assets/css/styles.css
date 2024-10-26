@@ -1,3 +1,10 @@
+/* General reset and form styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* Style dasar untuk wireframe */
 body {
     font-family: Arial, sans-serif;
@@ -5,17 +12,65 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
-header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px;
-    text-align: center;
-}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 15px;
 }
+
+/* Main header styling */
+.main-header {
+    background-color: #4CAF50;
+    width: 100%;
+    padding: 5px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0px;
+    position: sticky;
+    top: 0; /* Menentukan posisi saat sticky */
+    z-index: 1000; /* Pastikan header berada di atas konten lain */
+}
+
+/* Container for centering and adding padding */
+.main-header .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex; /* Use flexbox to align items */
+    justify-content: space-between; /* Space between the logo and navigation */
+    align-items: center; /* Center items vertically */
+}
+
+.main-header h1 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.main-header nav ul {
+    list-style: none;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    padding: 0;
+}
+
+.main-header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.main-header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.main-header nav ul li a:hover {
+    color: #007bff;
+}
+
 .search-bar {
     margin: 15px 0;
     display: flex;
@@ -60,4 +115,10 @@ header {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.logo {
+    color: #fff;
+    text-align: left; /* Ensure the text aligns to the left */
+    margin: 0; /* Remove default margin */
 }
