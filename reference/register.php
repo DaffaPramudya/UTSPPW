@@ -44,8 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </header>
 
-
-
     <!-- Main form section -->
     <div class="form-container">
         <form action="register.php" method="post">
