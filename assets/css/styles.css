@@ -298,3 +298,8 @@ input[type="checkbox"]:checked:after {
 .main-logo :hover {
     color: #a0e0ac;
 }
+
+.main-header-profile-button {
+    display: inline;
+    margin: 0 15px;
+}
