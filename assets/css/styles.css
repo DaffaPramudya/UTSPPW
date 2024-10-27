@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Helvetica;
 }
 
 /* Style dasar untuk wireframe */
@@ -13,6 +14,119 @@ body {
     box-sizing: border-box;
 }
 
+/* LOGIN REGISTER */
+.reg-login-body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #b2f0b2, #e8f8e8);
+}
+
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: rgb(135, 194, 213);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 65%;
+    max-width: 900px;
+    align-items: center;
+}
+
+.left-section {
+    padding: 20px;
+}
+
+.left-section > form >  p {
+    font-size: 36px;
+    text-align: center;
+}
+
+.textinput {
+    height: 50px;
+    width: 100%;
+    margin: 30px 0;
+    position: relative;
+}
+
+.textinput input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 15px;
+}
+
+.textinput i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background-color: lightgreen;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: rgb(90, 255, 90);
+}
+
+.left-section > p {
+    margin-top: 20px;
+}
+
+.reg-login-link {
+    text-decoration: none;
+    /* color: rgb(71, 160, 71); */
+    color: rgb(255, 255, 255);
+    transition: color 0.2s;
+    text-decoration-line: underline;
+}
+
+.reg-login-link:hover {
+    color: rgb(125, 232, 125);
+    /* color: rgb(90, 255, 90); */
+    text-decoration-line: underline;
+}
+
+.loginillus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.loginillus img {
+    width: 80%;
+    max-width: 250px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+
+    .loginillus {
+        display: none;
+    }
+}
+
+/* END LOGIN REGISTER */
+
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -21,7 +135,7 @@ body {
 
 /* Main header styling */
 .main-header {
-    background-color: #4CAF50;
+    background-color: rgb(113, 190, 113);
     width: 100%;
     padding: 5px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
