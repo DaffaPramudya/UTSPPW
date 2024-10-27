@@ -4,8 +4,12 @@
             <a href="index.php" class="main-logo">
                 <h1 class="logo">Dalel Shop</h1>
             </a>
+            <div>
+                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) : ?>
+                    <h1 class="main-header-welcome">Welcome, <?php echo $_SESSION['username']; ?></h1>
+                <?php endif; ?>
+            </div>
             <nav>
-
                 <ul>
                     <!--
                     <li><a href="login.php" class="main-header-link">Login</a></li>
@@ -29,7 +33,6 @@
                             </div>
                         </div>
                     </li>
-
                 </ul>
             </nav>
         </div>
