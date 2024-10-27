@@ -50,7 +50,7 @@ mysqli_close($conn);
 <title>Dalel Shop - Register</title>
 <body>
 <?php
-    include "header.html";
+    include "header.php";
 ?>
 <div class="reg-login-body">
     <div class="main-container">
