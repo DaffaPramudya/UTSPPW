@@ -14,6 +14,18 @@ body {
     box-sizing: border-box;
 }
 
+/* Error message styling */
+.error-message {
+    color: #d9534f;
+    font-size: 14px;
+    margin-bottom: 15px;
+    background-color: #f2dede;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ebccd1;
+    text-align: center;
+}
+
 /* LOGIN REGISTER */
 .reg-login-body {
     height: 100vh;
@@ -30,13 +42,55 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 65%;
+    width: 55%;
     max-width: 900px;
     align-items: center;
 }
 
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    background-color: gray;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d5d5d5;
+}
+
+input[type="checkbox"]:after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 13px;
+    content: "\f00c";
+    display: none;
+}
+
+input[type="checkbox"]:hover {
+    background-color: #a5a5a5;
+}
+
+input[type="checkbox"]:checked {
+    background-color: rgb(90, 255, 90);
+}
+
+input[type="checkbox"]:checked:after {
+    display: inline-block;
+}
+
 .left-section {
     padding: 20px;
+    width: 90%;
 }
 
 .left-section > form >  p {

@@ -1,37 +1,82 @@
+<?php
+session_start(); // Mulai session
+include("database.php");
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    header("Location: profile.php");
+    exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username_email = filter_input(INPUT_POST, "username_email", FILTER_SANITIZE_SPECIAL_CHARS);
+    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+
+    $sql = "SELECT * FROM users WHERE username = ? OR email = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ss", $username_email, $username_email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+
+        // Verifikasi password
+        if (password_verify($password, $row["password"])) {
+            // Set session login
+            $_SESSION['loggedin'] = true;
+            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['name'] = $row['name'];
+
+            // Redirect ke halaman utama
+            header("Location: index.php");
+            exit();
+        } else {
+            $error = "Password salah!";
+        }
+    } else {
+        $error = "Username / email tidak ditemukan!";
+    }
+    mysqli_close($conn);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/styles.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>Dalel Shop - Login</title>
-</head>
-<body class="reg-login-body">
-    <div class="main-container">
-        <div class="left-section">
-            <form action="login.php" method="post">
-                <p>Login</p>
-                <div class="textinput">
-                    <i class="fa-solid fa-user"></i>
-                    <input type="text" placeholder="Username atau Email">
-                </div>
-                <div class="textinput">
-                    <i class="fa-solid fa-lock"></i>
-                    <input type="password" placeholder="Password">
-                </div>
-                <input type="submit" value="Login" class="submit-btn">
-            </form>
-            <p>Belum punya akun? <a href="register.php" class="reg-login-link">Register</a></p>
-        </div>
-        <div class="loginillus">
-            <img src="assets/svg/undraw_login_re_4vu2.svg" height="200px">
+<?php
+    include "head.php";
+?>
+<title>Dalel Shop - Login</title>
+<body>
+<?php
+    include "header.html";
+?>
+    <div class="reg-login-body">
+        <div class="main-container">
+            <div class="left-section">
+                <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
+                    <p>Login</p>
+                    <!-- Error message display -->
+                    <?php if (!empty($error)) : ?>
+                        <br>
+                        <div class="error-message"><?php echo $error; ?></div>
+                    <?php endif; ?>
+                    <div class="textinput">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" name="username_email" placeholder="Username atau Email">
+                    </div>
+                    <div class="textinput">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+                    <input type="submit" value="Login" class="submit-btn">
+                </form>
+                <p>Belum punya akun? <a href="register.php" class="reg-login-link">Register</a></p>
+            </div>
+            <div class="loginillus">
+                <img src="assets/svg/undraw_login_re_4vu2.svg" height="200px">
+            </div>
         </div>
     </div>
-
 </body>
+
 </html>
