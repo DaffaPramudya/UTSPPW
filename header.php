@@ -1,7 +1,7 @@
     <!-- Header -->
     <header class="main-header">
         <div class="container">
-            <h1 class="logo">Dalel Shop</h1>
+            <a href="index.php" class="main-logo"><h1 class="logo">Dalel Shop</h1></a>
             <nav>
                 <ul>
                     <li><a href="login.php">Login</a></li>

@@ -290,3 +290,11 @@ input[type="checkbox"]:checked:after {
     text-align: left; /* Ensure the text aligns to the left */
     margin: 0; /* Remove default margin */
 }
+
+.main-logo {
+    text-decoration: none;
+}
+
+.main-logo :hover {
+    color: #a0e0ac;
+}
