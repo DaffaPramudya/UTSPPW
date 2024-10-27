@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <title>Dalel Shop - Login</title>
 <body>
 <?php
-    include "header.html";
+    include "header.php";
 ?>
     <div class="reg-login-body">
         <div class="main-container">

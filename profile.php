@@ -1,5 +1,5 @@
 <?php
     include "head.php";
-    include "header.html";
+    include "header.php";
     echo "logout dulu cuy";
 ?>
