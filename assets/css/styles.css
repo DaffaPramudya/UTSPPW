@@ -201,6 +201,8 @@ input[type="checkbox"]:checked:after {
     position: sticky;
     top: 0; /* Menentukan posisi saat sticky */
     z-index: 1000; /* Pastikan header berada di atas konten lain */
+    transition: height 0.3s ease, padding 0.3s ease;
+    overflow: hidden; /* Hides any overflowing content during transition */
 }
 
 /* Container for centering and adding padding */
