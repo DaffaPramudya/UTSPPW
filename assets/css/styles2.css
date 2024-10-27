@@ -16,7 +16,7 @@
         }
 
         .menu-button :hover {
-            background-color: #256f28;
+            color: #256f28;
             transition: color 0.3s ease;
         }
 
