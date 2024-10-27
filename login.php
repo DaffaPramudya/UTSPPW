@@ -1,5 +1,5 @@
 <?php
-session_start(); // Mulai session
+session_start();
 include("database.php");
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     header("Location: profile.php");
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <input type="submit" value="Login" class="submit-btn">
                 </form>
-                <p>Belum punya akun? <a href="register.php" class="reg-login-link">Register</a></p>
+                <p class="center-text">Belum punya akun? <a href="register.php" class="reg-login-link">Register</a></p>
             </div>
             <div class="loginillus">
                 <img src="assets/svg/undraw_login_re_4vu2.svg" height="200px">

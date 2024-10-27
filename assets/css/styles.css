@@ -26,6 +26,10 @@ body {
     text-align: center;
 }
 
+.center-text {
+    text-align: center;
+}
+
 /* LOGIN REGISTER */
 .reg-login-body {
     height: 100vh;
@@ -42,7 +46,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 55%;
+    width: 65%;
     max-width: 900px;
     align-items: center;
 }
@@ -226,17 +230,18 @@ input[type="checkbox"]:checked:after {
 .main-header nav ul li {
     display: inline;
     margin: 0 15px;
+    padding: 10px;
 }
 
-.main-header nav ul li a {
-    color: #fff;
+.main-header-link {
+    color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 16px;
     transition: color 0.3s ease;
 }
 
-.main-header nav ul li a:hover {
-    color: #6cf098;
+.main-header-link:hover {
+    color: aquamarine;
 }
 
 .search-bar {
@@ -300,6 +305,9 @@ input[type="checkbox"]:checked:after {
 }
 
 .main-header-profile-button {
-    display: inline;
-    margin: 0 15px;
+    display: inline-flex;
+    /* height: 100px; */
+    width: 10px;
+    align-items: center;
+    flex-direction: column;
 }

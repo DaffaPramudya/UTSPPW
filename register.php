@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("database.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -80,7 +81,7 @@ mysqli_close($conn);
                 </div>
                 <input type="submit" value="Register" class="submit-btn">
             </form>
-            <p>Sudah punya akun? <a href="login.php" class="reg-login-link">Login</a></p>
+            <p class="center-text">Sudah punya akun? <a href="login.php" class="reg-login-link">Login</a></p>
         </div>
         <div class="loginillus">
             <img src="assets/svg/undraw_join_re_w1lh.svg" height="250px">
