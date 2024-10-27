@@ -139,6 +139,7 @@ input[type="checkbox"]:checked:after {
 
 .left-section > p {
     margin-top: 20px;
+    text-align: center;
 }
 
 .reg-login-link {
@@ -146,13 +147,11 @@ input[type="checkbox"]:checked:after {
     /* color: rgb(71, 160, 71); */
     color: rgb(255, 255, 255);
     transition: color 0.2s;
-    text-decoration-line: underline;
 }
 
 .reg-login-link:hover {
-    color: rgb(125, 232, 125);
+    color: rgb(35, 104, 232);
     /* color: rgb(90, 255, 90); */
-    text-decoration-line: underline;
 }
 
 .loginillus {
