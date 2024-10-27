@@ -76,12 +76,12 @@ body {
 
 .register-link {
     text-decoration: none;
-    color: darkorange;
+    color: rgb(0, 119, 255);
     transition: color 0.2s;
 }
 
 .register-link:hover {
-    color: rgb(255, 0, 0);
+    color: rgb(153, 196, 245);
 }
 
 .right-section {
