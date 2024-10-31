@@ -3,82 +3,75 @@ session_start();
 include("database.php");
 include("database2.php");
 
-// Ambil kata kunci pencarian jika ada
-$search = isset($_GET['search']) ? $_GET['search'] : null;
+// Pastikan user login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
 
-// Ambil produk yang sesuai dengan pencarian
-$res = all_table_alluser($conn, "produk", $search);
+$user_id = $_SESSION['user_id'];
+
+// Ambil data keranjang dari database untuk user yang sedang login
+$sql = "
+    SELECT cart.id AS cart_id, produk.namaProduk, produk.fotoProduk, produk.hargaProduk, cart.quantity 
+    FROM cart 
+    JOIN produk ON cart.product_id = produk.idProduk 
+    WHERE cart.user_id = ?
+";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$res = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<?php
-    include "head.php";
-?>
+<?php include "head.php"; ?>
 <body>
-<?php
-    include "header.php";
-?>
-    <div class="cart-container">
-        <table>
-            <thead>
+<?php include "header.php"; ?>
+
+<div class="cart-container">
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nama</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while ($row = $res->fetch_assoc()) {
+                $total_price = $row['hargaProduk'] * $row['quantity'];
+                $formatted_price = "Rp " . number_format($total_price, 0, ',', '.');
+            ?>
                 <tr>
-                    <th></th>
-                    <th>Nama</th>
-                    <th>Qty</th>
-                    <th>Price</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><img src="image.png" alt="Sumpah Pemuda"></td>
-                        <td><div><b>Sumpah Pemuda</b><br><small>Memperingati hari sumpah pemuda</small></div>
-                    </td>
+                    <td><img src="uploads/<?php echo $row['fotoProduk']; ?>" alt="<?php echo $row['namaProduk']; ?>"></td>
                     <td>
-                    <div class="quantity-controls">
-                    <div>
-                            <button class="up-arrow">&uarr;</button>
-                                <input type="number" value="28" min="1">
-                            <button class="down-arrow">&darr;</button>
-                        </div>
-                    </td>
-                    <td>Rp 350.000,00</td>
-                    <td><button class="remove-btn"><img src="delete_icon.png" alt="Delete"></button></td>
-                </tr>
-                <tr>
-                    <td><img src="image.png" alt="Sumpah Pemuda"></td>
-                        <td><div><b>Sumpah Pemuda</b><br><small>Memperingati hari sumpah pemuda</small></div>
-                    </td>
-                    <td>
-                    <div class="quantity-controls">
-                        <div>
-                            <button class="up-arrow">&uarr;</button>
-                                <input type="number" value="28" min="1">
-                            <button class="down-arrow">&darr;</button>
-                        </div>
-                    </td>
-                    <td>Rp 200.000,00</td>
-                    <td><button class="remove-btn"><img src="delete_icon.png" alt="Delete"></button></td>
-                </tr>
-                <tr>
-                    <td><img src="image.png" alt="Sumpah Pemuda"></td>
-                        <td><div><b>Sumpah Pemuda</b><br><small>Memperingati hari sumpah pemuda</small></div>
+                        <div><b><?php echo $row['namaProduk']; ?></b><br><small>Deskripsi produk singkat...</small></div>
                     </td>
                     <td>
                         <div class="quantity-controls">
-                            <div>
-                                <button class="up-arrow">&uarr;</button>
-                                    <input type="number" value="28" min="1">
-                                <button class="down-arrow">&darr;</button>
-                            </div>
+                            <form method="POST" action="update_cart.php">
+                                <input type="hidden" name="cart_id" value="<?php echo $row['cart_id']; ?>">
+                                <button type="submit" name="increase" class="up-arrow">&uarr;</button>
+                                <input type="number" name="quantity" value="<?php echo $row['quantity']; ?>" min="1" readonly>
+                                <button type="submit" name="decrease" class="down-arrow">&darr;</button>
+                            </form>
                         </div>
                     </td>
-                    <td>Rp 20.000,00</td>
-                    <td><button class="remove-btn"><img src="delete_icon.png" alt="Delete"></button></td>
+                    <td><?php echo $formatted_price; ?></td>
+                    <td>
+                        <form method="POST" action="remove_from_cart.php">
+                            <input type="hidden" name="cart_id" value="<?php echo $row['cart_id']; ?>">
+                            <button type="submit" class="buy-button">Delete</button>
+                        </form>
+                    </td>
                 </tr>
-            </tbody>
-        </table>
-    </div>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
