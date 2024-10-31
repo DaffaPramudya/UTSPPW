@@ -228,7 +228,7 @@ input[type="checkbox"]:checked:after {
     list-style: none;
     display: inline-block;
     text-align: end;
-    width: 100%;
+    /* width: 100%; */
     padding: 0;
 }
 
@@ -312,7 +312,7 @@ input[type="checkbox"]:checked:after {
 
 .main-logo {
     text-decoration: none;
-    width: 100%;
+    /* width: 100%; */
     align-content: st;
 }
 

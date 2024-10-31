@@ -6,7 +6,7 @@
             </a>
             <div>
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) : ?>
-                    <h1 class="main-header-welcome">Welcome, <?php echo $_SESSION['username']; ?></h1>
+                    <h2 class="main-header-welcome">Welcome, <?php echo $_SESSION['username']; ?></h2>
                 <?php endif; ?>
             </div>
             <nav class="main-header-contents">
