@@ -36,20 +36,37 @@
         }
     }
 
-    function all_table($conn, $table, $user_id) {
-        // Query dengan kondisi untuk mengambil data sesuai user_id
-        $sql = "SELECT * FROM $table WHERE id = ? ORDER BY idProduk ASC";
+    function all_table($conn, $table, $user_id, $search = null) {
+        // Query dasar dengan kondisi user_id
+        $sql = "SELECT * FROM $table WHERE id = ?";
+        
+        // Tambahkan kondisi pencarian jika ada kata kunci
+        if ($search) {
+            $sql .= " AND (namaProduk LIKE ? OR hargaProduk LIKE ?)";
+        }
+        
+        $sql .= " ORDER BY idProduk ASC";
+        
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $user_id); // Bind parameter untuk menghindari SQL Injection
+    
+        // Bind parameter, termasuk kata kunci jika ada
+        if ($search) {
+            $likeSearch = "%" . $search . "%";
+            $stmt->bind_param("iss", $user_id, $likeSearch, $likeSearch);
+        } else {
+            $stmt->bind_param("i", $user_id);
+        }
+    
         $stmt->execute();
         $result = $stmt->get_result();
-        
+    
         if ($result && $result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
             return [];
         }
     }
+    
 
     function all_table_alluser($conn, $table){
         $sql = "SELECT * FROM $table ORDER BY idProduk ASC";

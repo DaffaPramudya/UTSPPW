@@ -9,13 +9,15 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }
 
-// Ambil ID user dari session
 $user_id = $_SESSION['user_id'];
 
-// Ambil produk yang hanya dimiliki oleh user yang sedang login
-$res = all_table($conn, "produk", $user_id);
+// Ambil kata kunci pencarian jika ada
+$search = isset($_GET['search']) ? $_GET['search'] : null;
 
+// Ambil produk yang hanya dimiliki oleh user yang sedang login, dengan filter pencarian jika ada
+$res = all_table($conn, "produk", $user_id, $search);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,11 +43,15 @@ $res = all_table($conn, "produk", $user_id);
             </form>
         </div>
         <div class="search-edit">
-            <input type="text" name="search" id="search" placeholder="cari produk">
+            <form method="GET" action="">
+                <input type="text" name="search" id="search" placeholder="Cari produk">
+                <input type="submit" value="Cari" id="save">
+            </form>
             <form action="edit-product.php">
                 <input type="submit" value="Edit produk" id="save">
             </form>
         </div>
+
 
         <div class="table-body">
             <table>
@@ -66,6 +72,8 @@ $res = all_table($conn, "produk", $user_id);
                 <?php } ?>
             </table>
         </div>
+
     </main>
 </body>
+
 </html>
