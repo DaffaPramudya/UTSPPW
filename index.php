@@ -1,7 +1,10 @@
 <?php session_start();
 include("database.php");
 include("database2.php");
-$res = all_table($conn, "produk");
+
+// Ambil produk yang hanya dimiliki oleh user yang sedang login
+$res = all_table_alluser($conn, "produk");
+
 ?>
 
 <!DOCTYPE html>

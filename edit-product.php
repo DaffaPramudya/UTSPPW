@@ -2,7 +2,12 @@
     session_start();
     include("database.php");
     include("database2.php");
-    $res = all_table($conn, "produk");
+// Ambil ID user dari session
+$user_id = $_SESSION['user_id'];
+
+// Ambil produk yang hanya dimiliki oleh user yang sedang login
+$res = all_table($conn, "produk", $user_id);
+
 ?>
 
 <!DOCTYPE html>

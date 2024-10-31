@@ -36,7 +36,22 @@
         }
     }
 
-    function all_table($conn, $table){
+    function all_table($conn, $table, $user_id) {
+        // Query dengan kondisi untuk mengambil data sesuai user_id
+        $sql = "SELECT * FROM $table WHERE id = ? ORDER BY idProduk ASC";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $user_id); // Bind parameter untuk menghindari SQL Injection
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result && $result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return [];
+        }
+    }
+
+    function all_table_alluser($conn, $table){
         $sql = "SELECT * FROM $table ORDER BY idProduk ASC";
         $result = $conn->query($sql);
         
@@ -46,6 +61,7 @@
             return [];
         }
     }
+    
 
     function get_cart_details($conn, $userId){
         $sql = "

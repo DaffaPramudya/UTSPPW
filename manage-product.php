@@ -3,25 +3,27 @@ session_start();
 include("database.php");
 include("database2.php");
 
+// Pastikan user sudah login
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("location: index.php");
     exit;
 }
 
-$res = all_table($conn, "produk");
+// Ambil ID user dari session
+$user_id = $_SESSION['user_id'];
+
+// Ambil produk yang hanya dimiliki oleh user yang sedang login
+$res = all_table($conn, "produk", $user_id);
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<?php
-include "head.php";
-?>
+<?php include "head.php"; ?>
 <title>Dalel Shop - Kelola Produk</title>
 
 <body>
-    <?php
-    include "header.php";
-    ?>
+    <?php include "header.php"; ?>
     <main class="main-table">
         <div class="header">
             <h1>Kelola Produk</h1>
@@ -29,11 +31,13 @@ include "head.php";
         <div class="add-product">
             <span id="header-add">Tambah Produk Baru</span>
             <form action="funcproduk.php" method="post" enctype="multipart/form-data">
-                <input type="text" name="enter-product" id="enter-product" placeholder="Nama Produk" required>
-                <input type="text" name="enter-product" id="enter-product" placeholder="Harga Produk" required>
-                <input type="text" name="enter-product" id="enter-product" placeholder="Stok Produk" required>
-                <input type="file" name="enter-product" accept="image/png, image/jpg, image/jpeg" id="enter-image" placeholder="Nama Produk" required>
-                <input type="button" value="+ Tambah Produk" id="add">
+                <input type="text" name="namaProduk" id="enter-product" placeholder="Nama Produk" required>
+                <input type="text" name="hargaProduk" id="enter-product" placeholder="Harga Produk" required>
+                <input type="text" name="stokProduk" id="enter-product" placeholder="Stok Produk" required>
+                <input type="hidden" name="condition" value="insert" required>
+                <label for="fileUpload">Pilih file untuk diunggah:</label>
+                <input type="file" name="fotoProduk" accept="image/png, image/jpg, image/jpeg" id="enter-image" placeholder="Nama Produk" required>
+                <input type="submit" value="+ Tambah Produk" id="add">
             </form>
         </div>
         <div class="search-edit">
@@ -41,8 +45,6 @@ include "head.php";
             <form action="edit-product.php">
                 <input type="submit" value="Edit produk" id="save">
             </form>
-
-
         </div>
 
         <div class="table-body">
@@ -52,17 +54,18 @@ include "head.php";
                     <td>Harga</td>
                     <td>Stok</td>
                 </tr>
-                <?php foreach ($res as $row) { ?>
+                <?php foreach ($res as $row) {
+                    $harga = $row['hargaProduk'];
+                    $harga = number_format($harga, 0, ',', '.');
+                ?>
                     <tr>
                         <td class="info-produk"><img src="uploads/<?php echo $row['fotoProduk']; ?>" alt=""><?php echo $row['namaProduk']; ?></td>
-                        <td>Rp785.000,00</td>
-                        <td>999</td>
-                        <!-- <td class="edit"><input type="button" value="Edit"></td> -->
+                        <td>Rp<?php echo $harga; ?></td>
+                        <td><?php echo $row['stokProduk']; ?></td>
                     </tr>
                 <?php } ?>
             </table>
         </div>
     </main>
 </body>
-
 </html>

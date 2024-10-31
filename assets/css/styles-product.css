@@ -106,8 +106,8 @@ table {
 }
 
 td img {
-    width: 100px;
-    height: 100px;
+    max-width: 300px;
+    max-height: 200px;
     border-radius: 5px;
     margin-right: 1rem;
     vertical-align: middle;
