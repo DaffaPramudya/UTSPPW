@@ -28,11 +28,13 @@ include "head.php";
         </div>
         <div class="add-product">
             <span id="header-add">Tambah Produk Baru</span>
-            <input type="text" name="enter-product" id="enter-product" placeholder="Nama Produk" required>
-            <input type="text" name="enter-product" id="enter-product" placeholder="Harga Produk" required>
-            <input type="text" name="enter-product" id="enter-product" placeholder="Stok Produk" required>
-            <input type="file" name="enter-product" accept="image/png, image/jpg, image/jpeg" id="enter-image" placeholder="Nama Produk" required>
-            <input type="button" value="+ Tambah Produk" id="add">
+            <form action="funcproduk.php" method="post" enctype="multipart/form-data">
+                <input type="text" name="enter-product" id="enter-product" placeholder="Nama Produk" required>
+                <input type="text" name="enter-product" id="enter-product" placeholder="Harga Produk" required>
+                <input type="text" name="enter-product" id="enter-product" placeholder="Stok Produk" required>
+                <input type="file" name="enter-product" accept="image/png, image/jpg, image/jpeg" id="enter-image" placeholder="Nama Produk" required>
+                <input type="button" value="+ Tambah Produk" id="add">
+            </form>
         </div>
         <div class="search-edit">
             <input type="text" name="search" id="search" placeholder="cari produk">
