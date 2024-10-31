@@ -14,9 +14,10 @@ $user_id = $_SESSION['user_id'];
 // Ambil kata kunci pencarian jika ada
 $search = isset($_GET['search']) ? $_GET['search'] : null;
 
-// Ambil produk yang hanya dimiliki oleh user yang sedang login, dengan filter pencarian jika ada
+// Ambil produk yang hanya dimiliki oleh user yang sedang login, dengan filter pencarian nama produk jika ada
 $res = all_table($conn, "produk", $user_id, $search);
 ?>
+
 
 
 <!DOCTYPE html>
@@ -45,12 +46,13 @@ $res = all_table($conn, "produk", $user_id, $search);
         <div class="search-edit">
             <form method="GET" action="">
                 <input type="text" name="search" id="search" placeholder="Cari produk">
-                <input type="submit" value="Cari" id="save">
+                <input type="submit" value="Cari" id="search-button">
             </form>
             <form action="edit-product.php">
                 <input type="submit" value="Edit produk" id="save">
             </form>
         </div>
+
 
 
         <div class="table-body">
@@ -72,6 +74,7 @@ $res = all_table($conn, "produk", $user_id, $search);
                 <?php } ?>
             </table>
         </div>
+
 
     </main>
 </body>

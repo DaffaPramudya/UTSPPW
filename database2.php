@@ -40,9 +40,9 @@
         // Query dasar dengan kondisi user_id
         $sql = "SELECT * FROM $table WHERE id = ?";
         
-        // Tambahkan kondisi pencarian jika ada kata kunci
+        // Tambahkan kondisi pencarian jika ada kata kunci, hanya pada kolom namaProduk
         if ($search) {
-            $sql .= " AND (namaProduk LIKE ? OR hargaProduk LIKE ?)";
+            $sql .= " AND namaProduk LIKE ?";
         }
         
         $sql .= " ORDER BY idProduk ASC";
@@ -52,7 +52,7 @@
         // Bind parameter, termasuk kata kunci jika ada
         if ($search) {
             $likeSearch = "%" . $search . "%";
-            $stmt->bind_param("iss", $user_id, $likeSearch, $likeSearch);
+            $stmt->bind_param("is", $user_id, $likeSearch);
         } else {
             $stmt->bind_param("i", $user_id);
         }
@@ -66,6 +66,7 @@
             return [];
         }
     }
+    
     
 
     function all_table_alluser($conn, $table){
