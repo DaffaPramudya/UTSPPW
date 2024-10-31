@@ -6,7 +6,7 @@
     include "head.php";
 ?>
 <title>Dalel Shop - Home</title>
-<body>
+<body class="index-body">
 
 <?php
     include "header.php";
