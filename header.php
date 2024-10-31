@@ -9,7 +9,7 @@
                     <h1 class="main-header-welcome">Welcome, <?php echo $_SESSION['username']; ?></h1>
                 <?php endif; ?>
             </div>
-            <nav>
+            <nav class="main-header-contents">
                 <ul>
                     <!--
                     <li><a href="login.php" class="main-header-link">Login</a></li>
