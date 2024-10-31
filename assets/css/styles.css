@@ -220,14 +220,14 @@ input[type="checkbox"]:checked:after {
 
 .main-header h1 {
     color: #fff;
-    text-align: center;
+    /* text-align: center; */
     margin-bottom: 10px;
 }
 
-.main-header nav ul {
+.main-header-contents {
     list-style: none;
     display: inline-block;
-    text-align: center;
+    text-align: end;
     width: 100%;
     padding: 0;
 }
@@ -312,6 +312,8 @@ input[type="checkbox"]:checked:after {
 
 .main-logo {
     text-decoration: none;
+    width: 100%;
+    align-content: st;
 }
 
 .main-logo :hover {
