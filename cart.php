@@ -1,15 +1,3 @@
-<?php 
-session_start();
-include("database.php");
-include("database2.php");
-
-// Ambil kata kunci pencarian jika ada
-$search = isset($_GET['search']) ? $_GET['search'] : null;
-
-// Ambil produk yang sesuai dengan pencarian
-$res = all_table_alluser($conn, "produk", $search);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -44,10 +32,10 @@ $res = all_table_alluser($conn, "produk", $search);
                         </div>
                     </td>
                     <td>Rp 350.000,00</td>
-                    <td><button class="remove-btn"><img src="delete_icon.png" alt="Delete"></button></td>
+                    <td><button class="remove-btn">🗑</button></td>
                 </tr>
                 <tr>
-                    <td><img src="image.png" alt="Sumpah Pemuda"></td>
+                    <td><img src="" alt="Sumpah Pemuda"></td>
                         <td><div><b>Sumpah Pemuda</b><br><small>Memperingati hari sumpah pemuda</small></div>
                     </td>
                     <td>
@@ -59,7 +47,7 @@ $res = all_table_alluser($conn, "produk", $search);
                         </div>
                     </td>
                     <td>Rp 200.000,00</td>
-                    <td><button class="remove-btn"><img src="delete_icon.png" alt="Delete"></button></td>
+                    <td><button class="remove-btn">🗑</button></td>
                 </tr>
                 <tr>
                     <td><img src="image.png" alt="Sumpah Pemuda"></td>
@@ -75,7 +63,7 @@ $res = all_table_alluser($conn, "produk", $search);
                         </div>
                     </td>
                     <td>Rp 20.000,00</td>
-                    <td><button class="remove-btn"><img src="delete_icon.png" alt="Delete"></button></td>
+                    <td><button class="remove-btn">🗑</button></td>
                 </tr>
             </tbody>
         </table>
