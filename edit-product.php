@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("database.php");
     include("database2.php");
     $res = all_table($conn, "produk");

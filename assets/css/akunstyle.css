@@ -9,10 +9,13 @@ body {
 }
 
 .header {
-    background-color: rgb(113, 190, 113);
+    background-color: rgb(34 88 34);
     color: white;
-    padding: 20px;
-    text-align: left;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    align-content: center;
+    margin-bottom: 20px;
 }
 
 .header a {
