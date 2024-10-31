@@ -65,7 +65,7 @@ $res = $stmt->get_result();
                     <td>
                         <form method="POST" action="remove_from_cart.php">
                             <input type="hidden" name="cart_id" value="<?php echo $row['cart_id']; ?>">
-                            <button type="submit" class="buy-button">🗑</button>
+                            <button type="submit" class="buy-button">Delete 🗑</button>
                         </form>
                     </td>
                 </tr>
