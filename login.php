@@ -38,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['username'] = $row['username'];
             $_SESSION['name'] = $row['name'];
+            $_SESSION['email'] = $row['email'];
 
             // Redirect ke halaman utama
             header("Location: index.php");
