@@ -1,0 +1,85 @@
+        /* Sembunyikan checkbox */
+        #menuToggle {
+            display: none;
+        }
+
+        /* Style untuk tombol menu */
+        .menu-button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .menu-button :hover {
+            color: #256f28;
+            transition: color 0.3s ease;
+        }
+
+        /* Style untuk menu dropdown */
+        .menu-dropdown {
+            display: none;
+            top: 50px;
+            left: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            z-index: 10;
+            padding: 5px;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .menu-dropdown ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-dropdown li {
+            padding: 10px;
+            align-items: center;
+        }
+
+        .menu-dropdown a:hover {
+            color: rgb(64, 132, 109);
+            transition: color 0.3s ease;
+        }
+
+        .menu-dropdown a {
+            color: rgb(113, 190, 113);
+        }
+
+        /* Tampilkan menu dropdown jika checkbox dicentang */
+        #menuToggle:checked + .menu-button + .menu-dropdown {
+            display: block;
+        }
+
+        /* Style untuk menutup menu ketika mengklik di luar area menu */
+        /* Gunakan pseudo-element :before dan :after */
+        #menuToggle:checked ~ .overlay {
+            display: block;
+        }
+
+        /* Overlay untuk mendeteksi klik di luar menu */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+        }

@@ -1,25 +1,16 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dalel Shop Home</title>
-    <link rel="stylesheet" href="assets/css/styles.css?<?php echo time(); ?>">
-</head>
+<?php
+    include "head.php";
+?>
+<title>Dalel Shop - Home</title>
 <body>
 
-    <!-- Header -->
-    <header class="main-header">
-        <div class="container">
-            <h1 class="logo">Dalel Shop</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Login</a></li>
-                    <li><a href="index.html">Register</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<?php
+    include "header.php";
+?>
 
     <!-- Container Utama -->
     <div class="container">
@@ -38,21 +29,21 @@
                 <div class="product-price">Rp 100.000</div>
                 <button class="buy-button">Beli</button>
             </div>
-            
+
             <div class="product-item">
                 <div class="product-image" style="background-color: #ddd; width: 100%; height: 150px;"></div>
                 <div class="product-name">Produk 2</div>
                 <div class="product-price">Rp 200.000</div>
                 <button class="buy-button">Beli</button>
             </div>
-            
+
             <div class="product-item">
                 <div class="product-image" style="background-color: #ddd; width: 100%; height: 150px;"></div>
                 <div class="product-name">Produk 3</div>
                 <div class="product-price">Rp 150.000</div>
                 <button class="buy-button">Beli</button>
             </div>
-            
+
             <div class="product-item">
                 <div class="product-image" style="background-color: #ddd; width: 100%; height: 150px;"></div>
                 <div class="product-name">Produk 4</div>
@@ -106,4 +97,5 @@
     </div>
 
 </body>
+
 </html>

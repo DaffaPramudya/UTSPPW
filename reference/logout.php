@@ -8,3 +8,4 @@ unset($_SESSION['name']);
 header("Location: login.php");  // Redirect to the login page
 exit;
 ?>
+

@@ -75,5 +75,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p id="copyright">Copyright ©2024 Daffa Pramudya Ismanto</p>
     </div>
 </body>
-
 </html>

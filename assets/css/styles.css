@@ -14,6 +14,22 @@ body {
     box-sizing: border-box;
 }
 
+/* Error message styling */
+.error-message {
+    color: #d9534f;
+    font-size: 14px;
+    margin-bottom: 15px;
+    background-color: #f2dede;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ebccd1;
+    text-align: center;
+}
+
+.center-text {
+    text-align: center;
+}
+
 /* LOGIN REGISTER */
 .reg-login-body {
     height: 100vh;
@@ -35,8 +51,50 @@ body {
     align-items: center;
 }
 
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    background-color: gray;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d5d5d5;
+}
+
+input[type="checkbox"]:after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 13px;
+    content: "\f00c";
+    display: none;
+}
+
+input[type="checkbox"]:hover {
+    background-color: #a5a5a5;
+}
+
+input[type="checkbox"]:checked {
+    background-color: rgb(90, 255, 90);
+}
+
+input[type="checkbox"]:checked:after {
+    display: inline-block;
+}
+
 .left-section {
     padding: 20px;
+    width: 90%;
 }
 
 .left-section > form >  p {
@@ -85,6 +143,7 @@ body {
 
 .left-section > p {
     margin-top: 20px;
+    text-align: center;
 }
 
 .reg-login-link {
@@ -92,13 +151,11 @@ body {
     /* color: rgb(71, 160, 71); */
     color: rgb(255, 255, 255);
     transition: color 0.2s;
-    text-decoration-line: underline;
 }
 
 .reg-login-link:hover {
-    color: rgb(125, 232, 125);
+    color: rgb(35, 104, 232);
     /* color: rgb(90, 255, 90); */
-    text-decoration-line: underline;
 }
 
 .loginillus {
@@ -143,6 +200,8 @@ body {
     position: sticky;
     top: 0; /* Menentukan posisi saat sticky */
     z-index: 1000; /* Pastikan header berada di atas konten lain */
+    transition: height 0.3s ease, padding 0.3s ease;
+    overflow: hidden; /* Hides any overflowing content during transition */
 }
 
 /* Container for centering and adding padding */
@@ -172,17 +231,25 @@ body {
 .main-header nav ul li {
     display: inline;
     margin: 0 15px;
+    padding: 10px;
 }
 
-.main-header nav ul li a {
-    color: #fff;
+.main-header-link {
+    color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 16px;
     transition: color 0.3s ease;
 }
 
-.main-header nav ul li a:hover {
-    color: #6cf098;
+.main-header-welcome {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 26px;
+    transition: color 0.3s ease;
+}
+
+.main-header-link:hover {
+    color: aquamarine;
 }
 
 .search-bar {
@@ -235,4 +302,20 @@ body {
     color: #fff;
     text-align: left; /* Ensure the text aligns to the left */
     margin: 0; /* Remove default margin */
+}
+
+.main-logo {
+    text-decoration: none;
+}
+
+.main-logo :hover {
+    color: #a0e0ac;
+}
+
+.main-header-profile-button {
+    display: inline-flex;
+    /* height: 100px; */
+    width: 10px;
+    align-items: center;
+    flex-direction: column;
 }
