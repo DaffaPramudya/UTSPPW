@@ -29,7 +29,7 @@
                 <div class="product-price">Rp 100.000</div>
                 <button class="buy-button">Beli</button>
             </div>
-
+<!-- 
             <div class="product-item">
                 <div class="product-image" style="background-color: #ddd; width: 100%; height: 150px;"></div>
                 <div class="product-name">Produk 2</div>
@@ -91,7 +91,7 @@
                 <div class="product-name">Produk 10</div>
                 <div class="product-price">Rp 280.000</div>
                 <button class="buy-button">Beli</button>
-            </div>
+            </div>  -->
         </div>
 
     </div>

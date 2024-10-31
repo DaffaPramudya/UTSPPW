@@ -1,13 +1,18 @@
+<?php
+    include("database.php");
+    include("database2.php");
+    $res = all_table($conn, "produk");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Product</title>
-    <link rel="stylesheet" href="assets/css/styles-product.css">
-</head>
+<?php
+    include "head.php";
+?>
 <body>
-    
+<?php
+    include "header.php";
+?>
     <main class="table">
         <div class="header"><h1>Manage Product</h1></div>
         <div class="search-add">
@@ -28,19 +33,20 @@
                     <td>Status</td>
                     <td></td>
                 </tr>
-                
-                <tr>
-                    <td>  <input type="checkbox" id="check" value="select">
-                    </td>
-                    <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3--wrIWnC9hxzsPE_OlNxXh855zmbjOpdhA&s" alt="">Sepatu Condense New Original</td>
-                    <td>Fashion</td>
-                    <td>113344</td>
-                    <td>Rp785.000,00</td>
-                    <td>999</td>
-                    <td>Active</td>
-                    <td class="edit"><input type="button" value="Edit"></td>
-                </tr>
-                <tr>
+                <?php foreach($res as $row){ ?>
+                    <tr>
+                        <td>  <input type="checkbox" id="check" value="select">
+                        </td>
+                        <td><img src="uploads/<?php echo $row['fotoProduk']; ?>" alt=""><?php echo $row['namaProduk']; ?></td>
+                        <td>Fashion</td>
+                        <td>113344</td>
+                        <td>Rp785.000,00</td>
+                        <td>999</td>
+                        <td>Active</td>
+                        <td class="edit"><input type="button" value="Edit"></td>
+                    </tr>
+                <?php } ?>
+                <!-- <tr>
                     <td>  <input type="checkbox" id="check" value="select">
                     </td>
                     <td><img src="https://www.beautyhaul.com/assets/uploads/products/thumbs/800x800/Cover.png" alt="">Lip Tint stain 48H red rose</td>
@@ -110,7 +116,7 @@
                     <td>999</td>
                     <td>Active</td>
                     <td class="edit"><input type="button" value="Edit"></td>
-                </tr>                    
+                </tr>                     -->
             </table>
         </div>
     </main>
