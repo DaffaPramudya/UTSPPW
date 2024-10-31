@@ -4,20 +4,7 @@ body {
   margin: 0;
   padding: 0;
 }
-.header {
-  background-color: #8dcf73;
-  padding: 10px;
-  text-align: left;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.header a {
-  margin: 0 15px;
-  text-decoration: none;
-  color: #000;
-  font-weight: bold;
-}
+
 .cart-container {
   margin: 20px;
   background-color: #87CEEB;
