@@ -18,10 +18,13 @@ body.index-body{
     background: linear-gradient(to right, #b2f0b2, #e8f8e8);
 }
 
+
 a {
     text-decoration: none;
     color: black;
     margin: 0;
+ul {
+    list-style-type: none;
 }
 
 /* Error message styling */
@@ -226,23 +229,23 @@ input[type="checkbox"]:checked:after {
 
 .main-header h1 {
     color: #fff;
-    text-align: center;
+    /* text-align: center; */
     margin-bottom: 10px;
 }
 
-.main-header nav ul {
+.main-header-contents {
     list-style: none;
     display: inline-block;
-    text-align: center;
-    width: 100%;
+    text-align: end;
+    /* width: 100%; */
     padding: 0;
 }
 
-.main-header nav ul li {
+/* .main-header nav ul li {
     display: inline;
     margin: 0 15px;
     padding: 10px;
-}
+} */
 
 .main-header-link {
     color: rgb(255, 255, 255);
@@ -280,14 +283,14 @@ input[type="checkbox"]:checked:after {
 }
 .product-item {
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 10px;
     padding: 15px;
     text-align: center;
     background: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .product-item .product-image {
-    background-color: #ddd;
+    /* background-color: #ddd; */
     width: 100%;
     height: 150px;
 }
@@ -318,6 +321,8 @@ input[type="checkbox"]:checked:after {
 
 .main-logo {
     text-decoration: none;
+    /* width: 100%; */
+    align-content: st;
 }
 
 .main-logo :hover {
@@ -327,7 +332,6 @@ input[type="checkbox"]:checked:after {
 .main-header-profile-button {
     display: inline-flex;
     /* height: 100px; */
-    width: 10px;
     align-items: center;
     flex-direction: column;
 }
@@ -351,4 +355,5 @@ input[type="checkbox"]:checked:after {
 
 a.googleauth:hover .google-container {
     background-color: #fff;
+    flex-direction: row-reverse;
 }

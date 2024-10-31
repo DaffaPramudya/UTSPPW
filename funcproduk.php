@@ -33,7 +33,7 @@
             if (move_uploaded_file($_FILES["fotoproduk"]["tmp_name"], $targetFile)) {
                 $query = "INSERT INTO produk (idProduk, namaProduk, fotoProduk) VALUES ('$idProduk', '$nama', '$foto')";
                 mysqli_query($conn, $query);
-                header("location: ../insertProduk.php");
+                header("location: ../manage-product.php");
             } else {
                 header("location: ../register.php");
             }

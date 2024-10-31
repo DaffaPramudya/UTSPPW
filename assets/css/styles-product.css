@@ -1,17 +1,72 @@
-.search-add {
+.main-table {
+    margin: 20px 70px 20px 70px;
+    justify-content: center;
+    align-items: center;
+}
+
+#header-add {
+    margin: 15px 0 5px 0;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.add-product {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 400px;
+    flex-direction: column;
+    margin: auto;
+    border-radius: 10px;
+    background-color: #d3d3d3;
+}
+
+#enter-product {
+    margin: 10px;
+    padding: 10px 0 10px 0;
+    width: 300px;
+    height: auto;
+}
+
+input#enter-product {
+    padding: 10px;
+}
+
+#enter-image {
+    justify-content: center;
+    margin: 10px;
+    padding: 5px 10px 5px 10px;
+    width: 300px;
+    height: auto;
+    background-color: #fafafa;
+    border: 1px solid black;
+}
+
+#add {
+    justify-content: right;
+    margin: 0 0 10px 0;
+    padding: 0 5px 0 5px;
+    height: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.search-edit {
     margin: 10px 0 15px 0;
     display: flex;
     justify-content: space-between;
 }
 
-.search-add input {
+.search-edit input {
     padding: 12px;
     border: 1px solid #656464;
     border-radius: 10px;
     font-size: 15px;
 }
 
-input#add {
+input#edit {
     cursor: pointer;
     font-weight: bold;
 }
@@ -57,6 +112,10 @@ table, tr, td {
     text-align: center;
 }
 
+.info-produk {
+    text-align: left;
+}
+
 #check {
     transform: scale(1.25);
 }
@@ -67,13 +126,38 @@ tr.head {
     left: 0;
     background-color: #d5d1defe;
     font-weight: bolder;
+    text-align: center;
+}
+
+#save {
+    font-weight: bold;
+}
+
+#save:hover{
+    color: white;
+    background-color: #585858;
 }
 
 .edit input {
     padding: 8px 18px 8px 18px;
+    margin: 5px;
     border-radius: 20px;
     border: 1px solid #d5d1defe;
     color: #585858;
     cursor: pointer;
 }
 
+input#edit-product {
+    padding: 5px;
+}
+
+#hapus {
+    background-color: crimson;
+    color: white;
+}
+
+#hapus:hover {
+    color: crimson;
+    background-color: white;
+    border: 1px solid crimson;
+}

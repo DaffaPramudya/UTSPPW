@@ -46,10 +46,11 @@
             list-style-type: none;
             padding: 0;
             margin: 0;
+            text-align: center;
         }
 
         .menu-dropdown li {
-            padding: 10px;
+            padding: 5px;
             align-items: center;
         }
 
@@ -66,6 +67,11 @@
         #menuToggle:checked + .menu-button + .menu-dropdown {
             display: block;
         }
+
+        .container:has(#menuToggle:checked) .main-header {
+            height: 317px;
+        }
+        
 
         /* Style untuk menutup menu ketika mengklik di luar area menu */
         /* Gunakan pseudo-element :before dan :after */

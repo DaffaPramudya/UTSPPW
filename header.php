@@ -6,10 +6,10 @@
             </a>
             <div>
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) : ?>
-                    <h1 class="main-header-welcome">Welcome, <?php echo $_SESSION['username']; ?></h1>
+                    <h2 class="main-header-welcome">Welcome, <?php echo $_SESSION['username']; ?></h2>
                 <?php endif; ?>
             </div>
-            <nav>
+            <nav class="main-header-contents">
                 <ul>
                     <!--
                     <li><a href="login.php" class="main-header-link">Login</a></li>
@@ -24,6 +24,7 @@
                                 <ul>
                                     <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) : ?>
                                         <li><a href="profile.php">Profile</a></li>
+                                        <li><a href="manage-product.php">Kelola Produk</a></li>
                                         <li><a href="logout.php">Logout</a></li>
                                     <?php else : ?>
                                         <li><a href="login.php">Login</a></li>
