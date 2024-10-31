@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+    include "head.php";
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="stylesheet" href="assets/css/akunstyle.css">
+    <link rel="stylesheet" href="assets/css/akunstyle.css">
 </head>
 <body>
-    <div class="header">
-        <a href="#">Home</a>
-        <a href="#">Belanja</a>
-        <a href="#">Keranjang</a>
-        <a href="#" style="float: right;">Logout</a>
-    </div>
+<?php
+    include "header.php";
+?>
     <div class="sidebar">
         <img src="assets/png/anonim.png" alt="User Avatar">
         <div class="username">Nama Pengguna</div>

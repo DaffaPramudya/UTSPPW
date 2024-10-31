@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="assets/css/styles.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="assets/css/styles2.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="assets/css/styles-product.css?<?php echo time(); ?>">
+    <link rel="stylesheet" href="assets/css/akunstyle.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
