@@ -3,13 +3,6 @@
 <?php
     include "head.php";
 ?>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <link rel="stylesheet" href="assets/css/akunstyle.css">
-    <link rel="stylesheet" href="assets/css/akunstyle.css">
-</head>
 <body>
 <?php
     include "header.php";
