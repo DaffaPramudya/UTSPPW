@@ -9,6 +9,7 @@
 <?php
     include "head.php";
 ?>
+<title>Dalel Shop - Edit Produk</title>
 <body>
 <?php
     include "header.php";
