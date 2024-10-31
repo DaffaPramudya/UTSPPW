@@ -18,6 +18,10 @@ body.index-body{
     background: linear-gradient(to right, #b2f0b2, #e8f8e8);
 }
 
+ul {
+    list-style-type: none;
+}
+
 /* Error message styling */
 .error-message {
     color: #d9534f;
@@ -232,11 +236,11 @@ input[type="checkbox"]:checked:after {
     padding: 0;
 }
 
-.main-header nav ul li {
+/* .main-header nav ul li {
     display: inline;
     margin: 0 15px;
     padding: 10px;
-}
+} */
 
 .main-header-link {
     color: rgb(255, 255, 255);
@@ -323,7 +327,6 @@ input[type="checkbox"]:checked:after {
 .main-header-profile-button {
     display: inline-flex;
     /* height: 100px; */
-    width: 10px;
     align-items: center;
-    flex-direction: row-reverse;
+    flex-direction: column;
 }

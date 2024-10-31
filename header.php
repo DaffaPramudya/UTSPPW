@@ -24,6 +24,7 @@
                                 <ul>
                                     <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) : ?>
                                         <li><a href="profile.php">Profile</a></li>
+                                        <li><a href="manage-product.php">Edit Produk</a></li>
                                         <li><a href="logout.php">Logout</a></li>
                                     <?php else : ?>
                                         <li><a href="login.php">Login</a></li>
