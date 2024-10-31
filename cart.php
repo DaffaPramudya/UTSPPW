@@ -12,12 +12,6 @@ $res = all_table_alluser($conn, "produk", $search);
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Keranjang</title>
-  <link rel="stylesheet" href="assets/css/keranjang.css">
-</head>
 <?php
     include "head.php";
 ?>
@@ -42,10 +36,11 @@ $res = all_table_alluser($conn, "produk", $search);
                         <td><div><b>Sumpah Pemuda</b><br><small>Memperingati hari sumpah pemuda</small></div>
                     </td>
                     <td>
-                        <div class="quantity-controls">
-                            <button>&uarr;</button>
-                            28
-                            <button>&darr;</button>
+                    <div class="quantity-controls">
+                    <div>
+                            <button class="up-arrow">&uarr;</button>
+                                <input type="number" value="28" min="1">
+                            <button class="down-arrow">&darr;</button>
                         </div>
                     </td>
                     <td>Rp 350.000,00</td>
@@ -56,10 +51,11 @@ $res = all_table_alluser($conn, "produk", $search);
                         <td><div><b>Sumpah Pemuda</b><br><small>Memperingati hari sumpah pemuda</small></div>
                     </td>
                     <td>
-                        <div class="quantity-controls">
-                            <button>&uarr;</button>
-                            12
-                            <button>&darr;</button>
+                    <div class="quantity-controls">
+                        <div>
+                            <button class="up-arrow">&uarr;</button>
+                                <input type="number" value="28" min="1">
+                            <button class="down-arrow">&darr;</button>
                         </div>
                     </td>
                     <td>Rp 200.000,00</td>
@@ -71,9 +67,11 @@ $res = all_table_alluser($conn, "produk", $search);
                     </td>
                     <td>
                         <div class="quantity-controls">
-                            <button>&uarr;</button>
-                            1
-                            <button>&darr;</button>
+                            <div>
+                                <button class="up-arrow">&uarr;</button>
+                                    <input type="number" value="28" min="1">
+                                <button class="down-arrow">&darr;</button>
+                            </div>
                         </div>
                     </td>
                     <td>Rp 20.000,00</td>
