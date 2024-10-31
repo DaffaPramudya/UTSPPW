@@ -13,37 +13,38 @@
 <?php
     include "header.php";
 ?>
-    <main class="table">
+    <main class="main-table">
         <div class="header"><h1>Kelola Produk</h1></div>
-        <div class="search-add">
-            <input type="text" name="search" id="search" placeholder="cari produk">
+        <div class="add-product">
+            <span id="header-add">Tambah Produk Baru</span>
+            <input type="text" name="enter-product" id="enter-product" placeholder="Nama Produk" required>
+            <input type="text" name="enter-product" id="enter-product" placeholder="Harga Produk" required>
+            <input type="text" name="enter-product" id="enter-product" placeholder="Stok Produk" required>
+            <input type="file" name="enter-product" accept="image/png, image/jpg, image/jpeg" id="enter-image" placeholder="Nama Produk" required>
             <input type="button" value="+ Tambah Produk" id="add">
+        </div>
+        <div class="search-edit">
+            <input type="text" name="search" id="search" placeholder="cari produk">
+            <form action="edit-product.php">
+                <input type="submit" value="Edit produk" id="save">
+            </form>
+            
+            
         </div>
 
         <div class="table-body">
             <table>
                 <tr class="head">
-                    <td>  <input type="checkbox" id="check" value="select">
-                    </td>
                     <td>Info Produk</td>
-                    <td>Kategori</td>
-                    <td>SKU</td>
                     <td>Harga</td>
                     <td>Stok</td>
-                    <td>Status</td>
-                    <td></td>
                 </tr>
                 <?php foreach($res as $row){ ?>
                     <tr>
-                        <td>  <input type="checkbox" id="check" value="select">
-                        </td>
-                        <td><img src="uploads/<?php echo $row['fotoProduk']; ?>" alt=""><?php echo $row['namaProduk']; ?></td>
-                        <td>Fashion</td>
-                        <td>113344</td>
+                        <td class="info-produk"><img src="uploads/<?php echo $row['fotoProduk']; ?>" alt=""><?php echo $row['namaProduk']; ?></td>
                         <td>Rp785.000,00</td>
                         <td>999</td>
-                        <td>Active</td>
-                        <td class="edit"><input type="button" value="Edit"></td>
+                        <!-- <td class="edit"><input type="button" value="Edit"></td> -->
                     </tr>
                 <?php } ?>
                 <!-- <tr>
