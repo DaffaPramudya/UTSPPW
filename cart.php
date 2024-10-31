@@ -1,3 +1,15 @@
+<?php 
+session_start();
+include("database.php");
+include("database2.php");
+
+// Ambil kata kunci pencarian jika ada
+$search = isset($_GET['search']) ? $_GET['search'] : null;
+
+// Ambil produk yang sesuai dengan pencarian
+$res = all_table_alluser($conn, "produk", $search);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

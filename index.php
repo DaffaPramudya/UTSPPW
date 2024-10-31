@@ -1,10 +1,13 @@
-<?php session_start();
+<?php 
+session_start();
 include("database.php");
 include("database2.php");
 
-// Ambil produk yang hanya dimiliki oleh user yang sedang login
-$res = all_table_alluser($conn, "produk");
+// Ambil kata kunci pencarian jika ada
+$search = isset($_GET['search']) ? $_GET['search'] : null;
 
+// Ambil produk yang sesuai dengan pencarian
+$res = all_table_alluser($conn, "produk", $search);
 ?>
 
 <!DOCTYPE html>
@@ -25,8 +28,12 @@ include "head.php";
 
         <!-- Pencarian Produk -->
         <div class="search-bar">
-            <input type="text" placeholder="Cari produk...">
+            <form method="GET" action="index.php">
+                <input type="text" name="search" placeholder="Cari produk..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+                <input type="submit" value="Cari" id="save">
+            </form>
         </div>
+
 
         <!-- Grid Produk -->
         <div class="product-grid">
@@ -46,7 +53,7 @@ include "head.php";
         </div>
 
     </div>
-
 </body>
+<?php include "cartbutton.php"; ?>
 
 </html>

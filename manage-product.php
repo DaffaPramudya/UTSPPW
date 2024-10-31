@@ -46,7 +46,7 @@ $res = all_table($conn, "produk", $user_id, $search);
         <div class="search-edit">
             <form method="GET" action="">
                 <input type="text" name="search" id="search" placeholder="Cari produk">
-                <input type="submit" value="Cari" id="search-button">
+                <input type="submit" value="Cari" id="save">
             </form>
             <form action="edit-product.php">
                 <input type="submit" value="Edit produk" id="save">
@@ -74,7 +74,6 @@ $res = all_table($conn, "produk", $user_id, $search);
                 <?php } ?>
             </table>
         </div>
-
 
     </main>
 </body>
