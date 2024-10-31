@@ -357,5 +357,5 @@ input[type="checkbox"]:checked:after {
 
 a.googleauth:hover .google-container {
     background-color: #fff;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
 }
