@@ -1,4 +1,16 @@
 <?php
+
+require __DIR__ . "/vendor/autoload.php";
+$client = new Google\Client;
+$client->setClientId("936119187508-cekbhul2fjml4438lhs0c8nduin0thdl.apps.googleusercontent.com");
+$client->setClientSecret("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");
+$client->setRedirectUri("http://localhost/UTSPPW/redirect.php");
+
+$client->addScope("email");
+$client->addScope("profile");
+
+$url = $client->createAuthUrl();
+
 session_start();
 include("database.php");
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
@@ -68,6 +80,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <i class="fa-solid fa-lock"></i>
                         <input type="password" name="password" placeholder="Password">
                     </div>
+                    <a href="<?= $url?>" class="googleauth">
+                        <div class="google-container">
+                            <div class="google-button">Login dengan google</div>
+                            <i class="fa-brands fa-google"></i>
+                        </div>
+                    </a>
                     <input type="submit" value="Login" class="submit-btn">
                 </form>
                 <p class="center-text">Belum punya akun? <a href="register.php" class="reg-login-link">Register</a></p>

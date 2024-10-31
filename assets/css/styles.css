@@ -18,6 +18,11 @@ body.index-body{
     background: linear-gradient(to right, #b2f0b2, #e8f8e8);
 }
 
+
+a {
+    text-decoration: none;
+    color: black;
+    margin: 0;
 ul {
     list-style-type: none;
 }
@@ -328,5 +333,27 @@ input[type="checkbox"]:checked:after {
     display: inline-flex;
     /* height: 100px; */
     align-items: center;
+    flex-direction: column;
+}
+
+.google-container {
+    height: 50px;
+    width: 100%;
+    margin: 30px 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid white;
+    transition: background-color 0.2s ease;
+}
+
+.google-container i {
+    margin-left: 10px;
+}
+
+a.googleauth:hover .google-container {
+    background-color: #fff;
     flex-direction: row-reverse;
 }
