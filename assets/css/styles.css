@@ -328,5 +328,5 @@ input[type="checkbox"]:checked:after {
     display: inline-flex;
     /* height: 100px; */
     align-items: center;
-    flex-direction: column;
+    flex-direction: row-reverse;
 }
