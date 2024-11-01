@@ -15,12 +15,10 @@ $nomor = $_POST['nomor'];
 $alamat = $_POST['alamat'];
 $gender = $_POST['gender'];
 
-nomor Update query
 $sql = "UPDATE users SET username = ?, email = ?, nomor = ?, alamat = ?, gender = ? WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("sssssi", $username, $email, $nomor, $alamat, $gender, $user_id);
 
-nomor Execute the query
 if ($stmt->execute()) {
     $_SESSION['username'] = $username;
     header("Location: profile.php");
