@@ -21,15 +21,19 @@ $url = $client->createAuthUrl();
 session_start();
 
 // Check if the CAPTCHA answer is set, if not generate it
+// Check if the CAPTCHA answer is set, if not generate it
 if (!isset($_SESSION['captcha_answer'])) {
     $number1 = rand(1, 10);
     $number2 = rand(1, 10);
     $_SESSION['captcha_answer'] = $number1 + $number2;
     $_SESSION['captcha_question'] = "$number1 + $number2 = ?";
+    $_SESSION['captcha_question'] = "$number1 + $number2 = ?";
 }
 
 // Database connection
+// Database connection
 include("database.php");
+
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     header("Location: profile.php");
@@ -54,7 +58,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = mysqli_fetch_assoc($result);
 
         // Verify password
+        // Verify password
         if (password_verify($password, $row["password"])) {
+            // Check the CAPTCHA answer
+            if ($user_answer === $correct_answer) {
             // Check the CAPTCHA answer
             if ($user_answer === $correct_answer) {
                 // Set session login
@@ -72,6 +79,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             } else {
                 $error = "Captcha salah!";
+                // Optionally, you could regenerate a new CAPTCHA question here
+                unset($_SESSION['captcha_answer']);
+                // Generate a new CAPTCHA question
+                $number1 = rand(1, 10);
+                $number2 = rand(1, 10);
+                $_SESSION['captcha_answer'] = $number1 + $number2;
+                $_SESSION['captcha_question'] = "$number1 + $number2 = ?";
                 // Optionally, you could regenerate a new CAPTCHA question here
                 unset($_SESSION['captcha_answer']);
                 // Generate a new CAPTCHA question
