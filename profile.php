@@ -5,10 +5,9 @@
         header("location: index.php");
         exit;
     }
-    
+
 include("database.php");
 
-// Ensure user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
@@ -16,7 +15,6 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Prepare and execute the SELECT query
 $sql = "SELECT username, email, nomor, alamat, gender FROM users WHERE id = ?";
 
 $stmt = $conn->prepare($sql);
