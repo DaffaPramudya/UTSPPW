@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2024 at 01:26 AM
+-- Generation Time: Nov 01, 2024 at 03:56 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `dalelshop`
 --
+CREATE DATABASE IF NOT EXISTS `dalelshop` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `dalelshop`;
 
 -- --------------------------------------------------------
 
@@ -64,11 +66,11 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`idProduk`, `namaProduk`, `fotoProduk`, `hargaProduk`, `stokProduk`, `id`) VALUES
-(1, 'naon', 'Produk_1.png', 1000000, 999, 16),
+(1, 'naon', 'Produk_1.jpg', 1000000, 999, 16),
 (2, 'a', 'Produk_2.PNG', 0, 0, 16),
-(3, 'a', 'Produk_3.jpeg', 10000, 99, 16),
-(4, 'hjk', 'Produk_4.jpg', 2304, 78, 16),
-(5, 'wee', 'Produk_5.PNG', 876554, 100, 16);
+(3, 'abc', 'Produk_3.png', 10000, 99, 16),
+(4, 'hjk', 'Produk_4.png', 2304, 78, 16),
+(5, 'wee', 'Produk_5.jpg', 876554, 100, 16);
 
 -- --------------------------------------------------------
 
@@ -93,7 +95,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `is_seller`, `nomor`, `alamat`, `gender`) VALUES
 (15, 'd', 'd@d.d', '$2y$10$CVdsAo57.Qi4tFlpdejHV.0zrxaKNbaZIxPHWLU4niX2Av65i3una', 1, '0812919', 'Jl. acumalaka', 'Laki-laki'),
-(16, 'a', 'a@a.a', '$2y$10$QYhQ.BsU7cZwHNjzZwYPZO/Apg0hEVnE8hGszX7PuJzOS8/CFywoG', 1, '', '', 'Laki-laki'),
+(16, 'aa', 'a@a.a', '$2y$10$QYhQ.BsU7cZwHNjzZwYPZO/Apg0hEVnE8hGszX7PuJzOS8/CFywoG', 1, '', '', 'Laki-laki'),
 (17, 'b', 'b@b.b', '$2y$10$9JDlx0z0Sx/A0G7QwbN5G.ZqyP40eKbnWPrs2AtOapI/41AzL/9Ru', 0, '', '', 'Laki-laki'),
 (18, 'c', 'c@c.c', '$2y$10$Ua/jwL9XlkbBzKETWkkbeOHiWa7UQ5PYqqpb0r9MqI11b3xKhY72m', 0, '', '', 'Laki-laki'),
 (19, 'daffa pramudya', 'e@e.e', '$2y$10$cvgShEIV0BUQZK2Q/ittk.YyPVRxzTqVP41avDL/pPFRzq0HnFgEy', 1, '', '', 'Laki-laki');
