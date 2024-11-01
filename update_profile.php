@@ -25,6 +25,7 @@ $stmt->bind_param("sssssi", $username, $email, $nomor, $alamat, $gender, $user_i
 
 // Execute the query
 if ($stmt->execute()) {
+    $_SESSION['username'] = $username;
     header("Location: profile.php");
 } else {
     echo "Error updating profile: " . $stmt->error;
