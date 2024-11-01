@@ -12,15 +12,17 @@ $url = $client->createAuthUrl();
 
 session_start();
 
+// Check if the CAPTCHA answer is set, if not generate it
 if (!isset($_SESSION['captcha_answer'])) {
     $number1 = rand(1, 10);
     $number2 = rand(1, 10);
     $_SESSION['captcha_answer'] = $number1 + $number2;
+    $_SESSION['captcha_question'] = "$number1 + $number2 = ?";
 }
 
-$correct_answer = $_SESSION['captcha_answer'];
-
+// Database connection
 include("database.php");
+
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     header("Location: profile.php");
     exit();
@@ -30,6 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username_email = filter_input(INPUT_POST, "username_email", FILTER_SANITIZE_SPECIAL_CHARS);
     $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
     $user_answer = (int)trim($_POST['captcha']);
+    
+    // Retrieve the correct CAPTCHA answer
+    $correct_answer = $_SESSION['captcha_answer'];
 
     $sql = "SELECT * FROM users WHERE username = ? OR email = ?";
     $stmt = mysqli_prepare($conn, $sql);
@@ -40,20 +45,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
 
-        // Verifikasi password
+        // Verify password
         if (password_verify($password, $row["password"])) {
-            if($user_answer === $correct_answer) {
+            // Check the CAPTCHA answer
+            if ($user_answer === $correct_answer) {
                 // Set session login
                 $_SESSION['loggedin'] = true;
                 $_SESSION['user_id'] = $row['id'];
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['name'] = $row['name'];
+                
+                // Clear the CAPTCHA session after successful validation
                 unset($_SESSION['captcha_answer']);
-                // Redirect ke halaman utama
+                unset($_SESSION['captcha_question']);
+                
+                // Redirect to the main page
                 header("Location: index.php");
                 exit();
             } else {
                 $error = "Captcha salah!";
+                // Optionally, you could regenerate a new CAPTCHA question here
+                unset($_SESSION['captcha_answer']);
+                // Generate a new CAPTCHA question
+                $number1 = rand(1, 10);
+                $number2 = rand(1, 10);
+                $_SESSION['captcha_answer'] = $number1 + $number2;
+                $_SESSION['captcha_question'] = "$number1 + $number2 = ?";
             }
         } else {
             $error = "Password salah!";
@@ -113,5 +130,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 </body>
-
 </html>
