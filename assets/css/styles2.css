@@ -89,3 +89,22 @@
             bottom: 0;
             background: rgba(0, 0, 0, 0);
         }
+
+        .cart-button {
+            position: fixed; /* Menempel di posisi layar, meskipun di-scroll */
+            bottom: 20px;    /* Jarak dari bawah */
+            right: 20px;     /* Jarak dari kanan */
+            padding: 15px 20px;
+            background-color: rgb(88, 151, 88); 
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Bayangan agar tampak melayang */
+            transition: transform 0.2s; /* Efek animasi saat dihover */
+        }
+
+        .cart-button:hover {
+            transform: scale(1.1); /* Membesar sedikit saat dihover */
+        }

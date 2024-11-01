@@ -35,7 +35,7 @@ $res = all_table($conn, "produk", $user_id, $search);
             <span id="header-add">Tambah Produk Baru</span>
             <form action="funcproduk.php" method="post" enctype="multipart/form-data">
                 <input type="text" name="namaProduk" id="enter-product" placeholder="Nama Produk" required>
-                <input type="text" name="hargaProduk" id="enter-product" placeholder="Harga Produk" required>
+                <input type="text" name="hargaProduk" id="enter-product" placeholder="Harga Produk (Contoh: 15000)" required>
                 <input type="text" name="stokProduk" id="enter-product" placeholder="Stok Produk" required>
                 <input type="hidden" name="condition" value="insert" required>
                 <label for="fileUpload">Pilih file untuk diunggah:</label>
@@ -46,7 +46,7 @@ $res = all_table($conn, "produk", $user_id, $search);
         <div class="search-edit">
             <form method="GET" action="">
                 <input type="text" name="search" id="search" placeholder="Cari produk">
-                <input type="submit" value="Cari" id="search-button">
+                <input type="submit" value="Cari" id="save">
             </form>
             <form action="edit-product.php">
                 <input type="submit" value="Edit produk" id="save">
@@ -74,7 +74,6 @@ $res = all_table($conn, "produk", $user_id, $search);
                 <?php } ?>
             </table>
         </div>
-
 
     </main>
 </body>

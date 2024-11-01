@@ -69,16 +69,35 @@
     
     
 
-    function all_table_alluser($conn, $table){
-        $sql = "SELECT * FROM $table ORDER BY idProduk ASC";
-        $result = $conn->query($sql);
+    function all_table_alluser($conn, $table, $search = null) {
+        // Query dasar untuk menampilkan semua produk
+        $sql = "SELECT * FROM $table";
+    
+        // Tambahkan kondisi pencarian jika ada kata kunci
+        if ($search) {
+            $sql .= " WHERE namaProduk LIKE ?";
+        }
+    
+        $sql .= " ORDER BY idProduk ASC";
         
+        $stmt = $conn->prepare($sql);
+    
+        // Bind parameter jika ada pencarian
+        if ($search) {
+            $likeSearch = "%" . $search . "%";
+            $stmt->bind_param("s", $likeSearch);
+        }
+    
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
         if ($result && $result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
             return [];
         }
     }
+    
     
 
     function get_cart_details($conn, $userId){
