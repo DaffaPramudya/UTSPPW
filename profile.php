@@ -18,7 +18,7 @@
 ?>
     <div class="sidebar">
         <img src="assets/png/anonim.png" alt="User Avatar">
-        <div class="username">Nama Pengguna</div>
+        <div class="username"><?php ?></div>
     </div>
     <div class="content">
         <div class="profile-card">

@@ -120,7 +120,7 @@ input[type="checkbox"]:checked:after {
 .textinput {
     height: 50px;
     width: 100%;
-    margin: 30px 0;
+    margin: 15px 0;
     position: relative;
 }
 
@@ -348,7 +348,7 @@ input[type="checkbox"]:checked:after {
 .google-container {
     height: 50px;
     width: 100%;
-    margin: 30px 0;
+    margin: 15px 0;
     position: relative;
     display: flex;
     justify-content: center;
@@ -365,4 +365,8 @@ input[type="checkbox"]:checked:after {
 a.googleauth:hover .google-container {
     background-color: #fff;
     /* flex-direction: row-reverse; */
+}
+
+#captcha-question {
+    font-size: 20px;
 }
