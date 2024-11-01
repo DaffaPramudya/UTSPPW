@@ -3,9 +3,9 @@ session_start();
 require __DIR__ . "/vendor/autoload.php";
 
 $client = new Google\Client;
-$client->setClientId("936119187508-tongo08ma09fj09q0rlm9ojnh6mc448j.apps.googleusercontent.com");
-$client->setClientSecret("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");
-$client->setRedirectUri("http://localhost/UTSPPW2/redirect.php");
+$client->setClientId("1025587847152-otmido7hlfsek8qeeo2h1kt1d2od9l3t.apps.googleusercontent.com");
+$client->setClientSecret("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");
+$client->setRedirectUri("http://localhost/dalelshop/redirect.php");
 
 $client->addScope("email");
 $client->addScope("profile");
