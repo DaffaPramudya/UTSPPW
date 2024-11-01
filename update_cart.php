@@ -1,37 +1,28 @@
 <?php
-session_start();
 include("database.php");
 
-if (isset($_POST['cart_id']) && isset($_SESSION['user_id'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cart_id = $_POST['cart_id'];
-    $user_id = $_SESSION['user_id'];
-
-    // Query untuk mendapatkan jumlah produk saat ini di keranjang
-    $sql = "SELECT quantity FROM cart WHERE id = ? AND user_id = ?";
+    $change = isset($_POST['increase']) ? 1 : (isset($_POST['decrease']) ? -1 : 0);
+    
+    // Fetch current quantity
+    $sql = "SELECT quantity FROM cart WHERE id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $cart_id, $user_id);
+    $stmt->bind_param("i", $cart_id);
     $stmt->execute();
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
-    
-    if ($row) {
-        $current_quantity = $row['quantity'];
+    $current_quantity = $row['quantity'];
 
-        // Update jumlah produk
-        if (isset($_POST['increase'])) {
-            $sql = "UPDATE cart SET quantity = quantity + 1 WHERE id = ? AND user_id = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ii", $cart_id, $user_id);
-            $stmt->execute();
-        } elseif (isset($_POST['decrease']) && $current_quantity > 1) {
-            $sql = "UPDATE cart SET quantity = quantity - 1 WHERE id = ? AND user_id = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ii", $cart_id, $user_id);
-            $stmt->execute();
-        }
-    }
+    // Update quantity
+    $new_quantity = max(1, $current_quantity + $change); // Ensure quantity doesn't go below 1
+    $sql = "UPDATE cart SET quantity = ? WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $new_quantity, $cart_id);
+    $stmt->execute();
+
+    // Redirect back to the cart page
+    header("Location: cart.php");
+    exit();
 }
-
-header("Location: cart.php");
-exit();
 ?>
