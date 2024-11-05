@@ -15,7 +15,8 @@ body {
 }
 
 body.index-body{
-    background: linear-gradient(to right, #b2f0b2, #e8f8e8);
+    /* background: linear-gradient(to right, #b2f0b2, #e8f8e8); */
+    background: white;
 }
 
 
@@ -51,7 +52,7 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to right, #b2f0b2, #e8f8e8);
+    /* background: linear-gradient(to right, #b2f0b2, #e8f8e8); */
 }
 
 .main-container {
@@ -100,7 +101,7 @@ input[type="checkbox"]:hover {
 }
 
 input[type="checkbox"]:checked {
-    background-color: rgb(90, 255, 90);
+    background-color: #AFDCEB;
 }
 
 input[type="checkbox"]:checked:after {
@@ -146,14 +147,29 @@ input[type="checkbox"]:checked:after {
     height: 50px;
     border: none;
     border-radius: 10px;
-    background-color: lightgreen;
+    background-color: #AFDCEB;
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .submit-btn:hover {
-    background-color: rgb(90, 255, 90);
+    background-color: #CAE9F5;
+}
+
+.submit-btn-index {
+    /* width: 100%;
+    height: 50px; */
+    border: none;
+    border-radius: 10px;
+    background-color: #AFDCEB;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-btn-index:hover {
+    background-color: #CAE9F5;
 }
 
 .left-section > p {
@@ -169,7 +185,7 @@ input[type="checkbox"]:checked:after {
 }
 
 .reg-login-link:hover {
-    color: rgb(35, 104, 232);
+    color: #334173;
     /* color: rgb(90, 255, 90); */
 }
 
@@ -185,17 +201,6 @@ input[type="checkbox"]:checked:after {
     max-width: 250px;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .main-container {
-        grid-template-columns: 1fr;
-    }
-
-    .loginillus {
-        display: none;
-    }
-}
-
 /* END LOGIN REGISTER */
 
 
@@ -207,7 +212,7 @@ input[type="checkbox"]:checked:after {
 
 /* Main header styling */
 .main-header {
-    background-color: rgb(113, 190, 113);
+    background-color: #CAE9F5;
     width: 100%;
     padding: 5px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -227,12 +232,6 @@ input[type="checkbox"]:checked:after {
     display: flex; /* Use flexbox to align items */
     justify-content: space-between; /* Space between the logo and navigation */
     align-items: center; /* Center items vertically */
-}
-
-.main-header h1 {
-    color: #fff;
-    /* text-align: center; */
-    margin-bottom: 10px;
 }
 
 .main-header-contents {
@@ -259,7 +258,7 @@ input[type="checkbox"]:checked:after {
 .main-header-welcome {
     color: rgb(255, 255, 255);
     text-decoration: none;
-    font-size: 26px;
+    font-size: 15px;
     transition: color 0.3s ease;
 }
 
@@ -268,20 +267,22 @@ input[type="checkbox"]:checked:after {
 }
 
 .search-bar {
-    margin: 15px 0;
+    margin: 45px ;
     display: flex;
     justify-content: center;
 }
 .search-bar input {
-    width: 60%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #334173;
     border-radius: 4px;
 }
+/* .search-bar-index {
+    width: 100%;
+} */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
+    gap: 25px;
 }
 .product-item {
     border: 1px solid #ddd;
@@ -315,15 +316,23 @@ input[type="checkbox"]:checked:after {
 .product-item .buy-button {
     margin-top: 10px;
     padding: 8px 12px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
+    background-color: white;
+    color: #334173;
     border-radius: 4px;
     cursor: pointer;
+    border-color: #334173;
+    border-width: 2px;
+}
+.product-item .buy-button:hover {
+    background-color: #334173;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .logo {
-    color: #fff;
+    color: #334173;
     text-align: left; /* Ensure the text aligns to the left */
     margin: 0; /* Remove default margin */
 }
@@ -332,10 +341,12 @@ input[type="checkbox"]:checked:after {
     text-decoration: none;
     /* width: 100%; */
     align-content: st;
+    transition: transform 0.3s ease;
 }
 
 .main-logo :hover {
-    color: #a0e0ac;
+    transition: transform 0.3s ease;
+    transform: scale(1.1);
 }
 
 .main-header-profile-button {

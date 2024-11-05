@@ -68,7 +68,7 @@
                 <div>
                     <label for="gender">Jenis Kelamin</label>
                     <select id="gender" name="gender" required>
-                        <option value="none" selected> </option>
+                        <option value="none" selected>[none]</option>
                         <option value="Laki-laki" <?php if($user['gender'] == 'Laki-laki') echo 'selected'; ?>>Laki-laki</option>
                         <option value="Perempuan" <?php if($user['gender'] == 'Perempuan') echo 'selected'; ?>>Perempuan</option>
                     </select>

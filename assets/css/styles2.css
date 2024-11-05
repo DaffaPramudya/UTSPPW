@@ -6,18 +6,20 @@
         /* Style untuk tombol menu */
         .menu-button {
             padding: 10px 20px;
-            cursor: pointer;
-            background-color: #4CAF50;
-            color: white;
             border: none;
             border-radius: 5px;
             display: inline-block;
             text-align: center;
+            cursor: pointer;
+            background-color: #334173;
+            color: white;
         }
 
+
         .menu-button :hover {
-            color: #256f28;
-            transition: color 0.3s ease;
+            /* background-color: #256f28; */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            transform: scale(1.1);
         }
 
         /* Style untuk menu dropdown */
@@ -25,12 +27,13 @@
             display: none;
             top: 50px;
             left: 20px;
-            background-color: white;
+            background-color: #6171A9;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             border-radius: 5px;
             z-index: 10;
             padding: 5px;
             animation: fadeIn 0.5s ease forwards;
+            margin-right: 10px;
         }
 
         @keyframes fadeIn {
@@ -47,6 +50,9 @@
             padding: 0;
             margin: 0;
             text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .menu-dropdown li {
@@ -55,12 +61,20 @@
         }
 
         .menu-dropdown a:hover {
-            color: rgb(64, 132, 109);
-            transition: color 0.3s ease;
+            color: rgb(252, 252, 252);
+            background-color: #6171A9;
+            border-color: white;
+            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
         }
-
+        
         .menu-dropdown a {
-            color: rgb(113, 190, 113);
+            padding: 4px;
+            color: #6171A9;
+            border-radius: 5px;
+            border-color: #7c88b2;
+            border-width: 2px;
+            border-style: solid;
+            background-color: white;
         }
 
         /* Tampilkan menu dropdown jika checkbox dicentang */
@@ -68,9 +82,9 @@
             display: block;
         }
 
-        .container:has(#menuToggle:checked) .main-header {
+        /* .container:has(#menuToggle:checked) .main-header {
             height: 317px;
-        }
+        } */
         
 
         /* Style untuk menutup menu ketika mengklik di luar area menu */
@@ -95,7 +109,7 @@
             bottom: 20px;    /* Jarak dari bawah */
             right: 20px;     /* Jarak dari kanan */
             padding: 15px 20px;
-            background-color: rgb(88, 151, 88); 
+            background-color: #334173; 
             color: white;
             border: none;
             border-radius: 50px;

@@ -4,21 +4,19 @@
             <a href="index.php" class="main-logo">
                 <h1 class="logo">Dalel Shop</h1>
             </a>
-            <div>
-                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) : ?>
-                    <h2 class="main-header-welcome">Welcome, <?php echo $_SESSION['username']; ?></h2>
-                <?php endif; ?>
-            </div>
             <nav class="main-header-contents">
                 <ul>
                     <!--
-                    <li><a href="login.php" class="main-header-link">Login</a></li>
-                    <li><a href="register.php" class="main-header-link">Register</a></li> -->
+                        <li><a href="login.php" class="main-header-link">Login</a></li>
+                        <li><a href="register.php" class="main-header-link">Register</a></li> -->
                     <li>
                         <div class="main-header-profile-button">
                             <input type="checkbox" id="menuToggle">
                             <label for="menuToggle" class="menu-button">
                                 <i class="fa-solid fa-user"></i>
+                                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) : ?>
+                                    <h2 class="main-header-welcome">Welcome, <?php echo $_SESSION['username']; ?></h2>
+                                <?php endif; ?>
                             </label>
                             <div class="menu-dropdown">
                                 <ul>

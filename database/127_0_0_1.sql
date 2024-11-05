@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2024 at 03:56 AM
+-- Generation Time: Nov 05, 2024 at 02:46 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,9 +42,14 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `created_at`) VALUES
-(1, 16, 1, 1, '2024-10-31 18:01:02'),
-(2, 16, 3, 1, '2024-10-31 18:02:17'),
-(3, 16, 5, 1, '2024-10-31 18:04:06');
+(11, 29, 5, 1, '2024-11-01 03:44:40'),
+(12, 28, 5, 1, '2024-11-01 03:45:46'),
+(13, 28, 6, 1, '2024-11-01 03:45:47'),
+(14, 28, 2, 1, '2024-11-01 03:45:48'),
+(17, 16, 3, 1, '2024-11-01 13:42:51'),
+(18, 16, 4, 1, '2024-11-01 13:42:52'),
+(19, 16, 5, 1, '2024-11-01 13:42:53'),
+(21, 16, 13, 2, '2024-11-05 13:02:50');
 
 -- --------------------------------------------------------
 
@@ -66,11 +71,17 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`idProduk`, `namaProduk`, `fotoProduk`, `hargaProduk`, `stokProduk`, `id`) VALUES
-(1, 'naon', 'Produk_1.jpg', 1000000, 999, 16),
 (2, 'a', 'Produk_2.PNG', 0, 0, 16),
 (3, 'abc', 'Produk_3.png', 10000, 99, 16),
 (4, 'hjk', 'Produk_4.png', 2304, 78, 16),
-(5, 'wee', 'Produk_5.jpg', 876554, 100, 16);
+(5, 'wee', 'Produk_5.jpg', 876554, 100, 16),
+(6, 'bcd', 'Produk_6.jpg', 99999, 5, 16),
+(7, 'eeeee', 'Produk_7.jpg', 50000, 123, 21),
+(9, 'a', 'Produk_9.PNG', 15000, 100, 29),
+(10, 'b', 'Produk_10.PNG', 20000, 3, 16),
+(11, 'c', 'Produk_11.jpeg', 30000, 4, 16),
+(12, 'd', 'Produk_12.jpeg', 40000, 5, 16),
+(13, 'ee', 'Produk_13.jpg', 50000, 6, 16);
 
 -- --------------------------------------------------------
 
@@ -95,10 +106,15 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `is_seller`, `nomor`, `alamat`, `gender`) VALUES
 (15, 'd', 'd@d.d', '$2y$10$CVdsAo57.Qi4tFlpdejHV.0zrxaKNbaZIxPHWLU4niX2Av65i3una', 1, '0812919', 'Jl. acumalaka', 'Laki-laki'),
-(16, 'aa', 'a@a.a', '$2y$10$QYhQ.BsU7cZwHNjzZwYPZO/Apg0hEVnE8hGszX7PuJzOS8/CFywoG', 1, '', '', 'Laki-laki'),
+(16, 'aa', 'a@a.a', '$2y$10$QYhQ.BsU7cZwHNjzZwYPZO/Apg0hEVnE8hGszX7PuJzOS8/CFywoG', 1, '123', 'aaaaaa', 'Laki-laki'),
 (17, 'b', 'b@b.b', '$2y$10$9JDlx0z0Sx/A0G7QwbN5G.ZqyP40eKbnWPrs2AtOapI/41AzL/9Ru', 0, '', '', 'Laki-laki'),
 (18, 'c', 'c@c.c', '$2y$10$Ua/jwL9XlkbBzKETWkkbeOHiWa7UQ5PYqqpb0r9MqI11b3xKhY72m', 0, '', '', 'Laki-laki'),
-(19, 'daffa pramudya', 'e@e.e', '$2y$10$cvgShEIV0BUQZK2Q/ittk.YyPVRxzTqVP41avDL/pPFRzq0HnFgEy', 1, '', '', 'Laki-laki');
+(19, 'daffa pramudya', 'e@e.e', '$2y$10$cvgShEIV0BUQZK2Q/ittk.YyPVRxzTqVP41avDL/pPFRzq0HnFgEy', 1, '', '', 'Laki-laki'),
+(20, 'f', 'f@f.f', '$2y$10$uZHMgak4TbQjxRKeDBcYteNyznp1vTsaku.4ggJegxYuALRcI9PAW', 1, '', '', 'Laki-laki'),
+(21, 'daffa', 'daffa@gmail.com', '$2y$10$N0V4n2.1SF2aDMMQQdPP8eXcKND2oOXO8RBD/JiKentbr4S796xXS', 1, '', '', 'Laki-laki'),
+(26, 'Daffa Pramudya Ismanto', 'daffapramudya160605@gmail', '', 0, '', '', 'Laki-laki'),
+(28, 'Saucezz Saucezz', 'saucezz00000@gmail.com', '', 0, '12345', 'aaaaaa', 'Laki-laki'),
+(29, 'daffas', 'daffapramudya160605@gmail', '$2y$10$cHc9Bf2HjGsAHW9VterQg.usxF2zJcxoew.no1tFxqaSQy.YA.Oyq', 1, '', '', 'Laki-laki');
 
 --
 -- Indexes for dumped tables
@@ -133,19 +149,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `idProduk` smallint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idProduk` smallint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Constraints for dumped tables
