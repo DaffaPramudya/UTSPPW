@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2024 at 02:46 PM
+-- Generation Time: Nov 05, 2024 at 03:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -92,7 +92,7 @@ INSERT INTO `produk` (`idProduk`, `namaProduk`, `fotoProduk`, `hargaProduk`, `st
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(25) NOT NULL,
-  `email` varchar(25) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `password` char(255) NOT NULL,
   `is_seller` tinyint(1) NOT NULL,
   `nomor` varchar(15) NOT NULL,
@@ -112,9 +112,9 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `is_seller`, `nomor`
 (19, 'daffa pramudya', 'e@e.e', '$2y$10$cvgShEIV0BUQZK2Q/ittk.YyPVRxzTqVP41avDL/pPFRzq0HnFgEy', 1, '', '', 'Laki-laki'),
 (20, 'f', 'f@f.f', '$2y$10$uZHMgak4TbQjxRKeDBcYteNyznp1vTsaku.4ggJegxYuALRcI9PAW', 1, '', '', 'Laki-laki'),
 (21, 'daffa', 'daffa@gmail.com', '$2y$10$N0V4n2.1SF2aDMMQQdPP8eXcKND2oOXO8RBD/JiKentbr4S796xXS', 1, '', '', 'Laki-laki'),
-(26, 'Daffa Pramudya Ismanto', 'daffapramudya160605@gmail', '', 0, '', '', 'Laki-laki'),
+(26, 'Daffa Pramudya Ismanto', 'daffapramudya160605@gmail.com', '', 0, '', '', 'Laki-laki'),
 (28, 'Saucezz Saucezz', 'saucezz00000@gmail.com', '', 0, '12345', 'aaaaaa', 'Laki-laki'),
-(29, 'daffas', 'daffapramudya160605@gmail', '$2y$10$cHc9Bf2HjGsAHW9VterQg.usxF2zJcxoew.no1tFxqaSQy.YA.Oyq', 1, '', '', 'Laki-laki');
+(29, 'daffas', 'daffas@gmail.com', '$2y$10$cHc9Bf2HjGsAHW9VterQg.usxF2zJcxoew.no1tFxqaSQy.YA.Oyq', 1, '', '', 'Laki-laki');
 
 --
 -- Indexes for dumped tables
