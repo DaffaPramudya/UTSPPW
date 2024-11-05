@@ -15,7 +15,7 @@
                             <label for="menuToggle" class="menu-button">
                                 <i class="fa-solid fa-user"></i>
                                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) : ?>
-                                    <h2 class="main-header-welcome">Welcome, <?php echo $_SESSION['username']; ?></h2>
+                                    <h2 class="main-header-welcome"><?php echo $_SESSION['username']; ?></h2>
                                 <?php endif; ?>
                             </label>
                             <div class="menu-dropdown">

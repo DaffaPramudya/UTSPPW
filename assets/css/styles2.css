@@ -5,7 +5,7 @@
 
         /* Style untuk tombol menu */
         .menu-button {
-            padding: 10px 20px;
+            padding: 5px;
             border: none;
             border-radius: 5px;
             display: inline-block;
@@ -13,13 +13,14 @@
             cursor: pointer;
             background-color: #334173;
             color: white;
+            max-width: 125px;
         }
 
 
         .menu-button :hover {
             /* background-color: #256f28; */
             transition: background-color 0.3s ease, transform 0.3s ease;
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         /* Style untuk menu dropdown */
