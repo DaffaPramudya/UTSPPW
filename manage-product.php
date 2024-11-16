@@ -38,8 +38,9 @@ $res = all_table($conn, "produk", $user_id, $search);
                 <input type="text" name="hargaProduk" id="enter-product" placeholder="Harga Produk (Contoh: 15000)" required>
                 <input type="text" name="stokProduk" id="enter-product" placeholder="Stok Produk" required>
                 <input type="hidden" name="condition" value="insert" required>
-                <label for="fileUpload">Pilih file untuk diunggah:</label>
+                <label id="uploadlabeltext">Pilih file untuk diunggah:</label>
                 <input type="file" name="fotoProduk" accept="image/png, image/jpg, image/jpeg" id="enter-image" placeholder="Nama Produk" required>
+                <label for="enter-image" id="uploadgambarproduk"><i class="fa-solid fa-upload"></i>Upload Gambar</label>
                 <input type="submit" value="+ Tambah Produk" id="add">
             </form>
         </div>
@@ -56,7 +57,7 @@ $res = all_table($conn, "produk", $user_id, $search);
 
 
         <div class="table-body">
-            <table>
+            <table style="border: none;">
                 <tr class="head">
                     <td>Info Produk</td>
                     <td>Harga</td>

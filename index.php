@@ -1,4 +1,7 @@
 <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 session_start();
 include("database.php");
 include("database2.php");
@@ -43,7 +46,7 @@ include "head.php";
 
         <!-- Pencarian Produk -->
         <div class="search-bar">
-            <form method="GET" action="index.php">
+            <form method="GET" action="index.php" id="search-form">
                 <input type="text" name="search" placeholder="Cari produk..." class="search-bar-index" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
                 <input type="submit" value="Cari" id="save" class="submit-btn-index">
             </form>

@@ -1,123 +1,88 @@
-        /* Sembunyikan checkbox */
-        #menuToggle {
-            display: none;
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+        
+        .profile-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            cursor: default;
         }
 
-        /* Style untuk tombol menu */
-        .menu-button {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            display: inline-block;
-            text-align: center;
-            cursor: pointer;
-            background-color: #334173;
-            color: white;
-            max-width: 125px;
-        }
-
-
-        .menu-button :hover {
-            /* background-color: #256f28; */
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            transform: scale(1.05);
-        }
-
-        /* Style untuk menu dropdown */
-        .menu-dropdown {
-            display: none;
-            top: 50px;
-            left: 20px;
-            background-color: #6171A9;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-            z-index: 10;
-            padding: 5px;
-            animation: fadeIn 0.5s ease forwards;
+        .profile-box img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
             margin-right: 10px;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        .dropdown {
+           width: auto;
+           width: 200px;
+           box-sizing: border-box;
+           position: absolute;
+           top: 120%;
+           background-color: lightblue;
+           padding: 20px;
+           white-space: nowrap;
+           border-radius: 6px;
+           opacity: 0;
+           transform: translateY(-10px);
+           transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+           visibility: hidden;
         }
 
-        .menu-dropdown ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            text-align: center;
+        .profile-container:hover .dropdown {
+            display: inline-block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .menu-dropdown li {
-            padding: 5px;
             align-items: center;
+            margin-bottom: 10px;
         }
 
-        .menu-dropdown a:hover {
-            color: rgb(252, 252, 252);
-            background-color: #6171A9;
-            border-color: white;
-            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-        }
-        
-        .menu-dropdown a {
-            padding: 4px;
-            color: #6171A9;
-            border-radius: 5px;
-            border-color: #7c88b2;
-            border-width: 2px;
-            border-style: solid;
-            background-color: white;
+        .dropdown-menu a {
+            color: rgba(0, 0, 0, 0.7);
+            transition: color 0.2s ease;
         }
 
-        /* Tampilkan menu dropdown jika checkbox dicentang */
-        #menuToggle:checked + .menu-button + .menu-dropdown {
-            display: block;
+        .dropdown-menu a:hover {
+            color: rgba(0, 0, 0, 1);
         }
 
-        /* .container:has(#menuToggle:checked) .main-header {
-            height: 317px;
-        } */
-        
-
-        /* Style untuk menutup menu ketika mengklik di luar area menu */
-        /* Gunakan pseudo-element :before dan :after */
-        #menuToggle:checked ~ .overlay {
-            display: block;
+        .dropdown-menu:last-child {
+            margin-bottom: 0;
         }
 
-        /* Overlay untuk mendeteksi klik di luar menu */
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0);
+        .dropdown-menu i {
+            margin-right: 10px;
         }
 
         .cart-button {
             position: fixed; /* Menempel di posisi layar, meskipun di-scroll */
             bottom: 20px;    /* Jarak dari bawah */
             right: 20px;     /* Jarak dari kanan */
-            padding: 15px 20px;
+            height: 60px;
+            width: 60px;
             background-color: #334173; 
             color: white;
             border: none;
-            border-radius: 50px;
+            border-radius: 50%;
             font-size: 16px;
             cursor: pointer;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Bayangan agar tampak melayang */
-            transition: transform 0.2s; /* Efek animasi saat dihover */
+            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3); /* Bayangan agar tampak melayang */
+            transition: transform 0.2s ease; /* Efek animasi saat dihover */
         }
 
         .cart-button:hover {

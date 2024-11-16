@@ -7,15 +7,17 @@ body {
 
 .cart-container {
   margin: 20px;
-  background-color: #87CEEB;
-  padding: 20px;
+  border: 3px solid black;
+  border-radius: 9px;
   border-radius: 10px;
   justify-items: center;
+  overflow: hidden;
 }
 table {
   width: 100%;
   border-collapse: collapse;
 }
+
 th, td {
   padding: 10px;
   text-align: left;
@@ -37,13 +39,32 @@ td img {
   align-items: center;
 }
 .quantity-controls button {
-  background-color: #8dcf73;
+  background-color: lightgreen;
   border: none;
-  padding: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 3px solid black;
   cursor: pointer;
   font-size: 16px;
-  margin: 0 5px;
+  transition: background-color 0.2s ease;
 }
+
+input[type="number"] {
+  border: none;
+  -moz-appearance: textfield;
+  text-align: center;
+  width: 50%;
+}
+
+.quantity-controls button i {
+    pointer-events: none;
+}
+
+.quantity-controls button:hover {
+  background-color: rgb(85, 236, 85);
+}
+
 .remove-btn {
   background-color: transparent;
   border: none;
