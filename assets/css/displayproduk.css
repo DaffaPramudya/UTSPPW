@@ -31,9 +31,6 @@ img#gambar-produk {
 
 
 table {
-    border: 1px solid black;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     font-family: Arial;
 }
 
@@ -80,4 +77,52 @@ button#buy-button {
 button#buy-button:hover {
     color: white;
     background-color: #333;
+}
+
+#savechanges {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: lightgreen;
+    border: 3px solid black;
+    border-radius: 6px;
+    box-shadow: none;
+    transition: background-color 0.2s ease;
+    margin-top: 13px;
+}
+
+#savechanges:hover {
+    background-color: rgb(85, 236, 85);
+}
+
+#hapusproduk {
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: rgb(249, 54, 54);
+    border: 3px solid black;
+    border-radius: 6px;
+    box-shadow: none;
+    transition: background-color 0.2s ease;
+}
+
+#hapusproduk i, #savechanges i {
+    margin-right: 10px;
+}
+
+#hapusproduk:hover {
+    background-color: rgb(240, 21, 21);
+}
+
+.edit {
+    margin: 0;
+    text-align: center;
+}
+
+.editproduktextinput {
+    padding: 8px;
+    outline: none;
+    border: 3px solid black;
+    border-radius: 8px;
 }

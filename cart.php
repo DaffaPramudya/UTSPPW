@@ -32,22 +32,24 @@ $res = $stmt->get_result();
 
 <div class="cart-container">
     <table>
-        <thead>
-            <tr>
-                <th></th>
-                <th>Nama</th>
-                <th>Qty</th>
-                <th>Price</th>
-                <th></th>
-            </tr>
-        </thead>
         <tbody>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Nama</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+            </thead>
             <?php while ($row = $res->fetch_assoc()) {
                 $total_price = $row['hargaProduk'] * $row['quantity'];
                 $formatted_price = "Rp " . number_format($total_price, 0, ',', '.');
             ?>
                 <tr>
-                    <td><img src="uploads/<?php echo $row['fotoProduk']; ?>" alt="<?php echo $row['namaProduk']; ?>"></td>
+                    <td>
+                        <img src="uploads/<?php echo $row['fotoProduk']; ?>" style="object-fit: cover;"">
+                    </td>
                     <td>
                         <div><b><?php echo $row['namaProduk']; ?></b><br><small>Deskripsi produk singkat...</small></div>
                     </td>
@@ -55,17 +57,17 @@ $res = $stmt->get_result();
                         <div class="quantity-controls">
                             <form method="POST" action="update_cart.php">
                                 <input type="hidden" name="cart_id" value="<?php echo $row['cart_id']; ?>">
-                                <button type="submit" name="increase" class="up-arrow">&uarr;</button>
+                                <button type="submit" name="decrease" class="up-arrow"><i class="fa-solid fa-minus"></i></button>
                                 <input type="number" name="quantity" value="<?php echo $row['quantity']; ?>" min="1" readonly>
-                                <button type="submit" name="decrease" class="down-arrow">&darr;</button>
+                                <button type="submit" name="increase" class="down-arrow"><i class="fa-solid fa-plus"></i></button>
                             </form>
                         </div>
                     </td>
                     <td><?php echo $formatted_price; ?></td>
                     <td>
-                        <form method="POST" action="remove_from_cart.php">
+                        <form method="POST" action="remove_from_cart.php" style="text-align: center;">
                             <input type="hidden" name="cart_id" value="<?php echo $row['cart_id']; ?>">
-                            <button type="submit" class="buy-button">Delete 🗑</button>
+                            <button type="submit" class="buy-button" id="hapusproduk"><i class="fa-solid fa-trash"></i>Hapus</button>
                         </form>
                     </td>
                 </tr>

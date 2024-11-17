@@ -11,7 +11,7 @@
 }
 
 .add-product {
-    border: 1px solid black;
+    border: 3px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,14 +31,16 @@
 }
 
 #enter-product {
-    margin: 10px;
     padding: 10px 0 10px 0;
     width: 300px;
     height: auto;
+    margin-bottom: 15px;
 }
 
 input#enter-product {
     padding: 10px;
+    border: 3px solid black;
+    border-radius: 5px;
 }
 
 #enter-image {
@@ -52,12 +54,20 @@ input#enter-product {
 }
 
 #add {
-    justify-content: right;
-    margin: 0 0 10px 0;
-    padding: 0 5px 0 5px;
-    height: 30px;
+    margin-bottom: 20px;
+    padding: 10px;
     font-weight: bold;
     cursor: pointer;
+    background-color: lightgreen;
+    border: 3px solid black;
+    border-radius: 6px;
+    box-shadow: none;
+    transition: background-color 0.2s ease;
+    width: 100%;
+}
+
+#add:hover {
+    background-color: rgb(85, 236, 85);
 }
 
 .search-edit {
@@ -71,6 +81,7 @@ input#enter-product {
     border: 1px solid #656464;
     border-radius: 10px;
     font-size: 15px;
+    outline: none;
 }
 
 input#edit {
@@ -80,6 +91,7 @@ input#edit {
 
 input#search {
     width: 250px;
+    border: 3px solid black;
 }
 
 /* table tr td{
@@ -97,8 +109,7 @@ main.table {
 .table-body {
     overflow: auto;
     border-radius: 10px;
-    box-shadow: 0 3px 3px #00050062;
-
+    border: 3px solid black;
 }
 
 table {
@@ -123,6 +134,10 @@ table, tr, td {
     text-align: left;
 }
 
+.info-produk img {
+    object-fit: cover;
+}
+
 #check {
     transform: scale(1.25);
 }
@@ -138,18 +153,19 @@ tr.head {
 
 #save {
     font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border: 3px solid black;
 }
 
 #save:hover{
-    color: white;
-    background-color: #585858;
+    background-color: #bebebe;
 }
 
 .edit input {
     padding: 8px 18px 8px 18px;
     margin: 5px;
     border-radius: 20px;
-    border: 1px solid #d5d1defe;
     color: #585858;
     cursor: pointer;
 }
@@ -167,4 +183,35 @@ input#edit-product {
     color: crimson;
     background-color: white;
     border: 1px solid crimson;
+}
+
+.add-product > form > input {
+    outline: none;
+}
+
+#uploadgambarproduk {
+    display: inline-block;
+    padding: 12px;
+    background-color: red;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: self-start;
+    margin-bottom: 20px;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    border: 3px solid black;
+}
+
+#uploadgambarproduk:hover {
+    background-color: rgb(200, 0, 0);
+}
+
+#uploadgambarproduk i {
+    margin-right: 10px;
+}
+
+#uploadlabeltext {
+    align-self: self-start;
+    margin-bottom: 8px;
 }
