@@ -221,7 +221,6 @@ input[type="checkbox"]:checked:after {
     top: 0; /* Menentukan posisi saat sticky */
     z-index: 1000; /* Pastikan header berada di atas konten lain */
     transition: height 0.3s ease, padding 0.3s ease;
-    overflow: hidden; /* Hides any overflowing content during transition */
 }
 
 /* Container for centering and adding padding */
@@ -271,11 +270,23 @@ input[type="checkbox"]:checked:after {
     display: flex;
     justify-content: center;
 }
+
+#search-form {
+    width: 100%;
+    text-align: center;
+}
+
 .search-bar input {
     padding: 10px;
-    border: 1px solid #334173;
+    border: 3px solid black;
     border-radius: 4px;
+    outline: none;
 }
+
+.search-bar input[type="text"] {
+    width: 40%;
+}
+
 /* .search-bar-index {
     width: 100%;
 } */
@@ -322,13 +333,13 @@ input[type="checkbox"]:checked:after {
     cursor: pointer;
     border-color: #334173;
     border-width: 2px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 .product-item .buy-button:hover {
     background-color: #334173;
     color: white;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .logo {
@@ -339,13 +350,10 @@ input[type="checkbox"]:checked:after {
 
 .main-logo {
     text-decoration: none;
-    /* width: 100%; */
-    align-content: st;
     transition: transform 0.3s ease;
 }
 
-.main-logo :hover {
-    transition: transform 0.3s ease;
+.main-logo:hover {
     transform: scale(1.1);
 }
 

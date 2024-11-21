@@ -36,7 +36,7 @@ $res = $stmt->get_result();
         <form method="GET" action="edit-product.php">
             <div class="search-edit">
                 <input type="text" name="search" id="search" placeholder="Cari produk" value="<?php echo htmlspecialchars($search); ?>">
-                <input type="submit" value="Cari">
+                <input type="submit" value="Cari" id="save">
             </div>
         </form>
         
@@ -55,19 +55,19 @@ $res = $stmt->get_result();
                             <td>
                                 <img src="uploads/<?php echo $row['fotoProduk']; ?>" alt="Produk" width="50">
                                 <input type="file" name="fotoProduk[<?php echo $row['idProduk']; ?>]" accept="image/png, image/jpg, image/jpeg">
-                                <input type="text" name="namaProduk[<?php echo $row['idProduk']; ?>]" value="<?php echo $row['namaProduk']; ?>" placeholder="Nama Produk" required>
+                                <input type="text" name="namaProduk[<?php echo $row['idProduk']; ?>]" value="<?php echo $row['namaProduk']; ?>" placeholder="Nama Produk" class="editproduktextinput" required>
                             </td>
-                            <td><input type="text" name="hargaProduk[<?php echo $row['idProduk']; ?>]" value="<?php echo $row['hargaProduk']; ?>" placeholder="Harga Produk" required></td>
-                            <td><input type="text" name="stokProduk[<?php echo $row['idProduk']; ?>]" value="<?php echo $row['stokProduk']; ?>" placeholder="Stok Produk" required></td>
+                            <td><input type="text" name="hargaProduk[<?php echo $row['idProduk']; ?>]" value="<?php echo $row['hargaProduk']; ?>" placeholder="Harga Produk" class="editproduktextinput" required></td>
+                            <td><input type="text" name="stokProduk[<?php echo $row['idProduk']; ?>]" value="<?php echo $row['stokProduk']; ?>" placeholder="Stok Produk" class="editproduktextinput" required></td>
                             <td class="edit">
-                                <button type="submit" formaction="delete_product.php" name="delete" value="<?php echo $row['idProduk']; ?>">Hapus</button>
+                                <button type="submit" formaction="delete_product.php" name="delete" id="hapusproduk" value="<?php echo $row['idProduk']; ?>"><i class="fa-solid fa-trash"></i>Hapus</button>
                             </td>
                         </tr>
                     <?php } ?>
                 </table>
             </div>
             <div class="save-changes">
-                <input type="submit" value="Simpan Perubahan">
+                <button type="submit" id="savechanges"><i class="fa-solid fa-check"></i>Simpan Perubahan</button>
             </div>
         </form>
     </main>
