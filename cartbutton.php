@@ -1,1 +1,0 @@
-<a href="cart.php"><button class="cart-button"><i class="fa-solid fa-cart-shopping"></i></button></a>
