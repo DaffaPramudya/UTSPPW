@@ -1,4 +1,5 @@
     <?php
+        include("database.php");
         // Query untuk fetch profile pic
         $stmtUser = $conn->prepare('SELECT profilepic FROM users WHERE id = ?');
         $stmtUser->bind_param('i', $_SESSION['user_id']);
