@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url(BGakun.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment:fixed;
+}
+
+.header {
+    background-color: rgb(34 88 34);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    align-content: center;
+    margin-bottom: 20px;
+}
+
+.header a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+.sidebar {
+    background-color: #a5d6a7;
+    width: 20%;
+    min-height: 100vh;
+    float: left;
+    text-align: center;
+    padding: 20px 0;
+    overflow: hidden;
+}
+
+.profilepic-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.sidebar .username {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.content {
+    padding: 20px;
+    position: relative;
+}
+
+.circle-profilepic {
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.circle-profilepic img {
+    object-fit: cover;
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    border: 3px solid black;
+}
+
+.profile-card {
+    background-color: #b3e5fc;
+    padding: 50px;
+    border-radius: 10px;
+    width: 38%;
+    margin: 75px auto;
+    border: 3px solid black;
+}
+
+.profile-card form div {
+    margin-bottom: 10px;
+}
+
+.profile-card form {
+    margin-top: 30px;
+}
+
+.profile-card form div label {
+    display: block;
+    font-weight: bold;
+}
+
+.profile-card form div input,
+.profile-card form div select {
+    width: 100%;
+    padding: 10px;
+    border: 3px solid black;
+    border-radius: 8px;
+    outline: none;
+}
+
+.profile-card form div input[type="submit"] {
+    background-color: lightgreen;
+    font-weight: bold;
+    color: black;
+    border: 3px solid black;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s ease;
+}
+
+.profile-card form div input[type="submit"]:hover {
+    background-color: rgb(85, 236, 85);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#uploadlabel {
+    display: inline-block;
+    margin-top: 5px;
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(255, 0, 0);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    border: 3px solid black;
+}
+
+#uploadlabel:hover {
+    background-color: rgb(200, 0, 0);
+}
+
+#uploadlabel i {
+    margin-right: 10px;
+}
+
+#hapusfotoprofil {
+    background-color: transparent;
+    border: none;
+    font-size: 1.1rem;
+    color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    margin-top: 8px;
+    transition: color 0.2s ease;
+}
+
+#hapusfotoprofil:hover {
+    color: rgba(0, 0, 0, 1);
+}
+
+#hapusfotoprofil i {
+    margin-right: 10px;
+}
