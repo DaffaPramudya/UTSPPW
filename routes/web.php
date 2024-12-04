@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+use App\Models\Product;
 use GuzzleHttp\Middleware;
 
 Route::get('/', function () {
@@ -27,6 +28,7 @@ Route::get('/manage-product', [ProductController::class, 'show']);
 
 Route::post('/manage-product', [ProductController::class, 'store']);
 
+
 Route::get('/manage-product', [ProductController::class, 'search'])->name('products-search');
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
@@ -46,5 +48,9 @@ Route::get('/cart', function () {
 });
 
 Route::get('/edit-product', function(){
-    return view('edit-product');
+    return view('edit-product', ['products'=>Product::all()]);
 });
+
+Route::post('/edit-product', [ProductController::class, 'edit']);
+
+Route::post('/edit-product', [ProductController::class, 'delete'])->name('delete-product');

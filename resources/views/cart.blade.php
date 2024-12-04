@@ -1,29 +1,3 @@
-<?php 
-session_start();
-include("database.php");
-include("database2.php");
-
-// Pastikan user login
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-
-$user_id = $_SESSION['user_id'];
-
-// Ambil data keranjang dari database untuk user yang sedang login
-$sql = "
-    SELECT cart.id AS cart_id, produk.namaProduk, produk.fotoProduk, produk.hargaProduk, cart.quantity 
-    FROM cart 
-    JOIN produk ON cart.product_id = produk.idProduk 
-    WHERE cart.user_id = ?
-";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$res = $stmt->get_result();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <?php include "head.php"; ?>

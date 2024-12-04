@@ -34,4 +34,8 @@ class ProductController extends Controller
         $products = Product::where('name', 'LIKE', '%' . $search . '%')->get();
         return view('/manage-product', ['products' => $products, 'search' => $search]);
     }
+
+    public function edit(Request $request) {
+        
+    }
 }

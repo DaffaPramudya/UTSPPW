@@ -2,11 +2,14 @@
 <html lang="en">
 <x-head></x-head>
 <title>Dalel Shop - Edit Produk</title>
+
 <body>
-<x-navbar></x-navbar>
+    <x-navbar></x-navbar>
     <main class="main-table">
-        <div class="header"><h1>Edit Daftar Produk</h1></div>
-        
+        <div class="header">
+            <h1>Edit Daftar Produk</h1>
+        </div>
+
         <!-- Form Pencarian -->
         <form method="GET" action="edit-product.php">
             <div class="search-edit">
@@ -14,9 +17,10 @@
                 <input type="submit" value="Cari" id="save">
             </div>
         </form>
-        
+
         <!-- Form untuk Menyimpan Perubahan -->
-        <form action="update_product.php" method="POST" enctype="multipart/form-data">
+        <form action="/edit-product" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="table-body">
                 <table>
                     <tr class="head">
@@ -25,7 +29,23 @@
                         <td>Stok</td>
                         <td></td>
                     </tr>
-                    
+                    @foreach ($products as $product)
+                        <tr>
+                            <td>
+                                <img src="storage/{{ $product->picture }}" width="50">
+                                <input type="text" name="name" value="{{$product->name}}" class="editproduktextinput"required>
+                            </td>
+                            <td>
+                                <input type="text" name="price" value="{{$product->price}}" class="editproduktextinput"required>
+                            </td>
+                            <td>
+                                <input type="text" name="stock" value="{{$product->stock}}" class="editproduktextinput"required>
+                            </td>
+                            <td class="edit">
+                                <button type="submit" formaction="{{route('delete-product')}}" name="delete" id="hapusproduk" value=""><i class="fa-solid fa-trash"></i>Hapus</button>
+                            </td>
+                        </tr>
+                    @endforeach
                 </table>
             </div>
             <div class="save-changes">
@@ -34,4 +54,5 @@
         </form>
     </main>
 </body>
+
 </html>
