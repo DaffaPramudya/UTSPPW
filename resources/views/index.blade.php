@@ -25,24 +25,42 @@
             </form>
         </div>
 
+        @if(session()->has('success'))
+            <div class="success-message">
+                {{session('success')}}
+            </div>
+        @elseif(session()->has('error'))
+            <div class="error-message">
+                {{session('error')}}
+            </div>
+        @endif
 
         <!-- Grid Produk -->
         <div class="product-grid">
+            @foreach($products as $product)
             <div class="product-item">
                 <div class="product-image">
-                    <img src="uploads/" alt="">
+                    @if($product->picture)
+                        <img src="storage/{{$product->picture}}" alt="" style="object-fit: cover">
+                    @else
+                        <img src="storage/product-images/no-image.svg" style="object-fit: contain">
+                    @endif
                 </div>
-                <div class="product-name"></div>
-                <div class="product-price"></div>
-                <form method="POST" action="">
-                    <input type="hidden" name="product_id" value="">
+                <div class="product-name">{{$product->name}}</div>
+                <div class="product-price">{{$product->price}}</div>
+                <form action="/carts/{{$product->id}}" method="POST">
+                    @csrf
                     <button type="submit" name="add_to_cart" class="buy-button">Add to cart</button>
                 </form>
             </div>
+            @endforeach
         </div>
 
     </div>
-    <a href="cart.php"><button class="cart-button"><i class="fa-solid fa-cart-shopping"></i></button></a>
+
+    <form action="/carts" method="get">
+        <button class="cart-button"><i class="fa-solid fa-cart-shopping"></i>
+    </form>
 </body>
 
 </html>

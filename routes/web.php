@@ -1,20 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
-use App\Models\Product;
-use GuzzleHttp\Middleware;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ProductResourceController;
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [ProductController::class, 'index']);
 
-Route::get('/profile', function () {
-    return view('profile');
-})->middleware('auth');
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 
 Route::post('/profile', [ProfileController::class, 'store']);
 
@@ -47,10 +43,21 @@ Route::get('/cart', function () {
     return view('cart');
 });
 
-Route::get('/edit-product', function(){
-    return view('edit-product', ['products'=>Product::all()]);
+// Route::get('/edit-product', function(){
+//     return view('edit-product', ['products'=>Product::all()]);
+// });
+
+// Route::post('/edit-product/edit', [ProductController::class, 'edit'])->name('edit-product');
+
+// Route::post('/edit-product/delete/{miaw}', [ProductController::class, 'destroy']);
+
+Route::get('/cart', function(){
+    return view('cart');
 });
 
-Route::post('/edit-product', [ProductController::class, 'edit']);
+Route::resource('/products', ProductResourceController::class);
 
-Route::post('/edit-product', [ProductController::class, 'delete'])->name('delete-product');
+Route::resource('/carts', CartController::class);
+Route::post('/carts/{product_id}', [CartController::class, 'addToCart']);
+Route::post('/carts/sub/{cart_id}', [CartController::class, 'subQuantity']);
+Route::post('/carts/add/{cart_id}', [CartController::class, 'addQuantity']);

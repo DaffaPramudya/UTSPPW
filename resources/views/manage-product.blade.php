@@ -32,7 +32,7 @@
                 <input type="text" name="search" id="search" placeholder="Cari produk" value="{{$search}}">
                 <input type="submit" value="Cari" id="save">
             </form>
-            <a href="/edit-product" class="edit-product">
+            <a href="/products" class="edit-product">
                 Edit Produk
             </a>
         </div>
@@ -47,7 +47,7 @@
                 @foreach($products as $product)
                     <tr>
                         @if($product->picture)
-                        <td class="info-produk"><img src="{{asset('storage/' . $product['picture'])}}">{{$product['name']}}</td>
+                        <td class="info-produk"><img src="{{asset('storage/' . $product['picture'])}}" style="object-fit: cover">{{$product['name']}}</td>
                         @else
                         <td class="info-produk"><img src="storage/product-images/no-image.svg">{{$product['name']}}</td>
                         @endif
