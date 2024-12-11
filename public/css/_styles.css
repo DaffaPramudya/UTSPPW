@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* General reset and form styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins, sans-serif;
+}
+
+/* Style dasar untuk wireframe */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.index-body{
+    /* background: linear-gradient(to right, #b2f0b2, #e8f8e8); */
+    background: white;
+}
+
+
+a {
+    text-decoration: none;
+    color: black;
+    margin: 0;
+} 
+
+ul {
+    list-style-type: none;
+}
+
+/* Error message styling */
+.error-message {
+    color: #d9534f;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    background-color: #f2dede;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ebccd1;
+    text-align: center;
+}
+
+.success-message {
+    color: green;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    background-color: lightgreen;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ebccd1;
+    text-align: center;
+}
+
+.center-text {
+    text-align: center;
+}
+
+/* LOGIN REGISTER */
+.reg-login-body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: linear-gradient(to right, #b2f0b2, #e8f8e8); */
+}
+
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: rgb(135, 194, 213);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 65%;
+    max-width: 900px;
+    align-items: center;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    background-color: gray;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d5d5d5;
+}
+
+input[type="checkbox"]:after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 13px;
+    content: "\f00c";
+    display: none;
+}
+
+input[type="checkbox"]:hover {
+    background-color: #a5a5a5;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #AFDCEB;
+}
+
+input[type="checkbox"]:checked:after {
+    display: inline-block;
+}
+
+.left-section {
+    padding: 20px;
+    width: 90%;
+}
+
+.left-section > form >  p {
+    font-size: 36px;
+    text-align: center;
+}
+
+.textinput {
+    height: 50px;
+    width: 100%;
+    margin: 15px 0;
+    position: relative;
+}
+
+.textinput input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 15px;
+}
+
+.textinput i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background-color: #AFDCEB;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: #CAE9F5;
+}
+
+.submit-btn-index {
+    /* width: 100%;
+    height: 50px; */
+    border: none;
+    border-radius: 10px;
+    background-color: #AFDCEB;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-btn-index:hover {
+    background-color: #CAE9F5;
+}
+
+.left-section > p {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.reg-login-link {
+    text-decoration: none;
+    /* color: rgb(71, 160, 71); */
+    color: rgb(255, 255, 255);
+    transition: color 0.2s;
+}
+
+.reg-login-link:hover {
+    color: #334173;
+    /* color: rgb(90, 255, 90); */
+}
+
+.loginillus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.loginillus img {
+    width: 80%;
+    max-width: 250px;
+}
+
+/* END LOGIN REGISTER */
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+/* Main header styling */
+.main-header {
+    background-color: #CAE9F5;
+    width: 100%;
+    padding: 5px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0px;
+    position: sticky;
+    top: 0; /* Menentukan posisi saat sticky */
+    z-index: 1000; /* Pastikan header berada di atas konten lain */
+    transition: height 0.3s ease, padding 0.3s ease;
+}
+
+/* Container for centering and adding padding */
+.main-header .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex; /* Use flexbox to align items */
+    justify-content: space-between; /* Space between the logo and navigation */
+    align-items: center; /* Center items vertically */
+}
+
+.main-header-contents {
+    list-style: none;
+    display: inline-block;
+    text-align: end;
+    /* width: 100%; */
+    padding: 0;
+}
+
+/* .main-header nav ul li {
+    display: inline;
+    margin: 0 15px;
+    padding: 10px;
+} */
+
+.main-header-link {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.main-header-welcome {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.3s ease;
+}
+
+.main-header-link:hover {
+    color: aquamarine;
+}
+
+.search-bar {
+    margin: 45px ;
+    display: flex;
+    justify-content: center;
+}
+
+#search-form {
+    width: 100%;
+    text-align: center;
+}
+
+.search-bar input {
+    padding: 10px;
+    border: 3px solid black;
+    border-radius: 4px;
+    outline: none;
+}
+
+.search-bar input[type="text"] {
+    width: 40%;
+}
+
+/* .search-bar-index {
+    width: 100%;
+} */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+}
+.product-item {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.product-item .product-image {
+    /* background-color: #ddd; */
+    width: 100%;
+    height: 150px;
+}
+
+.product-item .product-image img {
+    /* background-color: #ddd; */
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.product-item .product-name {
+    font-weight: bold;
+    margin-top: 10px;
+}
+.product-item .product-price {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-top: 5px;
+}
+.product-item .buy-button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: white;
+    color: #334173;
+    border-radius: 4px;
+    cursor: pointer;
+    border-color: #334173;
+    border-width: 2px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.product-item .buy-button:hover {
+    background-color: #334173;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.logo {
+    color: #334173;
+    text-align: left; /* Ensure the text aligns to the left */
+    margin: 0; /* Remove default margin */
+}
+
+.main-logo {
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.main-logo:hover {
+    transform: scale(1.1);
+}
+
+.main-header-profile-button {
+    display: inline-flex;
+    /* height: 100px; */
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.google-container {
+    height: 50px;
+    width: 100%;
+    margin: 15px 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid white;
+    transition: background-color 0.2s ease;
+}
+
+.google-container i {
+    margin-left: 10px;
+}
+
+a.googleauth:hover .google-container {
+    background-color: #fff;
+    /* flex-direction: row-reverse; */
+}
+
+#captcha-question {
+    font-size: 20px;
+}
+
+.cart-button {
+    position: fixed;
+    /* Menempel di posisi layar, meskipun di-scroll */
+    bottom: 20px;
+    /* Jarak dari bawah */
+    right: 20px;
+    /* Jarak dari kanan */
+    height: 60px;
+    width: 60px;
+    background-color: #334173;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
+    /* Bayangan agar tampak melayang */
+    transition: transform 0.2s ease;
+    /* Efek animasi saat dihover */
+}
+
+.cart-button:hover {
+    transform: scale(1.1);
+    /* Membesar sedikit saat dihover */
+}
