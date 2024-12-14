@@ -18,7 +18,7 @@
     <!-- Cart and Profile -->
     <div class="flex items-center justify-between gap-8">
       <!-- Cart -->
-      <a href="cart.php">
+      <a href="/carts">
         <i class="fa-solid fa-cart-shopping text-2xl text-blue-400 hover:text-blue-700 transition-colors"></i>
       </a>
 
