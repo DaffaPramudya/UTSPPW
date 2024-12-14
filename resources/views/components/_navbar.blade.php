@@ -7,13 +7,13 @@
         <div class="profile-container">
             <div class="profile-box">
                 @auth
-                    @if(auth()->user()->profilepic)
-                        <img src="storage/{{auth()->user()->profilepic}}"> {{ auth()->user()->username }}
+                    @if (auth()->user()->profilepic)
+                        <img src="storage/{{ auth()->user()->profilepic }}"> {{ auth()->user()->username }}
                     @else
-                    <img src="storage/profile-images/anonim.png"> {{ auth()->user()->username }}
+                        <img src="storage/app/profile-images/default.jpg"> {{ auth()->user()->username }}
                     @endif
                 @else
-                    <img src="storage/profile-images/anonim.png"> Login yuk!
+                    <img src="storage/app/profile-images/default.jpg"> Login yuk!
                 @endauth
             </div>
             <div class="dropdown">
@@ -24,13 +24,13 @@
                             {{ auth()->user()->username }}
                         </a>
                     </div>
-                    @if(auth()->user()->is_admin)
-                    <div class="dropdown-menu">
-                        <a href="/manage-product">
-                            <i class="fa-solid fa-box"></i>
-                            Kelola Produk
-                        </a>
-                    </div>
+                    @if (auth()->user()->is_admin)
+                        <div class="dropdown-menu">
+                            <a href="/manage-product">
+                                <i class="fa-solid fa-box"></i>
+                                Kelola Produk
+                            </a>
+                        </div>
                     @endif
                     <div class="dropdown-menu">
                         <form action="/logout">

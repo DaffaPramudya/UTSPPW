@@ -66,7 +66,7 @@
             @if (auth()->user()->profilepic)
                 <img src="storage/{{ auth()->user()->profilepic }}">
             @else
-                <img src="/storage/profile-images/anonim.png">
+                <img src="storage/app/profile-images/default.jpg">
             @endif
         </div>
     </div>

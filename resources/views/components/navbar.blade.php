@@ -49,7 +49,7 @@
                 @if (auth()->user()->profilepic)
                   <img src="storage/{{ auth()->user()->profilepic }}" class="h-12 w-12 mr-3"><span>{{ auth()->user()->username }}</span>
                 @else
-                  <img src="storage/profile-images/anonim.png" class="h-12 w-12 mr-3"><span>{{ auth()->user()->username }}</span>
+                  <img src="/storage/app/profile-images/default.jpg" class="h-12 w-12 mr-3"><span>{{ auth()->user()->username }}</span>
                 @endif
               </div>
               
