@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+
+<x-head></x-head>
+<title>Dalel Shop - Akun</title>
+
 <body>
     <x-navbar></x-navbar>
     <div class="flex justify-center mt-10">

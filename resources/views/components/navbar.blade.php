@@ -52,14 +52,14 @@
                             <img src="storage/{{ auth()->user()->profilepic }}"
                                 class="h-10 w-10 mr-3"><span>{{ auth()->user()->username }}</span>
                         @else
-                            <img src="storage/app/profile-images/default.jpg"
+                            <img src="storage/app/public/profile-images/default.jpg"
                                 class="h-10 w-10 mr-3"><span>{{ auth()->user()->username }}</span>
                         @endif
                     </div>
                     <div class="absolute top-full left-0 w-full h-8 bg-transparent"></div>
                     <!-- dropdown menu -->
                     <div
-                        class="invisible opacity-0 group-hover:opacity-100 transition-opacity group-hover:visible group-hover:flex group-hover:flex-col w-48 rounded-lg shadow-lg bg-white border-2 p-5 absolute top-full right-0 text-slate-600 mt-4">
+                        class="z-40 invisible opacity-0 group-hover:opacity-100 transition-opacity group-hover:visible group-hover:flex group-hover:flex-col w-48 rounded-lg shadow-lg bg-white border-2 p-5 absolute top-full right-0 text-slate-600 mt-4">
                         <div class="mb-2">
                             <a href="/profile"
                                 class="hover:text-slate-800 transition-all opacity:0 group-hover:opacity-100">
@@ -92,7 +92,7 @@
                     </div>
                     <div class="absolute top-full left-0 w-full h-8 bg-transparent"></div>
                     <div
-                        class="invisible opacity-0 group-hover:opacity-100 transition-opacity group-hover:visible group-hover:flex group-hover:flex-col w-48 rounded-lg shadow-lg bg-white border-2 p-5 absolute top-full right-0 text-slate-600 mt-4">
+                        class="z-40 invisible opacity-0 group-hover:opacity-100 transition-opacity group-hover:visible group-hover:flex group-hover:flex-col w-48 rounded-lg shadow-lg bg-white border-2 p-5 absolute top-full right-0 text-slate-600 mt-4">
                         <div class="mb-2">
                             <a href="/login"
                                 class="hover:text-slate-800 transition-all opacity:0 group-hover:opacity-100 duration-500">
