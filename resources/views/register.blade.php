@@ -26,19 +26,19 @@
         <!-- username -->
         <div class="border-solid border py-3 px-3 mb-2 rounded-lg flex items-center overflow-hidden">
           <i class="fa-solid fa-user w-4 h-4 mr-3"></i>
-          <input class="text-sm outline-none" type="text" name="username" placeholder="Username" value="{{ old('username') }}">
+          <input class="border rounded-lg p-2 outline-none text-sm w-full" type="text" name="username" placeholder="Username" value="{{ old('username') }}">
         </div>
 
         <!-- email -->
         <div class="border-solid border py-3 px-3 mb-2 rounded-lg flex items-center overflow-hidden">
           <i class="fa-solid fa-envelope w-4 h-4 mr-3"></i>
-          <input class="text-sm outline-none" type="email" name="email" placeholder="Email" value="{{ old('email') }}">
+          <input class="border rounded-lg p-2 outline-none text-sm w-full" type="email" name="email" placeholder="Email" value="{{ old('email') }}">
         </div>
 
         <!-- password -->
         <div class="border-solid border py-3 px-3 mb-5 rounded-lg flex items-center overflow-hidden">
           <i class="fa-solid fa-lock w-4 h-4 mr-3"></i>
-          <input class="text-sm outline-none" type="password" name="password" placeholder="Password">
+          <input class="border rounded-lg p-2 outline-none text-sm w-full" type="password" name="password" placeholder="Password">
         </div>
 
         <input type="submit" value="Register" class="border rounded-lg w-40 py-2 self-center bg-blue-600 hover:bg-blue-700 transition-colors text-white font-semibold cursor-pointer">
