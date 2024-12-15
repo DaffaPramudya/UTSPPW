@@ -2,7 +2,7 @@
 @section('title', 'Dashboard')
 @section('content')
 <!-- Container Utama -->
-<div class="container mx-auto my-10 px-32">
+<div class="container mx-auto my-10 px-14">
 
   <!-- Pencarian Produk -->
   <!-- <div class="search-bar">
@@ -75,7 +75,38 @@
   </button>
 </div>
 
-  <!-- Grid Produk -->
+<!-- Card Produk SEMENTARA YA GES -->
+<div class=" pb-5 pt-5"><h1 class="font-bold text-xl">Produk Rekomendasi</h1></div>
+<div class="flex flex-wrap gap-4">
+  <!-- Card Item -->
+  <div class=" bg-white border border-gray-200 rounded-lg shadow-sm md:h-80 md:w-50">
+    <a href="#">
+      <img class="rounded-t-lg object-cover h-48 w-full" src="https://via.placeholder.com/300" alt="Sepatu Putih" />
+    </a>
+    <div class="p-4">
+      <!-- Caption -->
+      <h5 class="mb-2 text-lg font-semibold tracking-tight text-gray-900">Sepatu putih</h5>
+      
+      <!-- Harga -->
+      <p class="text-gray-700 mb-3">Rp200.000</p>
+      
+      <!-- Actions -->
+      <div class="flex justify-between items-center">
+        <!-- Wishlist -->
+        <button type="button" class="text-gray-500 hover:text-red-500">
+          <i class="far fa-heart"></i> <!-- FontAwesome icon -->
+        </button>
+        <!-- Cart Button -->
+        <button type="button" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
+          <i class="fas fa-shopping-cart"></i> <!-- FontAwesome icon -->
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  {{-- <!-- Grid Produk -->
     <div class=" pb-5"><h1 class="font-bold text-xl">Produk Rekomendasi</h1></div>
     
     <div class="grid grid-cols-4 gap-6">
@@ -108,7 +139,7 @@
           </div>
       </div>
     @endforeach
-    </div>
+    </div> --}}
   <!-- <div class="product-grid">
     @foreach ($products as $product)
       <div class="product-item">
