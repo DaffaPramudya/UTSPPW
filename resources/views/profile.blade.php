@@ -28,7 +28,7 @@
 
                 <!-- Foto Profil -->
                 <div>
-                    <label for="fileupload" class="block text-sm font-medium text-gray-700">Foto Profil</label>
+                    <label for="fileupload" class="block text-sm font-medium pt-5 text-gray-700">Foto Profil</label>
                     <input type="file" accept="image/jpg, image/png" id="fileupload" name="fileupload"
                         class="w-full mt-1 text-gray-900 border-gray-300 rounded-md shadow-sm hover:border-blue-500 focus:ring-blue-500 focus:border-blue-500 p-2">
                 </div>
