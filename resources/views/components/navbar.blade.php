@@ -27,9 +27,9 @@
         <div class="group flex flex-col relative items-center space-x-4"> {{-- must hover --}}
           <div class="flex items-center cursor-default">
             @if (auth()->user()->profilepic)
-              <img src="storage/{{ auth()->user()->profilepic }}" class="h-10 w-10 mr-3"><span>{{ auth()->user()->username }}</span>
+              <img src="storage/{{ auth()->user()->profilepic }}" class="h-10 w-10 mr-3 rounded-full object-cover"><span>{{ auth()->user()->username }}</span>
             @else
-              <img src="storage/app/profile-images/default.jpg" class="h-10 w-10 mr-3"><span>{{ auth()->user()->username }}</span>
+              <img src="storage/profile-images/anonim.png" class="h-10 w-10 mr-3"><span>{{ auth()->user()->username }}</span>
             @endif
           </div>
           <div class="absolute top-full left-0 w-full h-8 bg-transparent"></div>

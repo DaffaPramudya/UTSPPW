@@ -12,7 +12,7 @@ Route::get('/', [ProductController::class, 'index']);
 
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 
-Route::post('/profile', [ProfileController::class, 'store']);
+Route::post('/profile', [ProfileController::class, 'store'])->name('storeProfile');
 
 Route::post('/profile/delete', [ProfileController::class, 'deleteProfilepic'])->name('deleteProfilepic');
 
@@ -27,7 +27,7 @@ Route::post('/manage-product', [ProductController::class, 'store']);
 
 Route::get('/manage-product', [ProductController::class, 'search'])->name('products-search');
 
-Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 
 Route::post('/login', [LoginController::class, 'authenticate']);
 
@@ -35,21 +35,13 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', function () {
     return view('register');
-})->middleware('guest');
+})->middleware('guest')->name('register');
 
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/cart', function () {
     return view('cart');
 });
-
-// Route::get('/edit-product', function(){
-//     return view('edit-product', ['products'=>Product::all()]);
-// });
-
-// Route::post('/edit-product/edit', [ProductController::class, 'edit'])->name('edit-product');
-
-// Route::post('/edit-product/delete/{miaw}', [ProductController::class, 'destroy']);
 
 Route::get('/cart', function(){
     return view('cart');

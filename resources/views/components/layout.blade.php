@@ -3,9 +3,11 @@
 
 @include('components/head')
 
-<body class="min-h-full min-w-full">
-  @include('components.navbar')
-  @yield('content')
-</body>
+@if (!Route::is('login', 'register'))
+  <body class="min-h-full min-w-full">
+    @include('components.navbar')
+    @yield('content')
+  </body>
+@endif
 
 </html>
