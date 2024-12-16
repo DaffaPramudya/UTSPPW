@@ -50,10 +50,10 @@
                     <div class="flex items-center cursor-default">
                         @if (auth()->user()->profilepic)
                             <img src="storage/{{ auth()->user()->profilepic }}"
-                                class="h-10 w-10 mr-3"><span>{{ auth()->user()->username }}</span>
+                                class="h-10 w-10 mr-3 rounded-full object-cover"><span>{{ auth()->user()->username }}</span>
                         @else
-                            <img src="storage/app/public/profile-images/default.jpg"
-                                class="h-10 w-10 mr-3"><span>{{ auth()->user()->username }}</span>
+                            <img src="storage/profile-images/anonim.png"
+                                class="h-10 w-10 mr-3 object-cover"><span>{{ auth()->user()->username }}</span>
                         @endif
                     </div>
                     <div class="absolute top-full left-0 w-full h-8 bg-transparent"></div>
