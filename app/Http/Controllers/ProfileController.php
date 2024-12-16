@@ -20,7 +20,9 @@ class ProfileController extends Controller
         $user->nomor = $request->nomor;
         $user->alamat = $request->alamat;
         $user->gender = $request->gender;
-        $user->profilepic = $request->file('fileupload')->store('profile-images');
+        if($request->has('fileupload')) {
+            $user->profilepic = $request->file('fileupload')->store('profile-images') ?? null;
+        }
         $user->save();
         return back()->with('successUpdate', 'Profile berhasil diupdate');
     }
