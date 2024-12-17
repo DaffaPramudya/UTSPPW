@@ -19,6 +19,9 @@ export default {
             backgroundImage: {
                 'auth-bg': "url('/public/jpg/hexagon.jpg')",
             },
+            screens: {
+                'xs': '500px',
+            },
         },
     },
     plugins: [

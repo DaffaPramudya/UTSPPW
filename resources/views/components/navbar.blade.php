@@ -17,7 +17,7 @@
 
 
         @if (request()->is('/'))
-        <form class="max-w-md mx-auto w-full hidden md:block">
+        <form class="max-w-xs mx-auto w-full hidden md:block lg:max-w-lg">
             <label for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             <div class="relative">

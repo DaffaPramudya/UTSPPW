@@ -13,15 +13,18 @@ class ProfileController extends Controller
 
     public function store(Request $request) {
         $user = auth()->user();
-        if($user->profilepic) {
-            Storage::delete($user->profilepic);
-        }
         $user->name = $request->nama;
         $user->nomor = $request->nomor;
         $user->alamat = $request->alamat;
         $user->gender = $request->gender;
         if($request->has('fileupload')) {
-            $user->profilepic = $request->file('fileupload')->store('profile-images') ?? null;
+            if($user->profilepic) {
+                Storage::delete($user->profilepic);
+                $user->profilepic = $request->file('fileupload')->store('profile-images');
+            }
+            else {
+                $user->profilepic = $request->file('fileupload')->store('profile-images');
+            }
         }
         $user->save();
         return back()->with('successUpdate', 'Profile berhasil diupdate');
