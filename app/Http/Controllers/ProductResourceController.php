@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Faker\Factory as Faker;
 
 class ProductResourceController extends Controller
 {
@@ -13,15 +15,15 @@ class ProductResourceController extends Controller
      */
     public function index()
     {
-        return view('/edit-product', ['products' => Product::all()]);
+        //
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        //
+    {  
+        return view('add-product');
     }
 
     /**
@@ -29,7 +31,30 @@ class ProductResourceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|unique:products,name',
+            'price' => 'required|numeric|min:100000',
+            'stock' => 'required|numeric|min:1',
+            'category' => 'required',
+            'description' => 'required',
+        ]);
+
+        $faker = Faker::create();
+        $validatedData['code'] = strtoupper($faker->unique()->bothify('?#??#'));
+
+        $pictures = [];
+                
+        if ($request->has('pictures')) {
+            foreach($request->file('pictures') as $file) {
+                $pictures[] = $file->store('product-images');
+            }
+        }
+
+        // $validatedData['slug'] = Str::slug($validatedData['name'], '-');
+        $validatedData['pictures'] = json_encode($pictures);
+        Product::create($validatedData);
+        return back()->with('success', 'Produk berhasil ditambahkan!');
+
     }
 
     /**
@@ -45,7 +70,7 @@ class ProductResourceController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('edit-product', ['product' => $product]);
     }
 
     /**
@@ -56,11 +81,22 @@ class ProductResourceController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'price' => 'required',
-            'stock' => 'required',
+            'price' => 'required|numeric|min:100000',
+            'stock' => 'required|numeric|min:1',
+            'category' => 'required',
+            'description' => 'required',
         ]);
-        $product->update($validatedData);
-        return back()->with('success', 'Post berhasil diupdate');
+
+        $pictures = json_decode($product->pictures, true) ?? [];
+        if($request->has('pictures')){
+            foreach($request->file('pictures') as $file) {
+                $pictures[] = $file->store('product-images');
+            }
+        }
+
+        $validatedData['pictures'] = json_encode($pictures);
+        Product::where('code', $product->code)->update($validatedData);
+        return back()->with('success', 'Produk berhasil diupdate!');
     }
 
     /**
@@ -68,8 +104,20 @@ class ProductResourceController extends Controller
      */
     public function destroy(Product $product)
     {
-        Storage::delete($product->picture);
+        $pictures = json_decode($product->pictures, true);
+        foreach($pictures as $picture) {
+            Storage::delete($picture);
+        }
         Product::destroy($product->id);
-        return back()->with('success', 'Post berhasil dihapus');
+        return back()->with('success', 'Produk berhasil dihapus');
+    }
+
+    public function deleteImage(Product $product, $index) {
+        $pictures = json_decode($product->pictures);
+        Storage::delete($pictures[$index]);
+        unset($pictures[$index]);
+        $product->pictures = json_encode(array_values($pictures));
+        $product->save();
+        return back()->with('success', 'Foto berhasil dihapus');
     }
 }

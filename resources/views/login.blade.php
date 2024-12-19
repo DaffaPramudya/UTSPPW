@@ -52,7 +52,7 @@
           <p id="captcha-question" class="text-sm mb-1">Berapakah hasil: {{ session('captcha_num1') }} + {{ session('captcha_num2') }}</p>
           <input type="text" name="captcha" placeholder="Hasil" class="border rounded-lg p-2 outline-none text-sm w-40 text-center">
 
-          <input type="submit" value="Login" class="mt-4 border rounded-lg w-40 py-2 self-center bg-blue-600 hover:bg-blue-700 transition-colors text-white font-semibold cursor-pointer">
+          <input type="submit" value="Login" class="mt-4 border rounded-lg w-full py-2 self-center bg-blue-600 hover:bg-blue-700 transition-colors text-white font-semibold cursor-pointer">
 
         </form>
         <p class="flex items-center justify-center text-sm">Belum punya akun? <a href="/register" class="ml-0.5 underline font-semibold hover:text-gray-800 transition-colors"> Register</a></p>

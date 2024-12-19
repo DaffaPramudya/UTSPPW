@@ -17,7 +17,7 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             backgroundImage: {
-                'auth-bg': "url('/public/jpg/hexagon.jpg')",
+                'auth-bg': "url('/public/img/hexagon.jpg')",
             },
             screens: {
                 'xs': '500px',

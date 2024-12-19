@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProductResourceController;
+use App\Models\Product;
 
 Route::get('/', [ProductController::class, 'index']);
 
@@ -17,7 +18,11 @@ Route::post('/profile', [ProfileController::class, 'store'])->name('storeProfile
 Route::post('/profile/delete', [ProfileController::class, 'deleteProfilepic'])->name('deleteProfilepic');
 
 Route::get('/manage-product', function () {
-    return view('manage-product');
+    return view('manage-product', ['products' => Product::all()]);
+});
+
+Route::get('/edit-product/{product:code}', function(Product $product){
+    return view('edit-product', ['product' => $product]);
 });
 
 Route::get('/manage-product', [ProductController::class, 'show']);
@@ -47,7 +52,8 @@ Route::get('/cart', function(){
     return view('cart');
 });
 
-Route::resource('/products', ProductResourceController::class);
+Route::resource('/products', ProductResourceController::class)->middleware('auth');
+Route::post('/deleteImage/{product:code}/{index}', [ProductResourceController::class, 'deleteImage']);
 
 Route::resource('/carts', CartController::class);
 Route::post('/carts/{product_id}', [CartController::class, 'addToCart']);
