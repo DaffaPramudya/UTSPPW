@@ -9,7 +9,9 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProductResourceController;
 use App\Models\Product;
 
-Route::get('/', [ProductController::class, 'index']);
+Route::get('/', function(){
+    return view('index', ['products' => Product::all()]);
+});
 
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 

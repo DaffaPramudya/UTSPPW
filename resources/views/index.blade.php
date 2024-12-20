@@ -55,39 +55,66 @@
       </button>
     </div>
 
-    <!-- Card Produk SEMENTARA YA GES -->
+    <!-- Product Card -->
     <div class=" pb-5 pt-5">
       <h1 class="font-bold text-xl">Produk Rekomendasi</h1>
     </div>
-    <div class="grid grid-cols-1 xs:grid-cols-2 sm:flex sm:flex-wrap gap-4">
+    @if (session()->has('success'))
+      <div class="text-center p-3 mb-6 rounded-lg bg-green-400 text-green-900 lg:w-1/2 mx-auto">{{ session('success') }}</div>
+    @elseif(session()->has('error'))
+      <div class="text-center p-3 mb-6 rounded-lg bg-red-400 text-red-900 lg:w-1/2 mx-auto">{{ session('error') }}</div>
+    @endif
+    <div class="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4">
       <!-- Card Item -->
-      <div class=" bg-white border border-gray-200 rounded-lg shadow-sm md:h-80 md:w-50">
-        <a href="#">
-          <img class="rounded-t-lg object-cover h-48 w-full" src="https://via.placeholder.com/300" alt="Sepatu Putih" />
-        </a>
-        <div class="p-4">
+      @foreach ($products as $product)
+        @php
+          $pictures = json_decode($product->pictures, true);
+        @endphp
+        <div class=" bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col justify-between">
+          <a href="#">
+            @if (!empty($pictures[0]))
+              <img class="rounded-t-lg object-cover h-48 w-full" src="{{ asset('storage/' . $pictures[0]) }}" />
+            @else
+              <div class="h-48 flex justify-center items-center">
+                <img class="rounded-t-lg object-cover w-1/2" src="{{ asset('storage/product-images/no-image.svg') }}" />
+              </div>
+            @endif
+          </a>
           <!-- Caption -->
-          <h5 class="mb-2 text-lg font-semibold tracking-tight text-gray-900">Sepatu putih</h5>
+          <div class="mx-4">
+            <h5 class="mb-2 text-lg font-semibold tracking-tight text-gray-900">{{ $product->name }}</h5>
 
-          <!-- Harga -->
-          <p class="text-gray-700 mb-3">Rp200.000</p>
+            <!-- Harga -->
+            @if ($product->discount != 0)
+              <p class="text-red-700 line-through inline-block">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+              <div class="ml-2 p-2 bg-green-500 text-white rounded-md inline-block text-xs">
+                <i class="fa-solid fa-tag text-white mr-2"></i>{{ $product->discount . ' %' }}
+              </div>
+              <p class="text-green-700 mb-3 font-semibold">Rp {{ number_format($product->price * ((100 - $product->discount) * 0.01), 0, ',', '.') }}</p>
+            @else
+              <p class="text-gray-700 mb-3">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+            @endif
+          </div>
 
           <!-- Actions -->
-          <div class="flex justify-between items-center">
+          <div class="flex justify-between items-center mb-4 mx-4">
             <!-- Wishlist -->
             @auth
               @if (!auth()->user()->is_admin)
-                <button type="button" class="text-gray-500 hover:text-red-500">
-                  <i class="far fa-heart"></i> <!-- FontAwesome icon -->
+                <button type="button" class="text-gray-500 hover:text-red-500 transition-colors">
+                  <i class="far fa-heart"></i>
                 </button>
                 <!-- Cart Button -->
-                <button type="button" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
-                  <i class="fas fa-shopping-cart"></i> <!-- FontAwesome icon -->
-                </button>
+                <form action="/carts/{{ $product->id }}" method="POST">
+                  @csrf
+                  <button type="submit" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition-colors">
+                    <i class="fas fa-shopping-cart"></i>
+                  </button>
+                </form>
               @endif
             @endauth
           </div>
         </div>
-      </div>
+      @endforeach
     </div>
-@endsection
+  @endsection

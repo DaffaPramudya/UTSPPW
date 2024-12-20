@@ -53,7 +53,15 @@
               </td>
               <td class="p-3 text-gray-500 font-semibold whitespace-nowrap">{{ $product->category }}</td>
               <td class="p-3 text-gray-500 font-semibold whitespace-nowrap">{{ $product->stock }}</td>
-              <td class="p-3 text-gray-500 font-semibold whitespace-nowrap">{{ $product->price }}</td>
+              @if ($product->discount != 0)
+                <td class="p-4 text-gray-500 font-semibold whitespace-nowrap">
+                  <div class="p-3 bg-green-500 text-white rounded-md">
+                    <i class="fa-solid fa-tag text-white mr-2"></i>Rp {{ number_format($product->price * ((100 - $product->discount) * 0.01), 0, ',', '.') }}
+                  </div>
+                </td>
+              @else
+                <td class="p-3 text-gray-500 font-semibold whitespace-nowrap">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
+              @endif
             </tr>
           @endforeach
         </tbody>
@@ -69,7 +77,16 @@
             <div class="font-semibold">{{ $product->name }}</div>
             <div>Stok: {{ $product->stock }}</div>
             <div>Kategori: {{ $product->category }}</div>
-            <div>Harga: {{ $product->price }}</div>
+            @if ($product->discount != 0)
+              <div>
+                Harga: <p class="text-green-700 inline">Rp: {{ number_format($product->price * ((100 - $product->discount) * 0.01), 0, ',', '.') }}</p>
+                <div class="mt-2 p-2 bg-green-500 text-white rounded-md inline-block text-xs">
+                  <i class="fa-solid fa-tag text-white mr-2"></i>{{ $product->discount . ' %' }}
+                </div>
+              </div>
+            @else
+              <div>Harga: Rp {{ number_format($product->price, 0, ',', '.') }}</div>
+            @endif
           </div>
           <div class="flex w-1/4 items-center justify-center">
             @if (!empty($pictures))

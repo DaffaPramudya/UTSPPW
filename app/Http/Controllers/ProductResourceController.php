@@ -83,6 +83,7 @@ class ProductResourceController extends Controller
             'name' => 'required',
             'price' => 'required|numeric|min:100000',
             'stock' => 'required|numeric|min:1',
+            'discount' => 'numeric',
             'category' => 'required',
             'description' => 'required',
         ]);

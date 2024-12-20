@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->string('category');
             $table->string('description');
+            $table->integer('discount')->default(0);
             $table->timestamps();
         });
     }
