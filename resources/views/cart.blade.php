@@ -5,7 +5,11 @@
   <body>
 
     <h1 class="text-center font-bold text-xl mt-6">Keranjang</h1>
-    @if (session()->has('error'))
+    @if (session()->has('success'))
+      <div class="container text-center py-3 mt-2 mb-3 lg:w-1/3  mx-auto rounded-lg bg-green-300 text-green-900 w-full">
+        {{ session('success') }}
+      </div>
+    @elseif (session()->has('error'))
       <div class="container text-center py-3 mt-2 mb-3 lg:w-1/3  mx-auto rounded-lg bg-red-300 text-red-900 w-full">
         {{ session('error') }}
       </div>
@@ -17,6 +21,7 @@
             <tr>
               <th class="w-24 p-3 tracking-wide text-left">Kode</th>
               <th class="p-3 tracking-wide text-left">Produk</th>
+              <th class="w-28 p-3 tracking-wide"></th>
               <th class="w-28 p-3 tracking-wide text-left">Kuantitas</th>
               <th class="w-28 p-3 tracking-wide text-left">Harga</th>
             </tr>
@@ -36,6 +41,15 @@
                     <img src="{{ asset('storage/' . $pictures[0]) }}" class="h-24 w-24 sm:h-14 sm:w-14 mr-4 object-cover rounded-md">
                     {{ $cart->product->name }}
                   </div>
+                </td>
+                <td class="p-3 text-gray-500 font-semibold whitespace-nowrap">
+                  <form action="{{ route('carts.destroy', $cart->id) }}" method="POST" class="flex justify-end">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="flex justify-center items-center w-9 h-9 rounded-lg bg-red-600 hover:bg-red-700 transition-colors">
+                      <i class="fa-solid fa-trash text-white"></i>
+                    </button>
+                  </form>
                 </td>
                 <td class="p-3 text-gray-500 font-semibold whitespace-nowrap">
                   <div class="flex flex-space-4 items-center justify-between">

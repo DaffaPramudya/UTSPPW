@@ -22,6 +22,7 @@ return new class extends Migration
                 indexName: 'product_id',
             )->onDelete('cascade');
             $table->integer('quantity');
+            $table->integer('size');
             $table->integer('total_price');
             $table->timestamps();
         });

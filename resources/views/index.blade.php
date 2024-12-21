@@ -71,7 +71,7 @@
           $pictures = json_decode($product->pictures, true);
         @endphp
         <div class=" bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col justify-between">
-          <a href="#">
+          <a href="{{route('products.show', $product->code )}}">
             @if (!empty($pictures[0]))
               <img class="rounded-t-lg object-cover h-48 w-full" src="{{ asset('storage/' . $pictures[0]) }}" />
             @else
