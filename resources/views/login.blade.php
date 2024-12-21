@@ -9,12 +9,12 @@
           @csrf
           <p class="text-2xl font-semibold mb-4 text-center cursor-default">Login</p>
           @if (session()->has('success'))
-            <div class="success-message">
+            <div class="text-center py-3 mb-3 w-full mx-auto rounded-lg bg-green-300 text-green-900">{{ session('success') }}
               {{ session('success') }}
             </div>
           @endif
           @if (session()->has('loginError'))
-            <div class="bg-[#ffa07a] text-red-700 my-4 rounded-lg p-4">
+            <div class="text-center py-3 mb-3 w-full mx-auto rounded-lg bg-red-300 text-red-900">
               {{ session('loginError') }}
             </div>
           @endif

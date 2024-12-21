@@ -1,120 +1,102 @@
 @extends('components.layout')
-@section('title', 'Cart')
+@section('title', 'Keranjang')
 @section('content')
 
   <body>
-    @if (session()->has('success'))
-      <div class="success-message" style="padding: 1rem; margin: 20px">
-        {{ session('success') }}
-      </div>
-    @elseif (session()->has('error'))
-      <div class="error-message" style="padding: 1rem; margin: 20px">
+
+    <h1 class="text-center font-bold text-xl mt-6">Keranjang</h1>
+    @if (session()->has('error'))
+      <div class="container text-center py-3 mt-2 mb-3 lg:w-1/3  mx-auto rounded-lg bg-red-300 text-red-900 w-full">
         {{ session('error') }}
       </div>
     @endif
-    
-    <div class="container mx-auto md:px-2 my-5 flex items-start">
-        <div class="pt-5 md:px-5">
-            <h1 class="font-bold text-xl">Keranjang</h1>
-        </div>
-    </div>
+    <div class="container mx-auto md:px-2 my-5 grid lg:flex items-start px-4">
+      <div class="relative shadow-md sm:rounded-lg overflow-x-auto w-2/3 hidden lg:block">
+        <table class="w-full">
+          <thead class="bg-gray-100 border-b-2 border-gray-300">
+            <tr>
+              <th class="w-24 p-3 tracking-wide text-left">Kode</th>
+              <th class="p-3 tracking-wide text-left">Produk</th>
+              <th class="w-28 p-3 tracking-wide text-left">Kuantitas</th>
+              <th class="w-28 p-3 tracking-wide text-left">Harga</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-300">
+            {{-- foreach here --}}
+            @foreach ($carts as $cart)
+              @php
+                $pictures = json_decode($cart->product->pictures);
+              @endphp
+              <tr class="{{ $loop->even ? 'bg-gray-100' : 'bg-white' }}">
+                <td class="p-3 text-gray-500 font-semibold whitespace-nowrap">
+                  {{ $cart->product->code }}
+                </td>
+                <td class="p-3 text-gray-500 font-semibold whitespace-nowrap">
+                  <div class="flex flex-space-4 items-center">
+                    <img src="{{ asset('storage/' . $pictures[0]) }}" class="h-24 w-24 sm:h-14 sm:w-14 mr-4 object-cover rounded-md">
+                    {{ $cart->product->name }}
+                  </div>
+                </td>
+                <td class="p-3 text-gray-500 font-semibold whitespace-nowrap">
+                  <div class="flex flex-space-4 items-center justify-between">
+                    <form action="{{ route('subqty', ['cart_id' => $cart->id]) }}" method="POST">
+                      @csrf
+                      <button type="submit" name="decrease" class="size-9 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-200 text-sm transition-colors duration-150">
+                        <i class="fa-solid fa-minus"></i>
+                      </button>
+                    </form>
+                    <form action="{{ route('editqty', ['cart_id' => $cart->id]) }}" class="mx-4 w-14" method="POST">
+                      @csrf
+                      <input type="number" name="quantity" value="{{ old('quantity', $cart->quantity) }}" class="rounded w-full h-7 py-4 text-center" inputmode="numeric" style="-moz-appearance: textfield">
+                      <button type="submit" class="hidden"></button>
+                    </form>
+                    <form action="{{ route('addqty', ['cart_id' => $cart->id]) }}" method="POST">
+                      @csrf
+                      <button type="submit" name="increase" class="size-9 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-200 text-sm transition-colors duration-150">
+                        <i class="fa-solid fa-plus"></i>
+                      </button>
+                    </form>
+                  </div>
+                </td>
+                <td class="p-3 text-blue-500 font-semibold whitespace-nowrap">
+                  Rp {{ number_format($cart->product->price * $cart->quantity, 0, ',', '.') }}
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
 
+      <div class="grid grid-cols-2">
+        @foreach ($carts as $cart)
+        @endforeach
+      </div>
 
-    <div class="container mx-auto md:px-2 my-5 flex items-start">
-        <div class="relative shadow-md sm:rounded-lg overflow-x-auto w-2/3">
-            <table class="w-full h-auto text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-800 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">Produk</th>
-                        <th scope="col" class="px-6 py-3">Harga</th>
-                        <th scope="col" class="px-6 py-3">Jumlah</th>
-                        <th scope="col" class="px-6 py-3">Total</th>
-                        <th scope="col" class="px-6 py-3"></th>
-                    </tr>
-                </thead>
-                @foreach ($carts as $cart)
-                    <tbody>
-                        <tr
-                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 dark:text-white flex items-center w-72 overflow-hidden whitespace-normal">
-                                @if ($cart->product->picture)
-                                    <img class="size-16 mr-2" src="/storage/{{ $cart->product->picture }}"
-                                        alt="">
-                                @else
-                                    <img class="size-16 mr-2" src="/storage/no-image.svg">
-                                @endif
-                                <span>{{ $cart->product->name }}</span>
-                            </th>
-                            <td class="px-6 py-4">{{ $cart->product->price }}</td>
-                            <td class="px-6 py-4">
-                                <div class="flex items-center space-x-2">
-                                    <!-- Minus Button -->
-                                    <form action="/carts/sub/{{ $cart->id }}" method="POST" class="flex">
-                                        @csrf
-                                        <button type="submit" name="decrease"
-                                            class="size-5 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-200 text-sm">
-                                            <i class="fa-solid fa-minus"></i>
-                                        </button>
-                                    </form>
-
-                                    <!-- Quantity Input -->
-                                    <form action="/carts/{{ $cart->id }}" method="POST" class="flex">
-                                        @csrf
-                                        @method('put')
-                                        <input type="number" name="quantity" value="{{ $cart->quantity }}"
-                                            min="1"
-                                            class="w-8 h-8 text-center border-2 border-gray-400 rounded focus:outline-none"
-                                            readonly>
-                                    </form>
-
-                                    <!-- Plus Button -->
-                                    <form action="/carts/add/{{ $cart->id }}" method="POST" class="flex">
-                                        @csrf
-                                        <button type="submit" name="increase"
-                                            class="size-5 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-200 text-sm">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4">{{ $cart->product->price * $cart->quantity }}</td>
-                            <td class="px-6 py-4">
-                                <form action="/carts/{{ $cart->id }}" method="POST" style="text-align: center;">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" id="hapusproduk"><i
-                                            class="fa-solid fa-trash text-red-600"></i></button>
-                                </form>
-                            </td>
-                        </tr>
-                    </tbody>
-                @endforeach
-            </table>
-        </div>
-
-        <div class="border border-slate-600 w-1/3 ml-5 rounded-lg bg-blue-100 flex-shrink-0 max-h-72">
-            <h1 class="p-2 text-center font-semibold">Ringkasan Belanja</h1>
-            <div class="p-8 border border-y-slate-600">
-                <div class="flex justify-between">
-                    <p>Total</p>
-                    <p>Rp200.000</p>
-                </div>
-                <div class="flex justify-between">
-                    <p>Ongkos Kirim</p>
-                    <p>Gratis</p>
-                </div>
+      <div class="border border-slate-600 flex-1 lg:ml-5 rounded-lg bg-blue-100 flex-shrink-0">
+        <h1 class="p-3 text-center font-semibold">Ringkasan Belanja</h1>
+        <div class="p-8 border border-y-slate-600">
+          @foreach ($carts as $cart)
+            <div class="flex justify-between">
+              <p>{{ $cart->product->name }} <span class="text-red-600 ml-4">x{{ $cart->quantity }}</span></p>
+              <p>Rp {{ number_format($cart->total_price, 0, ',', '.') }}</p>
             </div>
-            <div class="px-8 py-5">
-                <div class="flex justify-between font-semibold">
-                    <p>Total</p>
-                    <p>Rp200.000</p>
-                </div>
-                <div class="flex justify-center">
-                    <input type="submit" value="Beli"
-                        class="mt-4 border rounded-lg w-full py-2 bg-blue-600 hover:bg-blue-800 transition-colors text-white font-semibold cursor-pointer">
-                </div>
-            </div>
+          @endforeach
+        </div>
+        <div class="px-8 py-5">
+          <div class="flex justify-between font-semibold">
+            <p>Total</p>
+            @php
+              $total_price = App\Models\Cart::sum('total_price');
+            @endphp
+            <p>Rp {{ number_format($total_price, 0, ',', '.') }}</p>
+          </div>
+          <div class="flex justify-center">
+            <a href="{{}}" class="w-full">
+              <div class="text-center mt-4 border rounded-lg w-full py-2 bg-blue-600 hover:bg-blue-800 transition-colors text-white font-semibold cursor-pointer">
+                Beli
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
