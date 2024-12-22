@@ -28,7 +28,7 @@
             @php
               $pictures = json_decode($product->pictures, true);
             @endphp
-            <tr class="{{$loop->even ? 'bg-gray-100' : 'bg-white' }}">
+            <tr class="{{ $loop->even ? 'bg-gray-100' : 'bg-white' }}">
               <td class="p-3 text-gray-500 font-semibold whitespace-nowrap"><a href=""><span class="text-blue-500 hover:text-blue-600 transition-colors">{{ $product->code }}</span></a></td>
               <td class="p-3 text-gray-500 font-semibold flex items-center whitespace-nowrap overflow-scroll">
                 @if (!empty($pictures))

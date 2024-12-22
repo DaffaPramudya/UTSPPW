@@ -25,9 +25,14 @@
       <!-- Cart -->
       @auth
         @if (!auth()->user()->is_admin)
-          <a href="/carts">
-            <i class="fa-solid fa-cart-shopping text-2xl text-blue-400 hover:text-blue-700 transition-colors"></i>
-          </a>
+          <div>
+            <a href="{{ route('wishlist.index') }}">
+              <i class="fa-regular fa-heart text-2xl mr-4 text-red-500 hover:font-semibold transition-colors"></i>
+            </a>
+            <a href="/carts">
+              <i class="fa-solid fa-cart-shopping text-2xl text-blue-400 hover:text-blue-700 transition-colors"></i>
+            </a>
+          </div>
         @endif
       @endauth
 
@@ -36,9 +41,9 @@
         <div class="group flex flex-col relative items-center space-x-4"> {{-- must hover --}}
           <div class="flex items-center cursor-default">
             @if (auth()->user()->profilepic)
-              <img src="{{asset('storage/' . auth()->user()->profilepic)}}" class="h-10 w-10 mr-3 rounded-full object-cover"><span>{{ auth()->user()->username }}</span>
+              <img src="{{ asset('storage/' . auth()->user()->profilepic) }}" class="h-10 w-10 mr-3 rounded-full object-cover"><span>{{ auth()->user()->username }}</span>
             @else
-              <img src="{{asset('storage/profile-images/anonim.png')}}" class="h-10 w-10 mr-3 object-cover"><span>{{ auth()->user()->username }}</span>
+              <img src="{{ asset('storage/profile-images/anonim.png') }}" class="h-10 w-10 mr-3 object-cover"><span>{{ auth()->user()->username }}</span>
             @endif
           </div>
           <div class="absolute top-full left-0 w-full h-8 bg-transparent"></div>
@@ -56,7 +61,14 @@
                 </a>
               </div>
             @endif
-            <div class="">
+            @if (!auth()->user()->is_admin)
+              <div class="mb-2">
+                <a href="{{ route('userorder', auth()->user()->username) }}" class="hover:text-slate-800 transition-all opacity:0 group-hover:opacity-100">
+                  <i class="fa-solid fa-box h-4 w-4 mr-4"></i><span>Pesanan saya</span>
+                </a>
+              </div>
+            @endif
+            <div>
               <form action="/logout">
                 <button type="submit" class="transition-all opacity:0 group-hover:opacity-100 text-red-600 hover:text-red-800">
                   <i class="fa-solid fa-right-from-bracket h-4 w-4 mr-4"></i><span>Keluar</span>

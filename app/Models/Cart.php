@@ -16,4 +16,8 @@ class Cart extends Model
     public function product(): BelongsTo {
         return $this->belongsTo(Product::class);
     }
+
+    public function order() {
+        return $this->belongsTo(Order::class);
+    }
 }

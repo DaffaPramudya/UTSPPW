@@ -22,6 +22,7 @@
               <th class="w-24 p-3 tracking-wide text-left">Kode</th>
               <th class="p-3 tracking-wide text-left">Produk</th>
               <th class="w-28 p-3 tracking-wide"></th>
+              <th class="w-28 p-3 tracking-wide text-left">Ukuran</th>
               <th class="w-28 p-3 tracking-wide text-left">Kuantitas</th>
               <th class="w-28 p-3 tracking-wide text-left">Harga</th>
             </tr>
@@ -49,6 +50,21 @@
                     <button type="submit" class="flex justify-center items-center w-9 h-9 rounded-lg bg-red-600 hover:bg-red-700 transition-colors">
                       <i class="fa-solid fa-trash text-white"></i>
                     </button>
+                  </form>
+                </td>
+                <td class="p-3 text-gray-500 font-semibold whitespace-nowrap text-center">
+                  <form action="{{ route('editsize', $cart->id) }}" method="POST">
+                    @csrf
+                    <select name="size" onchange="this.form.submit()" class="rounded-md">
+                      <option value="37" @if (old('size', $cart->size) == '37') selected @endif>37</option>
+                      <option value="38" @if (old('size', $cart->size) == '38') selected @endif>38</option>
+                      <option value="39" @if (old('size', $cart->size) == '39') selected @endif>39</option>
+                      <option value="40" @if (old('size', $cart->size) == '40') selected @endif>40</option>
+                      <option value="41" @if (old('size', $cart->size) == '41') selected @endif>41</option>
+                      <option value="42" @if (old('size', $cart->size) == '42') selected @endif>42</option>
+                      <option value="43" @if (old('size', $cart->size) == '43') selected @endif>43</option>
+                    </select>
+                    <button type="submit" class="hidden"></button>
                   </form>
                 </td>
                 <td class="p-3 text-gray-500 font-semibold whitespace-nowrap">
@@ -100,16 +116,18 @@
           <div class="flex justify-between font-semibold">
             <p>Total</p>
             @php
-              $total_price = App\Models\Cart::sum('total_price');
+              // $total_price = App\Models\Cart::sum('total_price');
+              $total_price = App\Models\Cart::where('user_id', auth()->id())->sum('total_price');
             @endphp
             <p>Rp {{ number_format($total_price, 0, ',', '.') }}</p>
           </div>
           <div class="flex justify-center">
-            <a href="{{}}" class="w-full">
-              <div class="text-center mt-4 border rounded-lg w-full py-2 bg-blue-600 hover:bg-blue-800 transition-colors text-white font-semibold cursor-pointer">
+            <form action="{{ route('storefromcart') }}" method="POST" class="w-full">
+              @csrf
+              <button type="submit" class="text-center mt-4 border rounded-lg w-full py-2 bg-blue-600 hover:bg-blue-800 transition-colors text-white font-semibold cursor-pointer">
                 Beli
-              </div>
-            </a>
+              </button>
+            </form>
           </div>
         </div>
       </div>

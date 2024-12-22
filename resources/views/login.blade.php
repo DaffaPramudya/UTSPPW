@@ -9,21 +9,13 @@
           @csrf
           <p class="text-2xl font-semibold mb-4 text-center cursor-default">Login</p>
           @if (session()->has('success'))
-            <div class="text-center py-3 mb-3 w-full mx-auto rounded-lg bg-green-300 text-green-900">{{ session('success') }}
+            <div class="text-center py-3 mb-3 w-full mx-auto rounded-lg bg-green-300 text-green-900">
               {{ session('success') }}
             </div>
-          @endif
-          @if (session()->has('loginError'))
-            <div class="text-center py-3 mb-3 w-full mx-auto rounded-lg bg-red-300 text-red-900">
-              {{ session('loginError') }}
-            </div>
-          @endif
-          @if ($errors->any())
-            <div class="error-message">
-              @foreach ($errors->all() as $error)
-                {{ $error }}
-              @endforeach
-            </div>
+          @elseif (session()->has('error'))
+          <div class="text-center py-3 mb-3 w-full mx-auto rounded-lg bg-red-300 text-red-900">
+            {{ session('error') }}
+          </div>
           @endif
           <!-- email -->
           <div class="border-solid border py-3 px-3 mb-2 rounded-lg flex items-center overflow-hidden">

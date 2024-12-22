@@ -2,7 +2,11 @@
 @section('title', 'Product')
 @section('content')
   <div class="container mx-auto my-8">
-
+    @if (session()->has('success'))
+      <div class="text-center p-3 mb-6 rounded-lg bg-green-400 text-green-900 lg:w-1/2 mx-auto">{{ session('success') }}</div>
+    @elseif(session()->has('error'))
+      <div class="text-center p-3 mb-6 rounded-lg bg-red-400 text-red-900 lg:w-1/2 mx-auto">{{ session('error') }}</div>
+    @endif
     <div class="flex rounded-md overflow-hidden bg-blue-200">
       <div class="w-1/2 p-16 pr-0">
         <div id="default-carousel" class="relative w-full" data-carousel="static">
@@ -52,47 +56,48 @@
           <div class="my-7">
             <h1 class="font-semibold text-4xl align-text-bottom mb-4">Rp {{ number_format($product->price, 0, ',', '.') }}</h1>
             <h1 class="mb-2 font-medium">Ukuran sepatu</h1>
-            <form action="">
+            <form action="{{ route('addcartproduct', $product->id) }}" method="POST">
+              @csrf
               <div class="flex space-x-4">
                 <div>
                   <input type="radio" id="size-37" name="size" value="37" class="hidden peer" required />
-                  <label for="size-37" class="inline-flex items-center justify-center size-11 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                  <label for="size-37" class="inline-flex items-center justify-center size-11 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-500 peer-checked:text-blue-500 peer-checked:font-semibold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                     37
                   </label>
                 </div>
                 <div>
                   <input type="radio" id="size-38" name="size" value="38" class="hidden peer" required />
-                  <label for="size-38" class="inline-flex items-center justify-center size-11 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                  <label for="size-38" class="inline-flex items-center justify-center size-11 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-500 peer-checked:text-blue-500 peer-checked:font-semibold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                     38
                   </label>
                 </div>
                 <div>
                   <input type="radio" id="size-39" name="size" value="39" class="hidden peer" required />
-                  <label for="size-39" class="inline-flex items-center justify-center size-11 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                  <label for="size-39" class="inline-flex items-center justify-center size-11 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-500 peer-checked:text-blue-500 peer-checked:font-semibold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                     39
                   </label>
                 </div>
                 <div>
                   <input type="radio" id="size-40" name="size" value="40" class="hidden peer" required />
-                  <label for="size-40" class="inline-flex items-center justify-center size-11 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                  <label for="size-40" class="inline-flex items-center justify-center size-11 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-500 peer-checked:text-blue-500 peer-checked:font-semibold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                     40
                   </label>
                 </div>
                 <div>
                   <input type="radio" id="size-41" name="size" value="41" class="hidden peer" required />
-                  <label for="size-41" class="inline-flex items-center justify-center size-11 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                  <label for="size-41" class="inline-flex items-center justify-center size-11 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-500 peer-checked:text-blue-500 peer-checked:font-semibold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                     41
                   </label>
                 </div>
                 <div>
                   <input type="radio" id="size-42" name="size" value="42" class="hidden peer" required />
-                  <label for="size-42" class="inline-flex items-center justify-center size-11 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                  <label for="size-42" class="inline-flex items-center justify-center size-11 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-500 peer-checked:text-blue-500 peer-checked:font-semibold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                     42
                   </label>
                 </div>
                 <div>
                   <input type="radio" id="size-43" name="size" value="43" class="hidden peer" required />
-                  <label for="size-43" class="inline-flex items-center justify-center size-11 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                  <label for="size-43" class="inline-flex items-center justify-center size-11 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-500 peer-checked:text-blue-500 peer-checked:font-semibold hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                     43
                   </label>
                 </div>

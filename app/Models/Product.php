@@ -10,11 +10,23 @@ class Product extends Model
 {
     protected $guarded = [];
 
-    public function getRouteKeyName() {
+    public function getRouteKeyName()
+    {
         return 'code';
     }
 
-    public function cart():HasMany {
+    public function cart(): HasMany
+    {
         return $this->hasMany(Cart::class);
+    }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function wishlist()
+    {
+        return $this->hasMany(Wishlist::class);
     }
 }

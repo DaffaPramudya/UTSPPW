@@ -57,7 +57,7 @@
 
     <!-- Product Card -->
     <div class=" pb-5 pt-5">
-      <h1 class="font-bold text-xl">Produk Rekomendasi</h1>
+      <h1 class="font-bold text-xl">Semua Produk</h1>
     </div>
     @if (session()->has('success'))
       <div class="text-center p-3 mb-6 rounded-lg bg-green-400 text-green-900 lg:w-1/2 mx-auto">{{ session('success') }}</div>
@@ -71,7 +71,7 @@
           $pictures = json_decode($product->pictures, true);
         @endphp
         <div class=" bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col justify-between">
-          <a href="{{route('products.show', $product->code )}}">
+          <a href="{{ route('products.show', $product->code) }}">
             @if (!empty($pictures[0]))
               <img class="rounded-t-lg object-cover h-48 w-full" src="{{ asset('storage/' . $pictures[0]) }}" />
             @else
@@ -101,11 +101,14 @@
             <!-- Wishlist -->
             @auth
               @if (!auth()->user()->is_admin)
-                <button type="button" class="text-gray-500 hover:text-red-500 transition-colors">
-                  <i class="far fa-heart"></i>
-                </button>
+                <form action="{{ route('addwishlist', $product->id) }}" method="POST">
+                  @csrf
+                  <button type="submit" class="text-gray-500 hover:text-red-500 transition-colors">
+                    <i class="far fa-heart"></i>
+                  </button>
+                </form>
                 <!-- Cart Button -->
-                <form action="/carts/{{ $product->id }}" method="POST">
+                <form action="{{ route('addcart', $product->id) }}" method="POST">
                   @csrf
                   <button type="submit" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition-colors">
                     <i class="fas fa-shopping-cart"></i>
