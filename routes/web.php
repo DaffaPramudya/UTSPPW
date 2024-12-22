@@ -50,14 +50,11 @@ Route::get('/cart', function () {
     return view('cart');
 });
 
-Route::get('/cart', function(){
-    return view('cart');
-});
-
 Route::resource('/products', ProductResourceController::class)->middleware('auth');
 Route::post('/deleteImage/{product:code}/{index}', [ProductResourceController::class, 'deleteImage']);
 
 Route::resource('/carts', CartController::class);
 Route::post('/carts/{product_id}', [CartController::class, 'addToCart']);
-Route::post('/carts/sub/{cart_id}', [CartController::class, 'subQuantity']);
-Route::post('/carts/add/{cart_id}', [CartController::class, 'addQuantity']);
+Route::post('/carts/sub/{cart_id}', [CartController::class, 'subQuantity'])->name('subqty');
+Route::post('/carts/add/{cart_id}', [CartController::class, 'addQuantity'])->name('addqty');
+Route::post('/carts/editqty/{cart_id}', [CartController::class, 'editQuantity'])->name('editqty');

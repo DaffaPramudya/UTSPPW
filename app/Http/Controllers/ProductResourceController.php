@@ -62,7 +62,7 @@ class ProductResourceController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('product', ['product' => $product]);
     }
 
     /**

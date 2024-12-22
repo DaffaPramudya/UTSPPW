@@ -4,7 +4,7 @@
 @include('components/head')
 
 @if (!Route::is('login', 'register'))
-  <body class="min-h-full min-w-full">
+  <body class="min-h-screen min-w-full">
     @include('components.navbar')
     @yield('content')
   </body>
