@@ -81,7 +81,7 @@
             @endif
           </a>
           <!-- Caption -->
-          <div class="mx-4">
+          <div class="mx-4 mt-4">
             <h5 class="mb-2 text-lg font-semibold tracking-tight text-gray-900">{{ $product->name }}</h5>
 
             <!-- Harga -->

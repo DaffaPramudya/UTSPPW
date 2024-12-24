@@ -5,7 +5,7 @@
 
   <div class="container mt-4 p-4 xs:p-2 mx-auto">
     @if (session()->has('success'))
-      <div class="mx-auto max-w-80 text-center py-3 mb-6 rounded-lg bg-green-400 text-green-900">{{ session('success') }}</div>
+      <div class="mx-auto max-w-80 text-center py-3 mb-6 rounded-lg bg-green-300 text-green-900">{{ session('success') }}</div>
     @endif
     <a href="/products/create" class="px-4 py-3 bg-white border inline-block rounded-lg mb-4 hover:bg-gray-100 transition-colors shadow-md">
       Tambah Produk

@@ -72,6 +72,7 @@ class WishlistController extends Controller
      */
     public function destroy(Wishlist $wishlist)
     {
-        //
+        Wishlist::destroy($wishlist->id);
+        return back()->with('success', 'Wishlist berhasil dihapus!');
     }
 }
