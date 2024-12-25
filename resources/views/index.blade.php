@@ -153,8 +153,9 @@
           </div>
         </div>
       @endforeach
-      <div class="mt-4">
-        {{ $products->links() }} {{-- Pagination links --}}
-      </div>
     </div>
-  @endsection
+    <div class="mt-4">
+      {{ $products->links() }} {{-- Pagination links --}}
+    </div>
+  </div>
+@endsection
