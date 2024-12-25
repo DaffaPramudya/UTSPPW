@@ -72,3 +72,5 @@ Route::get('/order/{username}', function($username){
 
 Route::resource('/wishlist', WishlistController::class);
 Route::post('/wishlist/{product_id}', [WishlistController::class, 'addwishlist'])->name('addwishlist');
+
+Route::get('/google/callback', [LoginController::class, 'google'])->name('googleauth');

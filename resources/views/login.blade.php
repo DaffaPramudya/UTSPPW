@@ -1,6 +1,15 @@
 @extends('components.layout')
 @section('title', 'Login')
 @section('content')
+  @php
+    $client = new Google\Client();
+    $client->setClientId('936119187508-56mkt6c9rv2lluinjeqifj5bt9cgo53q.apps.googleusercontent.com');
+    $client->setClientSecret('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');
+    $client->setRedirectUri(route('googleauth'));
+    $client->addScope('email');
+    $client->addScope('profile');
+    $url = $client->createAuthUrl();
+  @endphp
 
   <body class="bg-auth-bg bg-cover min-h-screen min-w-screen flex items-center">
     <div class="my-8 mx-auto md:grid md:grid-cols-2 border rounded-lg container px-6 py-10 sm:p-10 bg-white sm:block xl:max-w-screen-lg shadow-lg">
@@ -13,9 +22,9 @@
               {{ session('success') }}
             </div>
           @elseif (session()->has('error'))
-          <div class="text-center py-3 mb-3 w-full mx-auto rounded-lg bg-red-300 text-red-900">
-            {{ session('error') }}
-          </div>
+            <div class="text-center py-3 mb-3 w-full mx-auto rounded-lg bg-red-300 text-red-900">
+              {{ session('error') }}
+            </div>
           @endif
           <!-- email -->
           <div class="border-solid border py-3 px-3 mb-2 rounded-lg flex items-center overflow-hidden">
@@ -36,7 +45,7 @@
             <div class="flex-grow border-t border-gray-300"></div>
           </div>
           <div class="flex justify-center mt-2 mb-4">
-            <a href="#">
+            <a href="{{ $url }}">
               <img src="{{ asset('svg/google.svg') }}" alt="" class="border rounded-lg px-16 py-2 text-center h-10 hover:bg-slate-100 transition-colors">
             </a>
           </div>
