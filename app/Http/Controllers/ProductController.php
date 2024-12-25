@@ -16,23 +16,24 @@ class ProductController extends Controller
             'stock' => 'required',
             'picture' => 'file|max:5120'
         ]);
-        
+
         if ($request->file('picture')) {
             $validatedData['picture'] = $request->file('picture')->store('product-images');
         }
-        
+
         $validatedData['slug'] = Str::slug($validatedData['name'], '-');
 
         Product::create($validatedData);
         return back()->with('successProduct', 'Produk berhasil ditambahkan!');
     }
 
-    public function index() {
+    public function index()
+    {
         return view('/index', [
             'products' => Product::all(),
         ]);
     }
-    
+
 
     public function manage()
     {
@@ -46,10 +47,22 @@ class ProductController extends Controller
         return view('/manage-product', ['products' => $products, 'search' => $search]);
     }
 
+    // public function indexsearch(Request $request)
+    // {
+    //     $search = $request->input('search');
+    //     $products = Product::where('name', 'LIKE', '%' . $search . '%')->get();
+    //     return view('/', ['products' => $products, 'search' => $search]);
+    // }
+
     public function indexsearch(Request $request)
     {
-        $search = $request->input('search');
-        $products = Product::where('name', 'LIKE', '%' . $search . '%')->get();
-        return view('/', ['products' => $products, 'search' => $search]);
+        $search = $request->input('search'); // Ambil input dari form
+        $products = Product::where('name', 'LIKE', '%' . $search . '%') // Cari produk berdasarkan nama
+            ->paginate(10); // Gunakan pagination untuk efisiensi
+
+        return view('index', [ 
+            'products' => $products,
+            'search' => $search,
+        ]);
     }
 }

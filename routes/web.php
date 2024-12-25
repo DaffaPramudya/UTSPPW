@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProductResourceController;
 use App\Http\Controllers\WishlistController;
@@ -16,6 +17,8 @@ use App\Http\Middleware\Admin;
 Route::get('/', function(){
     return view('index', ['products' => Product::all()]);
 });
+
+Route::get('/', [ProductController::class, 'indexsearch'])->name('product.search');
 
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 
