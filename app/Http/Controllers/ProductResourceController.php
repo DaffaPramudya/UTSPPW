@@ -22,7 +22,7 @@ class ProductResourceController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {  
+    {
         return view('add-product');
     }
 
@@ -43,9 +43,9 @@ class ProductResourceController extends Controller
         $validatedData['code'] = strtoupper($faker->unique()->bothify('?#??#'));
 
         $pictures = [];
-                
+
         if ($request->has('pictures')) {
-            foreach($request->file('pictures') as $file) {
+            foreach ($request->file('pictures') as $file) {
                 $pictures[] = $file->store('product-images');
             }
         }
@@ -54,7 +54,6 @@ class ProductResourceController extends Controller
         $validatedData['pictures'] = json_encode($pictures);
         Product::create($validatedData);
         return back()->with('success', 'Produk berhasil ditambahkan!');
-
     }
 
     /**
@@ -83,14 +82,14 @@ class ProductResourceController extends Controller
             'name' => 'required',
             'price' => 'required|numeric|min:100000',
             'stock' => 'required|numeric|min:1',
-            'discount' => 'numeric',
+            'discount' => 'numeric|min:0|max:100',
             'category' => 'required',
             'description' => 'required',
         ]);
 
         $pictures = json_decode($product->pictures, true) ?? [];
-        if($request->has('pictures')){
-            foreach($request->file('pictures') as $file) {
+        if ($request->has('pictures')) {
+            foreach ($request->file('pictures') as $file) {
                 $pictures[] = $file->store('product-images');
             }
         }
@@ -106,19 +105,27 @@ class ProductResourceController extends Controller
     public function destroy(Product $product)
     {
         $pictures = json_decode($product->pictures, true);
-        foreach($pictures as $picture) {
+        foreach ($pictures as $picture) {
             Storage::delete($picture);
         }
         Product::destroy($product->id);
         return back()->with('success', 'Produk berhasil dihapus');
     }
 
-    public function deleteImage(Product $product, $index) {
+    public function deleteImage(Product $product, $index)
+    {
         $pictures = json_decode($product->pictures);
         Storage::delete($pictures[$index]);
         unset($pictures[$index]);
         $product->pictures = json_encode(array_values($pictures));
         $product->save();
         return back()->with('success', 'Foto berhasil dihapus');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $products = Product::where('name', 'LIKE', '%' . $search . '%')->get();
+        return view('/manage-product', ['products' => $products, 'search' => $search]);
     }
 }

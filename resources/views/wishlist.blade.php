@@ -2,6 +2,7 @@
 @section('title', 'Wishlist')
 @section('content')
   <div class="container mx-auto mt-8 px-4">
+    <h1 class="pb-6 px-5 text-3xl">Wishlist</h1>
     @if (session()->has('success'))
       <div class="text-center p-3 mb-6 rounded-lg bg-green-300 text-green-900 w-1/2 mx-auto">{{ session('success') }}</div>
     @endif

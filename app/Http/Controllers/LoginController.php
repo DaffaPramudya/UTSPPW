@@ -31,7 +31,7 @@ class LoginController extends Controller
         ]);
 
         if($request->captcha != session('captcha_result')) {
-            return back()->with('loginError', 'Captcha salah!');
+            return back()->with('error', 'Captcha salah!');
         }
 
         if(Auth::attempt($credentials)) {
@@ -39,7 +39,7 @@ class LoginController extends Controller
             return redirect()->intended('/');
         }
 
-        return back()->with('loginError', 'Gagal login!');
+        return back()->with('error', 'Gagal login!');
     }
 
     public function logout(Request $request) {

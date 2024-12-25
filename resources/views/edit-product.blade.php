@@ -117,7 +117,7 @@
           </div>
           <div class="mb-6">
             <div class="flex space-x-4">
-              <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Diskon (%)</label>
+              <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white whitespace-nowrap">Diskon (%)</label>
               @error('discount')
                 <div class="inline-block w-full">
                   <div class="flex items-center text-sm text-red-800 rounded-lg" role="alert">

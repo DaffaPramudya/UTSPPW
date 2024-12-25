@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProductResourceController;
@@ -12,7 +11,7 @@ use App\Http\Controllers\WishlistController;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\User;
-use App\Models\Wishlist;
+use App\Http\Middleware\Admin;
 
 Route::get('/', function(){
     return view('index', ['products' => Product::all()]);
@@ -26,18 +25,11 @@ Route::post('/profile/delete', [ProfileController::class, 'deleteProfilepic'])->
 
 Route::get('/manage-product', function () {
     return view('manage-product', ['products' => Product::all()]);
-});
+})->middleware(Admin::class);
 
 Route::get('/edit-product/{product:code}', function(Product $product){
     return view('edit-product', ['product' => $product]);
 });
-
-Route::get('/manage-product', [ProductController::class, 'show']);
-
-Route::post('/manage-product', [ProductController::class, 'store']);
-
-
-Route::get('/manage-product', [ProductController::class, 'search'])->name('products-search');
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 

@@ -1,13 +1,16 @@
 @extends('components.layout')
 @section('title', 'Orders')
 @section('content')
-  <div class="container mt-4 p-4 xs:p-2 mx-auto">
+  <div class="container mt-8 p-4 xs:p-2 mx-auto">
+    <h1 class="text-3xl pb-6">Pesanan Saya</h1>
     <table class="w-full">
       <thead class="bg-gray-100 border-b-2 border-gray-300">
         <tr>
           <th class="w-24 p-3 tracking-wide text-left">Kode</th>
           <th class="p-3 tracking-wide text-left">Detail</th>
           <th class="w-28 p-3 tracking-wide text-left"></th>
+          <th class="w-28 p-3 tracking-wide text-left">Pembayaran</th>
+          <th class="w-28 p-3 tracking-wide text-left">Pengiriman</th>
           <th class="w-28 p-3 tracking-wide text-left">Status</th>
           <th class="w-28 p-3 tracking-wide text-left">Kuantitas</th>
           <th class="w-36 p-3 tracking-wide text-left">Total Harga</th>
@@ -37,6 +40,12 @@
                   <i class="fa-solid fa-check text-white"></i>
                 </button>
               </form>
+            </td>
+            <td class="p-3 text-gray-500 font-semibold whitespace-nowrap">
+              {{ $order->payment }}
+            </td>
+            <td class="p-3 text-gray-500 font-semibold whitespace-nowrap">
+              {{ $order->shipment }}
             </td>
             <td class="p-3 text-gray-500 font-semibold whitespace-nowrap">
               @if ($order->status == 'delivered')
