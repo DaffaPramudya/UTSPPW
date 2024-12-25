@@ -58,7 +58,7 @@ class ProductController extends Controller
     {
         $search = $request->input('search'); // Ambil input dari form
         $products = Product::where('name', 'LIKE', '%' . $search . '%') // Cari produk berdasarkan nama
-            ->paginate(10); // Gunakan pagination untuk efisiensi
+            ->paginate(8); // Gunakan pagination untuk efisiensi
 
         return view('index', [ 
             'products' => $products,
