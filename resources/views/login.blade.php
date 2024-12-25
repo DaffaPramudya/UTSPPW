@@ -2,9 +2,10 @@
 @section('title', 'Login')
 @section('content')
   @php
-  // Set this urself (add secret)
+  // Set this urself
     $client = new Google\Client();
     $client->setClientId('');
+    $client->setClientSecret('');
     $client->setRedirectUri(route('googleauth'));
     $client->addScope('email');
     $client->addScope('profile');
