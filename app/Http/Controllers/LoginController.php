@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Google\Client as GoogleClient;
-use Google\Service\Oauth2;
 
 class LoginController extends Controller
 {
@@ -52,26 +50,5 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
-    }
-
-    public function google(Request $request)
-    {
-        // Set this urself
-        $client = new GoogleClient();
-        $client->setClientId('');
-        $client->setClientSecret('');
-        $client->setRedirectUri(route('googleauth'));
-        $token = $client->fetchAccessTokenWithAuthCode($request->get('code'));
-        $client->setAccessToken($token['access_token']);
-        $oauth = new Oauth2($client);
-        $userinfo = $oauth->userinfo->get();
-        session([
-            'google_user' => [
-                'email' => $userinfo->email,
-                'name' => $userinfo->givenName,
-            ]
-        ]);
-        $request->session()->regenerate();
-        return redirect()->intended('/');
     }
 }

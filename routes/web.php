@@ -69,8 +69,7 @@ Route::get('/order/{username}', function($username){
     $user = User::where('username', $username)->firstOrFail();
     return view('user-order', ['orders' => Order::with('product')->where('user_id', $user->id)->get()]);
 })->name('userorder');
+Route::get('/manage-orders', [OrderController::class, 'manageorders'])->name('manageorders');
 
 Route::resource('/wishlist', WishlistController::class);
 Route::post('/wishlist/{product_id}', [WishlistController::class, 'addwishlist'])->name('addwishlist');
-
-Route::get('/google/callback', [LoginController::class, 'google'])->name('googleauth');

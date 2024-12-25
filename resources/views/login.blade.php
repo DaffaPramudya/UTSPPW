@@ -1,17 +1,6 @@
 @extends('components.layout')
 @section('title', 'Login')
 @section('content')
-  @php
-  // Set this urself
-    $client = new Google\Client();
-    $client->setClientId('');
-    $client->setClientSecret('');
-    $client->setRedirectUri(route('googleauth'));
-    $client->addScope('email');
-    $client->addScope('profile');
-    $url = $client->createAuthUrl();
-  @endphp
-
   <body class="bg-auth-bg bg-cover min-h-screen min-w-screen flex items-center">
     <div class="my-8 mx-auto md:grid md:grid-cols-2 border rounded-lg container px-6 py-10 sm:p-10 bg-white sm:block xl:max-w-screen-lg shadow-lg">
       <div class="p-8 sm:py-14 sm:px-20 border shadow-lg rounded-lg md:p-8">
@@ -46,7 +35,7 @@
             <div class="flex-grow border-t border-gray-300"></div>
           </div>
           <div class="flex justify-center mt-2 mb-4">
-            <a href="{{ $url }}">
+            <a href="#">
               <img src="{{ asset('svg/google.svg') }}" alt="" class="border rounded-lg px-16 py-2 text-center h-10 hover:bg-slate-100 transition-colors">
             </a>
           </div>

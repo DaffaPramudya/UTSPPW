@@ -98,4 +98,8 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function manageorders() {
+        return view('manage-orders', ['orders' => Order::all()]);
+    }
 }

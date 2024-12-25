@@ -48,7 +48,7 @@
           </div>
           <div class="absolute top-full left-0 w-full h-8 bg-transparent"></div>
           <!-- dropdown menu -->
-          <div class="z-40 invisible opacity-0 group-hover:opacity-100 transition-opacity group-hover:visible group-hover:flex group-hover:flex-col w-48 rounded-lg shadow-lg bg-white border-2 p-5 absolute top-full right-0 text-slate-600 mt-4">
+          <div class="z-40 invisible opacity-0 group-hover:opacity-100 transition-opacity group-hover:visible group-hover:flex group-hover:flex-col w-52 rounded-lg shadow-lg bg-white border-2 p-5 absolute top-full right-0 text-slate-600 mt-4">
             <div class="mb-2">
               <a href="/profile" class="hover:text-slate-800 transition-all opacity:0 group-hover:opacity-100">
                 <i class="fa-solid fa-user h-4 w-4 mr-4"></i><span>{{ auth()->user()->username }}</span>
@@ -58,6 +58,11 @@
               <div class="mb-2">
                 <a href="/manage-product" class="hover:text-slate-800 transition-all opacity:0 group-hover:opacity-100">
                   <i class="fa-solid fa-box h-4 w-4 mr-4"></i><span>Kelola Produk</span>
+                </a>
+              </div>
+              <div class="mb-2">
+                <a href="{{ route('manageorders') }}" class="hover:text-slate-800 transition-all opacity:0 group-hover:opacity-100 whitespace-nowrap">
+                  <i class="fa-solid fa-cash-register h-4 w-4 mr-4"></i><span>Pesanan Masuk</span>
                 </a>
               </div>
             @endif
