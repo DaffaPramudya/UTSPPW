@@ -107,17 +107,23 @@
             </select>
           </div>
         </div>
-
         <div class="md:flex items-center justify-center w-full flex-1 hidden">
-          <label for="pictures[]" class="h-full flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
-            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-              <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-              </svg>
-              <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-              <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+          
+          <label for="pictures[]" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
+            <div id="dropzone-wrapper" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 relative overflow-hidden">
+              <div id="dropzone-preview" class="absolute inset-0 flex items-center justify-center">
+                <!-- Default Content -->
+                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                  <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                  </svg>
+                  <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG, atau GIF (MAX. 800x400px)</p>
+                </div>
+              </div>
+              <input id="pictures[]" name="pictures[]" type="file" class="hidden" multiple />
             </div>
-            <input id="pictures[]" name="pictures[]" type="file" class="hidden" multiple />
+            
           </label>
         </div>
 
@@ -150,4 +156,41 @@
       </div>
     </form>
   </div>
+  <script>
+    document.getElementById('pictures[]').addEventListener('change', function (event) {
+      const files = event.target.files;
+      const dropzonePreview = document.getElementById('dropzone-preview');
+      dropzonePreview.innerHTML = ''; // Reset konten pratinjau
+  
+      if (files.length > 0) {
+        Array.from(files).forEach(file => {
+          if (file.type.startsWith('image/')) { // Pastikan hanya file gambar
+            const reader = new FileReader();
+            const imgElement = document.createElement('img');
+            imgElement.classList.add('w-full', 'h-full', 'object-cover', 'rounded-lg');
+  
+            reader.onload = function (e) {
+              imgElement.src = e.target.result; // Set sumber gambar
+            };
+            reader.readAsDataURL(file);
+  
+            dropzonePreview.appendChild(imgElement); // Tampilkan gambar
+          }
+        });
+      } else {
+        // Kembalikan konten default jika tidak ada gambar
+        dropzonePreview.innerHTML = `
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+            </svg>
+            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG, atau GIF (MAX. 800x400px)</p>
+          </div>
+        `;
+      }
+    });
+  </script>
+  
+  
 @endsection

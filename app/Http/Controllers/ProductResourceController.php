@@ -37,6 +37,7 @@ class ProductResourceController extends Controller
             'stock' => 'required|numeric|min:1',
             'category' => 'required',
             'description' => 'required',
+            // 'pictures' => 'required|array|min:1',
         ]);
 
         $faker = Faker::create();
@@ -82,7 +83,7 @@ class ProductResourceController extends Controller
             'name' => 'required',
             'price' => 'required|numeric|min:100000',
             'stock' => 'required|numeric|min:1',
-            'discount' => 'numeric|min:0|max:100',
+            'discount' => 'numeric|min:0|max:99',
             'category' => 'required',
             'description' => 'required',
         ]);
