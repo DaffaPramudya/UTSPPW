@@ -58,7 +58,6 @@ class LoginController extends Controller
     {
         $client = new GoogleClient();
         $client->setClientId('');
-        // $client->setClientSecret('');
         $client->setRedirectUri(route('googleauth'));
         $token = $client->fetchAccessTokenWithAuthCode($request->get('code'));
         $client->setAccessToken($token['access_token']);
