@@ -54,6 +54,7 @@ class OrderController extends Controller
                 'product_id' => $cart->product->id,
                 'total_price' => $cart->total_price,
                 'quantity' => $cart->quantity,
+                'size' => $cart->size,
             ]);
         }
         $orders = Order::with(['cart.user', 'cart.product'])->get();

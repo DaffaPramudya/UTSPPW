@@ -79,6 +79,7 @@ class CartController extends Controller
             'product_id' => $product_id,
             'quantity' => 1,
             'total_price' => $product->price,
+            'size' => 37,
         ]);
         return back()->with('success', 'Produk berhasil ditambahkan ke keranjang!');
     }

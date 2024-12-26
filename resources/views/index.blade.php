@@ -62,18 +62,18 @@
       </div>
     @endif
     <!-- Product Card -->
-    <div class=" pb-5 pt-5">
-      <h1 class="font-bold text-xl">Semua Produk</h1>
-    </div>
     @if (session()->has('success'))
-      <div class="text-center p-3 mb-6 rounded-lg bg-green-400 text-green-900 lg:w-1/2 mx-auto">
+      <div class="text-center p-3 mb-6 rounded-lg bg-green-400 text-green-900 lg:w-1/2 mt-6 mx-auto">
         {{ session('success') }}
       </div>
     @elseif(session()->has('error'))
-      <div class="text-center p-3 mb-6 rounded-lg bg-red-400 text-red-900 lg:w-1/2 mx-auto">
+      <div class="text-center p-3 mb-6 rounded-lg bg-red-400 text-red-900 lg:w-1/2 mt-6 mx-auto">
         {{ session('error') }}
       </div>
     @endif
+    <div class=" pb-5 pt-5">
+      <h1 class="font-bold text-xl">Semua Produk</h1>
+    </div>
     <div class="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4">
       <!-- Card Item -->
       @foreach ($products as $product)

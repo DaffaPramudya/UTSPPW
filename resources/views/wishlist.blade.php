@@ -6,7 +6,7 @@
     @if (session()->has('success'))
       <div class="text-center p-3 mb-6 rounded-lg bg-green-300 text-green-900 w-1/2 mx-auto">{{ session('success') }}</div>
     @endif
-    <div class="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 px-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 px-5">
       <!-- Card Item -->
       @foreach ($wishlists as $wishlist)
         @php

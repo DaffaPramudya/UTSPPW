@@ -3,8 +3,9 @@
 @section('content')
 
   <body>
-
-    <h1 class="text-center font-bold text-xl mt-6">Keranjang</h1>
+    <div class="container mx-auto mt-8">
+      <h1 class="px-4 md:px-2 text-3xl">Keranjang</h1>
+    </div>
     @if (session()->has('success'))
       <div class="container text-center py-3 mt-2 mb-3 lg:w-1/3  mx-auto rounded-lg bg-green-300 text-green-900 w-full">
         {{ session('success') }}
@@ -14,8 +15,8 @@
         {{ session('error') }}
       </div>
     @endif
-    <div class="container mx-auto md:px-2 my-5 grid lg:flex items-start px-4">
-      <div class="relative shadow-md sm:rounded-lg overflow-x-auto w-2/3 hidden lg:block">
+    <div class="container mx-auto md:px-2 my-5 xl:flex items-start px-4">
+      <div class="relative shadow-md sm:rounded-lg overflow-x-auto w-2/3 hidden xl:block">
         <table class="w-full">
           <thead class="bg-gray-100 border-b-2 border-gray-300">
             <tr>
@@ -35,9 +36,9 @@
               @endphp
               <tr class="{{ $loop->even ? 'bg-gray-100' : 'bg-white' }}">
                 <td class="p-3 text-gray-500 font-semibold whitespace-nowrap">
-                  {{ $cart->product->code }}
+                  <a href="{{ route('products.show', $cart->product->code) }}"><span class="text-blue-500 hover:text-blue-600 ml-2">{{ $cart->product->code }}</span></a>
                 </td>
-                <td class="p-3 text-gray-500 font-semibold whitespace-nowrap">
+                <td class="p-3 text-gray-500 font-semibold whitespace-nowrap overflow-scroll">
                   <div class="flex flex-space-4 items-center">
                     <img src="{{ asset('storage/' . $pictures[0]) }}" class="h-24 w-24 sm:h-14 sm:w-14 mr-4 object-cover rounded-md">
                     {{ $cart->product->name }}
@@ -97,12 +98,66 @@
         </table>
       </div>
 
-      <div class="grid grid-cols-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 xl:hidden mb-8">
         @foreach ($carts as $cart)
+          <div class="flex bg-gray-200 bg-opacity-70 rounded-lg shadow-md p-4 w-full">
+            <div class="flex flex-1 flex-col space-y-1">
+              <div class="font-semibold">{{ $cart->product->name }} <a href="{{ route('products.show', $cart->product->code) }}"><span class="text-blue-500 hover:text-blue-600 ml-2">{{ $cart->product->code }}</span></a></span></div>
+              <div>Ukuran: {{ $cart->size }}</div>
+              <div>Kuantitas: {{ $cart->quantity }}</div>
+              <div>Total Harga: <span class="font-semibold">Rp {{ number_format($cart->product->price, 0, ',', '.') }}</span></div>
+              <br><br><br><br>
+              <div class="flex space-x-4">
+                <div>
+                  <form action="{{ route('carts.destroy', $cart->id) }}" method="POST" class="flex justify-end">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="flex justify-center items-center w-9 h-9 rounded-lg bg-red-600 hover:bg-red-700 transition-colors">
+                      <i class="fa-solid fa-trash text-white"></i>
+                    </button>
+                  </form>
+                </div>
+                <div>
+                  <form action="{{ route('editsize', $cart->id) }}" method="POST">
+                    @csrf
+                    <select name="size" onchange="this.form.submit()" class="rounded-md">
+                      <option value="37" @if (old('size', $cart->size) == '37') selected @endif>37</option>
+                      <option value="38" @if (old('size', $cart->size) == '38') selected @endif>38</option>
+                      <option value="39" @if (old('size', $cart->size) == '39') selected @endif>39</option>
+                      <option value="40" @if (old('size', $cart->size) == '40') selected @endif>40</option>
+                      <option value="41" @if (old('size', $cart->size) == '41') selected @endif>41</option>
+                      <option value="42" @if (old('size', $cart->size) == '42') selected @endif>42</option>
+                      <option value="43" @if (old('size', $cart->size) == '43') selected @endif>43</option>
+                    </select>
+                    <button type="submit" class="hidden"></button>
+                  </form>
+                </div>
+                <div class="flex flex-space-4 items-center justify-between">
+                  <form action="{{ route('subqty', ['cart_id' => $cart->id]) }}" method="POST">
+                    @csrf
+                    <button type="submit" name="decrease" class="size-9 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-200 text-sm transition-colors duration-150">
+                      <i class="fa-solid fa-minus"></i>
+                    </button>
+                  </form>
+                  <form action="{{ route('editqty', ['cart_id' => $cart->id]) }}" class="mx-4 w-14" method="POST">
+                    @csrf
+                    <input type="number" name="quantity" value="{{ old('quantity', $cart->quantity) }}" class="rounded w-full h-7 py-4 text-center" inputmode="numeric" style="-moz-appearance: textfield">
+                    <button type="submit" class="hidden"></button>
+                  </form>
+                  <form action="{{ route('addqty', ['cart_id' => $cart->id]) }}" method="POST">
+                    @csrf
+                    <button type="submit" name="increase" class="size-9 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-200 text-sm transition-colors duration-150">
+                      <i class="fa-solid fa-plus"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         @endforeach
       </div>
 
-      <div class="border border-slate-600 flex-1 lg:ml-5 rounded-lg bg-blue-100 flex-shrink-0">
+      <div class="border border-slate-600 flex-1 xl:ml-5 rounded-lg bg-blue-100 flex-shrink-0">
         <h1 class="p-3 text-center font-semibold">Ringkasan Belanja</h1>
         <div class="p-8 border border-y-slate-600">
           @foreach ($carts as $cart)

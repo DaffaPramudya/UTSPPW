@@ -7,8 +7,8 @@
     @elseif(session()->has('error'))
       <div class="text-center p-3 mb-6 rounded-lg bg-red-400 text-red-900 lg:w-1/2 mx-auto">{{ session('error') }}</div>
     @endif
-    <div class="flex rounded-md overflow-hidden bg-blue-200">
-      <div class="w-1/2 p-16 pr-0">
+    <div class="flex flex-col lg:flex-row rounded-md overflow-hidden bg-blue-200">
+      <div class="p-8 lg:w-1/2 lg:p-16 lg:pr-0">
         <div id="default-carousel" class="relative w-full" data-carousel="static">
           <!-- Carousel wrapper -->
           <div class="relative h-80 overflow-hidden rounded-md md:h-96">
@@ -46,15 +46,32 @@
           </button>
         </div>
       </div>
-      <div class="w-1/2 bg-blue-200 p-16 pb-10 flex flex-col justify-between">
+      <div class="lg:w-1/2 bg-blue-200 p-8 lg:p-16 lg:pb-10 flex flex-col justify-between">
         <div class="h-full flex flex-col justify-between">
           <div>
-            <h1 class="text-2xl font-semibold mb-4">{{ $product->name }}</h1>
+            <div class="flex justify-between align-bottom lg:mb-0 mb-4">
+              <h1 class="text-2xl font-semibold inline mb-4">{{ $product->name }}</h1>
+              <div class="flex lg:hidden">
+                @if ($product->discount != 0)
+                  <h1 class="font-semibold xs:text-4xl align-text-bottom mb-4 text-green-600 text-xl">Rp {{ number_format($product->price * ((100 - $product->discount) * 0.01), 0, ',', '.') }}</h1>
+                  <span class="ml-4 line-through text-red-500">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
+                @else
+                  <h1 class="font-semibold text-4xl align-text-bottom mb-4">Rp {{ number_format($product->price, 0, ',', '.') }}</h1>
+                @endif
+              </div>
+            </div>
             <p class="text-gray-500">{{ $product->description }}</p>
           </div>
           {{-- Shoe size --}}
           <div class="my-7">
-            <h1 class="font-semibold text-4xl align-text-bottom mb-4">Rp {{ number_format($product->price, 0, ',', '.') }}</h1>
+            <div class="lg:flex hidden">
+              @if ($product->discount != 0)
+                <h1 class="font-semibold text-4xl align-text-bottom mb-4 text-green-600">Rp {{ number_format($product->price * ((100 - $product->discount) * 0.01), 0, ',', '.') }}</h1>
+                <span class="ml-4 line-through text-red-500">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
+              @else
+                <h1 class="font-semibold text-4xl align-text-bottom mb-4">Rp {{ number_format($product->price, 0, ',', '.') }}</h1>
+              @endif
+            </div>
             <h1 class="mb-2 font-medium">Ukuran sepatu</h1>
             <form action="{{ route('addcartproduct', $product->id) }}" method="POST">
               @csrf

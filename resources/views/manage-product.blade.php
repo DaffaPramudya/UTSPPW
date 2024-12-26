@@ -29,7 +29,7 @@
               $pictures = json_decode($product->pictures, true);
             @endphp
             <tr class="{{ $loop->even ? 'bg-gray-100' : 'bg-white' }}">
-              <td class="p-3 text-gray-500 font-semibold whitespace-nowrap"><a href=""><span class="text-blue-500 hover:text-blue-600 transition-colors">{{ $product->code }}</span></a></td>
+              <td class="p-3 text-gray-500 font-semibold whitespace-nowrap"><a href="{{ route('products.show', $product->code) }}"><span class="text-blue-500 hover:text-blue-600 transition-colors">{{ $product->code }}</span></a></td>
               <td class="p-3 text-gray-500 font-semibold flex items-center whitespace-nowrap overflow-scroll">
                 @if (!empty($pictures))
                   <img src="storage/{{ $pictures[0] }}" class="h-16 w-16 mr-4 object-cover rounded-md">{{ $product->name }}
@@ -74,7 +74,7 @@
         @endphp
         <div class="flex bg-gray-200 bg-opacity-70 rounded-lg shadow-md p-4 w-full">
           <div class="flex flex-1 flex-col space-y-1">
-            <div class="font-semibold">{{ $product->name }}</div>
+            <div class="font-semibold">{{ $product->name }} <a href="{{ route('products.show', $product->code) }}"><span class="text-blue-500 hover:text-blue-600 ml-2">{{$product->code}}</span></a></span></div>
             <div>Stok: {{ $product->stock }}</div>
             <div>Kategori: {{ $product->category }}</div>
             @if ($product->discount != 0)
@@ -87,6 +87,18 @@
             @else
               <div>Harga: Rp {{ number_format($product->price, 0, ',', '.') }}</div>
             @endif
+            <div class="flex space-x-3">
+              <form action="{{ route('products.destroy', $product->code) }}" method="POST">
+                @csrf
+                @method('delete')
+                <button type="submit" class="flex justify-center items-center w-9 h-9 rounded-lg bg-red-600 hover:bg-red-700 transition-colors">
+                  <i class="fa-solid fa-trash text-white"></i>
+                </button>
+              </form>
+              <a href="{{ route('products.edit', $product->code) }}" class="flex justify-center items-center w-9 h-9 rounded-lg bg-yellow-300 hover:bg-yellow-400 transition-colors">
+                <i class="fa-solid fa-pen-to-square text-white"></i>
+              </a>
+            </div>
           </div>
           <div class="flex w-1/4 items-center justify-center">
             @if (!empty($pictures))
