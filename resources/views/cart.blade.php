@@ -31,6 +31,9 @@
           <tbody class="divide-y divide-gray-300">
             {{-- foreach here --}}
             @foreach ($carts as $cart)
+              @if ($cart->product->stock == 0)
+                @continue;
+              @endif
               @php
                 $pictures = json_decode($cart->product->pictures);
               @endphp
@@ -78,7 +81,7 @@
                     </form>
                     <form action="{{ route('editqty', ['cart_id' => $cart->id]) }}" class="mx-4 w-14" method="POST">
                       @csrf
-                      <input type="number" name="quantity" value="{{ old('quantity', $cart->quantity) }}" class="rounded w-full h-7 py-4 text-center" inputmode="numeric" style="-moz-appearance: textfield">
+                      <input type="number" name="quantity" value="{{ old('quantity', $cart->quantity) }}" min="1" class="rounded w-full h-7 py-4 text-center" inputmode="numeric" style="-moz-appearance: textfield">
                       <button type="submit" class="hidden"></button>
                     </form>
                     <form action="{{ route('addqty', ['cart_id' => $cart->id]) }}" method="POST">
@@ -100,6 +103,9 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 xl:hidden mb-8">
         @foreach ($carts as $cart)
+          @if($cart->product->stock == 0)
+            @continue;
+          @endif
           <div class="flex bg-gray-200 bg-opacity-70 rounded-lg shadow-md p-4 w-full">
             <div class="flex flex-1 flex-col space-y-1">
               <div class="font-semibold">{{ $cart->product->name }} <a href="{{ route('products.show', $cart->product->code) }}"><span class="text-blue-500 hover:text-blue-600 ml-2">{{ $cart->product->code }}</span></a></span></div>
@@ -141,7 +147,7 @@
                   </form>
                   <form action="{{ route('editqty', ['cart_id' => $cart->id]) }}" class="mx-4 w-14" method="POST">
                     @csrf
-                    <input type="number" name="quantity" value="{{ old('quantity', $cart->quantity) }}" class="rounded w-full h-7 py-4 text-center" inputmode="numeric" style="-moz-appearance: textfield">
+                    <input type="number" name="quantity" value="{{ old('quantity', $cart->product->stock) }}" class="rounded w-full h-7 py-4 text-center" inputmode="numeric" style="-moz-appearance: textfield">
                     <button type="submit" class="hidden"></button>
                   </form>
                   <form action="{{ route('addqty', ['cart_id' => $cart->id]) }}" method="POST">
@@ -161,6 +167,9 @@
         <h1 class="p-3 text-center font-semibold">Ringkasan Belanja</h1>
         <div class="p-8 border border-y-slate-600">
           @foreach ($carts as $cart)
+            @if($cart->product->stock == 0)
+              @continue;
+            @endif
             <div class="flex justify-between">
               <p>{{ $cart->product->name }} <span class="text-red-600 ml-4">x{{ $cart->quantity }}</span></p>
               <p>Rp {{ number_format($cart->total_price, 0, ',', '.') }}</p>
@@ -174,7 +183,12 @@
               // $total_price = App\Models\Cart::sum('total_price');
               $total_price = App\Models\Cart::where('user_id', auth()->id())->sum('total_price');
             @endphp
-            <p>Rp {{ number_format($total_price, 0, ',', '.') }}</p>
+            <p>
+              @if($cart->product->stock == 0)
+              @else
+                Rp {{ number_format($total_price, 0, ',', '.') }}
+              @endif
+            </p>
           </div>
           <div class="flex justify-center">
             <form action="{{ route('storefromcart') }}" method="POST" class="w-full">

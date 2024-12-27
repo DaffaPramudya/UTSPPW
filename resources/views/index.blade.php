@@ -119,12 +119,18 @@
                   </button>
                 </form>
                 <!-- Cart Button -->
-                <form action="{{ route('addcart', $product->id) }}" method="POST">
-                  @csrf
-                  <button type="submit" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition-colors">
-                    <i class="fas fa-shopping-cart"></i>
-                  </button>
-                </form>
+                @if ($product->stock == 0)
+                  <div class="p-4 bg-red-300 text-red-800 rounded-md cursor-default">
+                    Barang Habis
+                  </div>
+                @else
+                  <form action="{{ route('addcart', $product->id) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition-colors">
+                      <i class="fas fa-shopping-cart"></i>
+                    </button>
+                  </form>
+                @endif
               @endif
             @endauth
           </div>

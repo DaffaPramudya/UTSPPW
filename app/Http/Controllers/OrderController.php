@@ -34,10 +34,13 @@ class OrderController extends Controller
             $query->where('user_id', auth()->id());
         })->get();
         foreach($orders as $order) {
+            $product = Product::find($order->cart->product->id);
             $order->payment = $request->payment;
             $order->shipment = $request->shipment;
+            $product->stock -= $order->quantity;
             $order->cart_id = null;
             $order->save();
+            $product->save();
         }
         return view('index', ['products' => Product::all()])->with('success', 'Barang berhasil dibeli!');
     }

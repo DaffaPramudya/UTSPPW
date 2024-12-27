@@ -120,7 +120,13 @@
                 </div>
               </div>
               <div class="text-center mt-6">
-                <button type="submit" class="p-4 bg-blue-500 hover:bg-blue-600 transition-colors rounded-md text-white"><i class="fa-solid fa-cart-shopping mr-2 text-white"></i>Tambah ke keranjang</button>
+                @if ($product->stock == 0)
+                  <div class="p-4 bg-red-300 text-red-800 rounded-md cursor-default">
+                    Barang Habis
+                  </div>
+                @else
+                  <button type="submit" class="p-4 bg-blue-500 hover:bg-blue-600 transition-colors rounded-md text-white"><i class="fa-solid fa-cart-shopping mr-2 text-white"></i>Tambah ke keranjang</button>
+                @endif
               </div>
             </form>
           </div>
